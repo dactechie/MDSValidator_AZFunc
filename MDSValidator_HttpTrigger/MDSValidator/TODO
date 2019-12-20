@@ -1,0 +1,11 @@
+
+
+- Use one common schema file for previous_treatment_type and main_treatment_type
+- Insert EID based on team
+- spit out csv as final result so we don't have 0099 post-code issue (Excel chops off leading zeros)
+
+- To Test :
+  - changes to SLK code
+  - Why did some of my tests not catch errors pointed out by Jenny T. ? :
+    - gaps in ODC
+    - Duplicate ODC

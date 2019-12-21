@@ -125,7 +125,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', perio
   
   start_time = time()
  
-  period = get_period(start_date, period_months=int(period))
+  period = get_period(start_date, period_months=period)
   
   jv = get_json_validator(period, program=program)
 

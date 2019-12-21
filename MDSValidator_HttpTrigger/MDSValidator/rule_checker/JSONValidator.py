@@ -42,6 +42,7 @@ class JSONValidator(object):
         self.rule_definitions = copy.deepcopy(common_rules)
         self.rules = [r['rule'] for r in self.rule_definitions]
 
+        addnl_def = None
         if program:
           if program =='TSS': # TODO if there are other specialized (program) rules, make this more dynamic
             from ..AOD_MDS.logic_rules.TSS import rule_definitions as addnl_def
@@ -49,6 +50,9 @@ class JSONValidator(object):
             from ..AOD_MDS.logic_rules.Arcadia_Resi import rule_definitions as addnl_def
           elif program ==  'Althea':
             from ..AOD_MDS.logic_rules.Althea import rule_definitions as addnl_def
+          else:
+            logger.warn("{program} program validation not implmented yet, only going to check common rules.")
+        
           if addnl_def:
             self.rule_definitions.extend(addnl_def)
             self.rules.extend([r['rule'] for r in addnl_def])

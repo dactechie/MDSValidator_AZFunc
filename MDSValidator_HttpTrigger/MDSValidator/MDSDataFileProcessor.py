@@ -1,19 +1,22 @@
 import os
 import sys
+import csv
 from time import time
 from datetime import datetime
 # import click
 
 from .logger import logger
-from .AOD_MDS.helpers import read_data, read_header
+from .AOD_MDS.helpers import read_data, read_header, data_readers
+from .AOD_MDS.schema import schema
 from .rule_checker.JSONValidator import JSONValidator
 from .rule_checker.MJValidationError import MJValidationError
-from .utils.CsvWriter import write_results_to_csv
+#from .utils.CsvWriter import write_results_to_csv
 from .utils.files import get_latest_data_file, get_result_filename
 from .utils.dates import get_period, Period
-from .utils.output_helpers import get_rows_to_write
+from .utils.output_helpers import get_vresult_rows
 #from utils.log import log_results
 from .rule_checker.constants import MODE_LOOSE
+
 #import pprint
 
 """
@@ -27,10 +30,9 @@ from .rule_checker.constants import MODE_LOOSE
         then return the path to the new .xlsx to the user.
 """
 
-def get_json_validator(period: Period, schema_dir_name, schema_file_name, program=''):                  
-    schema_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), schema_dir_name)
-    schema_file = os.path.realpath(os.path.join(schema_dir, schema_file_name))
-    return JSONValidator(schema_dir, schema_file, period, program=program)
+def get_json_validator(period: Period, program=''):                  
+  schema_obj = schema.schema
+  return JSONValidator(schema_obj, period, program=program)
 
 
 def get_valid_header_or_die(data, validator, mode):
@@ -38,15 +40,14 @@ def get_valid_header_or_die(data, validator, mode):
     header = data[0]
     missing_headers, fixed_header, header_warnings = validator.validate_header(header, mode=mode)
     if missing_headers:
-        logger.critical(f"Missing Headers  {missing_headers} \n warnings {header_warnings}")
-        sys.exit(0)
+      logger.error(f"Missing Headers  {missing_headers} \n warnings {header_warnings}")        
 
     return fixed_header, header_warnings
 
 
-def get_data_or_die(data, mds_header, hmap, all_eps=None):
+def get_data_or_die(data, mds_header, open_and_closed_eps=None):
 
-    data = read_data(filename, mds_header, hmap, all_eps=all_eps)
+    data = read_data(data[1:], mds_header, open_and_closed_eps=open_and_closed_eps)
     if not data or not data['episodes'] or len(data['episodes']) < 1 :
         logger.critical("No data. Quitting...")
         sys.exit(0)
@@ -76,55 +77,64 @@ def get_data_or_die(data, mds_header, hmap, all_eps=None):
 # @click.option('--nostrict/--strict', '-s/-S', default=False,
 #               help='Accept/Reject imperfect data files with known aliases.' +
 #                    '\n1: reject (flag as errors)', show_default=True)
-def main(data, all_eps, errors_only, start_date, program='', reporting_period="3", nostrict=False):
+def main(data, open_and_closed_eps, errors_only, start_date, program='TSS', reporting_period=1, nostrict=False):
   if not start_date:    
     start_date = datetime(2019,7,1)
     logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
     # logger.error("Start Date is required. Quitting")
     # sys.exit()
-
-  # FILENAME = None
-  # if not data_file or data_file =='None':
-  #     FILENAME = get_latest_data_file()
-  # else:
-  #   FILENAME = data_file
-  #     FILENAME =  os.path.join('input', data_file)
-  
-  # if not FILENAME:
-  #     logger.error("No input file. Quitting.")
-  #     sys.exit()
-  
-  # print(f"\t ***** Going to process {FILENAME} \n")
-
-  results = exe(data, all_eps, errors_only, start_date, program=program, period=reporting_period, nostrict=nostrict)
+  result_dicts = exe(data, open_and_closed_eps, errors_only, start_date, program=program, period=reporting_period, nostrict=nostrict)
   
   # logger.info(results['episodes'])
   # logger.info('*'*10)
   # logger.info(results['errors'])
 
   logger.info("\t ...End of Program...\n")
-  return results
+  return result_dicts
 
 
+# def csv_split() :
+#     raw = [ 
+#             '"1,2,3" , "4,5,6" , "456,789"',
+#             '"text":"a,b,c,d", "gate":"456,789"'
+#           ]
+#     cr = csv.reader( raw, skipinitialspace=True )
+#     for l in cr :
+#         print len( l ), l
+
+
+def _split_strings_to_cols(data):
+  cr = csv.reader( data, skipinitialspace=True )
+  return [row for row in cr]
+    
 
 
 #def get_rows_to_write(headers, hlen, data, errors_dict)
-headers = ['ID','First name','Surname','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status','Preferred language','Postcode (Australian)',
-            'Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation','Treatment delivery setting','Method of use for PDC',
-            'Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5',
-            'Main treatment type','OTT1','OTT2','OTT3','OTT4','OTT5','Living arrangements','Previous alcohol and other drug treatment received','Mental health']
+# headers = ['ID','First name','Surname','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status','Preferred language','Postcode (Australian)',
+#             'Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation','Treatment delivery setting','Method of use for PDC',
+#             'Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5',
+#             'Main treatment type','OTT1','OTT2','OTT3','OTT4','OTT5','Living arrangements','Previous alcohol and other drug treatment received','Mental health']
 
-def exe(data, all_eps, errors_only, start_date, program='', period="3", nostrict=False):
+# ['ID,First name,Surname,Sex,Date of birth,SLK 581,Country of birth,Indigenous status,Preferred language,Client type,Source of referral,Commencement date,End date,Reason for cessation,\
+# Treatment delivery setting,Method of use for PDC,Injecting drug use status,PDC,ODC1,ODC2,ODC3,ODC4,ODC5,Main treatment type,OTT1,OTT2,OTT3,OTT4,OTT5,Date accuracy indicator,Postcode (Australian),\
+# Usual accommodation,Living arrangements,Previous alcohol and other drug treatment received,Mental health',
+# '465,Justin,Smith,Male,12/02/1995,MIHUS120219951,Australia,Neither Aboriginal nor Torres Strait Islander origin,English,Own alcohol or other drug use,Other,7/01/2019,8/08/2019,Treatment completed,\
+#   Outreach setting,Ingests,Never injected,"Alcohols, nfd",,,,,,Support and case management only,,,,,,AAA,2630,Private residence,Not known/inadequately described,No treatment,Never been diagnosed']
+
+def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', period=1, nostrict=False):
   
   start_time = time()
  
   period = get_period(start_date, period_months=int(period))
   
-  jv = get_json_validator(period, schema_dir_name='AOD_MDS/schema/',
-                          schema_file_name='schema.json', program=program)
+  jv = get_json_validator(period, program=program)
+
+  data = _split_strings_to_cols(data)
+  
+
   mds_header, header_warnings = get_valid_header_or_die(data, validator=jv, mode=nostrict)
-    
-  data = get_data_or_die(data, mds_header, header_warnings, all_eps=all_eps)
+      
+  data = get_data_or_die(data, mds_header, open_and_closed_eps=open_and_closed_eps)
 
   verrors, warnings =  jv.validate(data, mode=nostrict)
   
@@ -139,16 +149,41 @@ def exe(data, all_eps, errors_only, start_date, program='', period="3", nostrict
   #log_results(verrors, warnings, header_warnings)
   logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,2)} seconds. ")
   #pprint.pprint (verrors)
-
-  rows = get_rows_to_write(headers, len(headers), data, verrors)
-  logger.info("\t ...result ..{rows}\n")    
-  # result_book = write_results_to_csv(data['episodes'], verrors,
-  #                                  get_result_filename(data_file, all_eps, program))
-  #return 0
+  skip_headers = ['OCommencement date', 'ODOB']
+  new_header = [h for h in data['episodes'][0].keys()  if h not in skip_headers]
+  
+  rows = get_vresult_rows(new_header, len(new_header), data['episodes'], verrors)
+  logger.info("\t ...result ..{rows}\n")  
+  
+  # mds_headers_with_errors =[]
+  # for h in mds_header:
+  #   mds_headers_with_errors.extend([h, f'error_{h}'])
+  
   return rows
-  # return {'episodes' : data['episodes'], 
-  #         'errors': verrors }
-
 
 # if __name__ == '__main__':   
 #     sys.exit(main(sys.argv[1:]))
+
+
+# 'ENROLLING PROVIDER','ID','First name','Surname','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status','Preferred language',
+# 'Postcode (Australian)','Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation','Treatment delivery setting',
+# 'Method of use for PDC','Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5','Main treatment type','OTT1','OTT2','OTT3','OTT4','OTT5',
+# 'Living arrangements','Previous alcohol and other drug treatment received','Mental health'
+
+
+
+# # 0 - 9
+# 'EID','Person identifier','Sex','DOB','Country of birth','Indigenous status','Preferred language','Client type','Source of referral',
+# # 10 - 12
+# 'Date of commencement of treatment episode for alcohol and other drugs','Date of cessation of treatment episode for alcohol and other drugs','Reason for cessation',
+# # 13 -22
+# 'Treatment delivery setting','Method of use for PDC','Injecting drug use status','Principal drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5','Main treatment type',
+# #  23 -32
+# 'OTT1','OTT2','OTT3','OTT4','Date accuracy indicator','SLK 581','Postcode (Australian)','Usual accommodation','Living arrangements','Previous AOD treatment',
+
+# #33
+# 'Mental health (Diagnosed with a mental illness)',
+
+# # 34, 35, 36
+# 'Medicine received alongside the main treatment type - opioid overdose reversal',
+# 'Medicine received alongside the main treatment type - nicitone replacement therapy','Medicine received alongside the main treatment type - hepatitis C treatment'

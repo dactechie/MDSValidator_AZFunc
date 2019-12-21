@@ -48,51 +48,34 @@ def _split_fullname(reader) -> list:
   return data_dicts
 
 
+def get_dicts(data, header):
+  results = []
+  for d in data:
+    results.append ( {h: d[idxh] for idxh, h in enumerate(header)}
+                    )
+      
+  return results
+
+
+
 # TODO clean this up (use a generator)
-def read_data(data, data_header: dict, hmap: dict, 
-                                        all_eps=True) -> dict:
+def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
     """
     - Assumes that if a "FULL NAME" column exists, all rows will have a format of
         'LastName, FirstName'.
-    - Sometimes the header may have unicode (special) characters, cleans before use.
-    - hmap is a map of the header fields with official MDS translations,
-        where cleansing was required.
     - all_eps == False => Closed eps only
     """
-    #data_header = fix_headers(data_header)
-    with open(filename, 'r') as csvfile:
-        csvfile.readline()
-        reader = csv.DictReader(csvfile, data_header)
         
-        if MDS['FNAME'] not in data_header and "FULL NAME" in data_header:
-          rows = _split_fullname(reader)           
-          reader = rows
-          data_header.remove("FULL NAME")
-          data_header.extend([MDS['FNAME'], MDS['LNAME']])
-        
-        clean_headers = {dh: remove_unicode(dh) for dh in data_header}
-        # [ch for ch in clean_headers.values() if ch in data_header] == data_header
-        # True
-        tmp_k = None
-        result = []
-        ii = 0
-        for i, row in enumerate(reader):
-            if  "".join(row.values()) == '':
-              logger.error(f"\n\tFound Blank row at {i}. skipping to next row...")
-              continue
+    data_dicts = get_dicts(data, data_header)
 
-            if not all_eps and not row[MDS['END_DATE']]:
-              continue
+    if MDS['FNAME'] not in data_header and "FULL NAME" in data_header:
+      data_dicts = _split_fullname(data_dicts)
 
-            result.append({})
-            for k, v in row.items():
-                tmp_k = clean_headers[k]
-                # if tmp_k in hmap:
-                #     result[i][hmap[tmp_k]] = v
-                # else:
-                result[ii][tmp_k] = v
-            ii = ii + 1
+    result =  []
+    if not open_and_closed_eps:         # has to have an end date, otherwise skip row
+      result = [row for row in data_dicts if row[MDS['END_DATE']]]  
+    else:
+      result = data_dicts
 
-        #result = [ {k:v for k, v in row.items()} for row in reader if hmap[k]]
- 
-        return { "episodes" :result }
+
+    return { "episodes" :result }

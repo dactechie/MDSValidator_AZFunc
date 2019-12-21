@@ -1,4 +1,4 @@
-{
+schema ={
     "type": "string",
     "enum": [
       "Alone",

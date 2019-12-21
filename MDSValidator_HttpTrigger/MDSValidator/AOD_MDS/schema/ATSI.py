@@ -1,4 +1,4 @@
-{
+schema = {
     "title": "Indigenous Status", "type": "string",
     "enum": [
       "Aboriginal but not Torres Strait Islander origin",

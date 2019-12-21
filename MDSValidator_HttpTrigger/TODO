@@ -1,0 +1,9 @@
+
+
+for each program (TSS, Wagga Work-it-out, Wagga Headspace, )
+  1. Create a logic app to serve only as a trigger
+    - Logic App TSS looks at the /TSS/input folder
+    - Queries CosmosDB(MDSConfig) /TSS collection to pull all validation rules for just TSS
+  
+  2. Call the (only one version) MDSValidator_AZFunc function app, passing the config JSON along with the input file as the body
+

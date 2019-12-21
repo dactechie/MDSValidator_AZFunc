@@ -1,4 +1,4 @@
-{
+schema = {
     "title": "Usual Accommodation",
     "$id": "#accomodation",
     "enum": [

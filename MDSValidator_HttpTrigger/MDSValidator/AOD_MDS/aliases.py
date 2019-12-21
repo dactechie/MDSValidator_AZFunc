@@ -3,7 +3,7 @@ from .constants import MDS as M
 mds_aliases = {
     # k (official name) : v [] -> array of aliases or accepted values
     "headers": {
-        "ID": [ "PID", "Client ID"],
+        "ID": [ "PID", "Client ID", "ClientID"],
     },
     "fields":{
         M['ATSI']: {        
@@ -144,7 +144,7 @@ mds_aliases['headers'][M['COMM_DATE']]= ["ENROLMENT", "Commencement Date", "Comm
 mds_aliases['headers'][M['COB']]      = ["COUNTRY"]
 mds_aliases['headers'][M['END_DATE']] = ["DISCHARGE"]
 mds_aliases['headers'][M['DOB']]      = ["Date of birth"]
-mds_aliases['headers'][M['DAI']]      = ["DOB ACCURACY", "Date accuracy indicator (for DoB)"]
+mds_aliases['headers'][M['DAI']]      = ["DOB ACCURACY", "Date accuracy indicator (for DoB)", "DAI"]
 
 mds_aliases['headers'][M['FNAME']]    = ["First Name", "Firstname"]
 mds_aliases['headers'][M['INJ_USE']]  = ["INJECTION", "Injecting drug status"]

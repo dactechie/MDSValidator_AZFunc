@@ -28,13 +28,16 @@ header_er_lam = lambda field, miss_extra: MJValidationError(index='all',
                                     field=field,
                                     message=miss_extra)
 
+from ..utils import remove_unicode
+def clean_headers(header):
+  return [remove_unicode(dh) for dh in header]
 
 class JSONValidator(object):
     
-    def __init__(self, schema_dir, schema_file_name, period: Period, program):
-        self.validator, self.schema = JSONValidator.setup_validator(
-                                                    schema_dir, schema_file_name)
-        self.period = period                                                      
+    def __init__(self, schema_obj, period: Period, program):
+        self.validator = JSONValidator.setup_validator(schema_obj)
+        self.schema  = schema_obj
+        self.period = period                               
         
         self.rule_definitions = copy.deepcopy(common_rules)
         self.rules = [r['rule'] for r in self.rule_definitions]
@@ -52,17 +55,32 @@ class JSONValidator(object):
 
         self.slk_suggestions = {}
 
+    """
+      schema_refd_objects [ 'atsi' : []  , ]   
+                            #atsi enum
+    """
+    # @staticmethod
+    # def _custom_schema_resolver(schema, schema_refd_objects): 
+      
+    #   schema_props = schema['definitions']['episode']['properties']
 
+    #   ref_items =[var for var in schema_props if "$ref" in var]
+      
     @staticmethod
-    def setup_validator(schema_dir, schema_file_name):
-        validator = None
-        with open(schema_file_name) as schemaFile:
-            schemaObj = json.load(schemaFile)
-            resolver = jsc.RefResolver('file:///' + schema_dir, schemaObj)
-            validator = jsc.Draft4Validator(schemaObj, resolver=resolver)
+    def setup_validator(schemaObj):
+      validator = jsc.Draft4Validator(schemaObj)#, resolver=resolver)          
+      return validator
+
+    # @staticmethod
+    # def setup_validator(schema_dir, schema_file_name):
+    #     validator = None
+    #     with open(schema_file_name) as schemaFile:
+    #         schemaObj = json.load(schemaFile)
+    #         resolver = jsc.RefResolver('file:///' + schema_dir, schemaObj)
+    #         validator = jsc.Draft4Validator(schemaObj, resolver=resolver)
             
 
-        return validator, schemaObj
+    #     return validator, schemaObj
 
 
     # TODO : schema validation may have already deduced that dates, etc may be invalid.
@@ -109,11 +127,12 @@ class JSONValidator(object):
         # prep_overlap
 
 
-
+      
         # return compile_logic_errors(result, data_row, rec_idx, id_field, date_conversion_errors) 
     def validate_header(self, header, mode=MODE_LOOSE):
         warnings = None
-        tr_header = [h for h in header]
+
+        tr_header =  clean_headers(header)  ## TODO generate warnings if not clean
         if mode == MODE_LOOSE:
             tr_header, warnings = translate_to_MDS_header(tr_header)
 

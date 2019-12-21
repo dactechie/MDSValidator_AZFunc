@@ -1,4 +1,4 @@
-{
+schema = {
     "type": "string",
     "enum":[
       "Diagnosed three months ago or less",

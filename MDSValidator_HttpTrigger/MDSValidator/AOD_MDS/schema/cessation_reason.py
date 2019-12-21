@@ -1,4 +1,4 @@
-{
+schema = {
     "title": "Reason for cessation",
     "type": "string",
     "enum":[

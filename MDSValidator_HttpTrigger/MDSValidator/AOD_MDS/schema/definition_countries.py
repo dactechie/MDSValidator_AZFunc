@@ -1,4 +1,4 @@
-{
+schema = {
     "type": "string",
     "$id": "#country",
     "enum": [

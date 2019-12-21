@@ -1,4 +1,4 @@
-{
+schema = {
     "type": "string",
     "$id": "#treatment_type",
     "enum": [
@@ -6,11 +6,9 @@
         "Counselling",
         "Rehabilitation",
         "Pharmacotherapy",
-        "Support & case management",
+        "Support and case management",
         "Information and education",
         "Assessment only",
-        "Other",
-        "No previous treatment received",
-        ""
+        "Other"
     ]
 }

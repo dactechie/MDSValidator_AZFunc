@@ -2,7 +2,7 @@ schema = {
     "title": "Usual Accommodation",
     "$id": "#accomodation",
     "enum": [
-      "Private Residence",
+      "Private residence",
       "Boarding house/private hotel",
       "Supported accommodation facility",
       "Alcohol and other drugs",

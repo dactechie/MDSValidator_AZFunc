@@ -18,7 +18,7 @@ mds_aliases = {
           "Myanmar" : ["Burma (Myanmar)", "Burma (Republic of the Union of Myanmar)"],        
         },        
         M['CLNT_TYP']:{
-          "Own alcohol or other drug use": ["Own drug use" ],
+          "Own alcohol or other drug use": ["Own drug use", "Own alcohol or other drug  use" ],
           "Other's alcohol or other drug use": ["Other's drug use", "Other's alcohol/other drug use"],        
         },
         M['DAI']: {
@@ -87,11 +87,13 @@ mds_aliases = {
               "GHB type Drugs and Analogues, n.e.c." :["GHB type Drugs and Analogues nfd"],
         },
         M['REAS_CESS']: {
+          "Treatment completed" : ["Treatment Completed"],
           "Ceased to participate against advice": ["Ceased against advice"],
           "Ceased to participate without notice" : ["Ceased without notice"],
           "Ceased to participate by mutual agreement": ["Ceased by mutual agreement"],
           "Ceased to participate involuntary (non-compliance)": ["Ceased involuntary"],
-          "Change in main treatment type" : ["Change in the main treatment type"],          
+          "Change in main treatment type" : ["Change in the main treatment type"],
+          "Change in principal drug of concern" : ["Change in the principal drug of concern"],
           "Change in delivery setting" : ["Change in the delivery setting"],
           "Transferred to another service provider" : ["Transferred to other provider"],
           "Imprisoned, other than drug court sanctioned":["Imprisoned (not drug court)" ],
@@ -116,12 +118,13 @@ mds_aliases = {
           "Non-residential treatment facility" :["Non-residential Facility"]
         },
         M['USACC']:{
-          "Private residence": ["Rented public house or flat"],
+          "Private residence": ["Rented public house or flat", "Rented private house or flat", "Privately owned house or flat"],
+          "Alcohol and other drugs": ["Alcohol/other drug treatment residence"],
           "Short term crisis, emergency or transitional accommodation facility" : [
             "Short term crisis, emergency or transitional accommodation f"],
           "Other specialised community residential": ["Other specialised community residential"],        
           "Boarding house/private hotel" : ["Boarding house/private rental"],
-          "None/homeless/public place" : ["None/homeless/public space"],
+          "None/homeless/public place" : ["None/homeless/public space", "No usual residence/homeless"],
           
         },       
     }

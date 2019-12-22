@@ -1,0 +1,221 @@
+{
+  "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "actions": {
+          "Condition": {
+              "actions": {
+                  "Create_file": {
+                      "inputs": {
+                          "body": "@body('MDSValidator_HttpTrigger')['error']",
+                          "host": {
+                              "connection": {
+                                  "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                              }
+                          },
+                          "method": "post",
+                          "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://directionshealth.sharepoint.com/'))}/files",
+                          "queries": {
+                              "folderPath": "/Reporting/MDS Validation/Error_AutoMovedInputFiles",
+                              "name": "error_@{base64ToString(triggerOutputs()['headers']['x-ms-file-name-encoded'])}.txt",
+                              "queryParametersSingleEncoded": true
+                          }
+                      },
+                      "runAfter": {},
+                      "type": "ApiConnection"
+                  },
+                  "Move_file": {
+                      "inputs": {
+                          "body": {
+                              "destinationDataset": "https://directionshealth.sharepoint.com/",
+                              "destinationFolderPath": "/Reporting/MDS Validation/Error_AutoMovedInputFiles",
+                              "nameConflictBehavior": 1,
+                              "sourceFileId": "@triggerOutputs()['headers']['x-ms-file-id']"
+                          },
+                          "host": {
+                              "connection": {
+                                  "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                              }
+                          },
+                          "method": "post",
+                          "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://directionshealth.sharepoint.com/'))}/moveFileAsync"
+                      },
+                      "runAfter": {
+                          "Create_file": [
+                              "Succeeded"
+                          ]
+                      },
+                      "type": "ApiConnection"
+                  }
+              },
+              "else": {
+                  "actions": {
+                      "Create_CSV_table": {
+                          "inputs": {
+                              "format": "CSV",
+                              "from": "@body('MDSValidator_HttpTrigger')"
+                          },
+                          "runAfter": {},
+                          "type": "Table"
+                      },
+                      "Create_output_file": {
+                          "inputs": {
+                              "body": "@body('Create_CSV_table')",
+                              "host": {
+                                  "connection": {
+                                      "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                                  }
+                              },
+                              "method": "post",
+                              "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://directionshealth.sharepoint.com/'))}/files",
+                              "queries": {
+                                  "folderPath": "/Reporting/MDS Validation/Output",
+                                  "name": "@base64ToString(triggerOutputs()['headers']['x-ms-file-name-encoded'])",
+                                  "queryParametersSingleEncoded": true
+                              }
+                          },
+                          "runAfter": {
+                              "Create_CSV_table": [
+                                  "Succeeded"
+                              ]
+                          },
+                          "type": "ApiConnection"
+                      },
+                      "Move_to_Success_AutoMovedInputFiles": {
+                          "inputs": {
+                              "body": {
+                                  "destinationDataset": "https://directionshealth.sharepoint.com/",
+                                  "destinationFolderPath": "/Reporting/MDS Validation/Success_AutoMovedInputFiles",
+                                  "nameConflictBehavior": 2,
+                                  "sourceFileId": "@triggerOutputs()['headers']['x-ms-file-id']"
+                              },
+                              "host": {
+                                  "connection": {
+                                      "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                                  }
+                              },
+                              "method": "post",
+                              "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://directionshealth.sharepoint.com/'))}/moveFileAsync"
+                          },
+                          "runAfter": {
+                              "Create_output_file": [
+                                  "Succeeded"
+                              ]
+                          },
+                          "type": "ApiConnection"
+                      },
+                      "Send_an_email_(V2)": {
+                          "inputs": {
+                              "body": {
+                                  "Body": "<p>@{base64ToString(triggerOutputs()['headers']['x-ms-file-path-encoded'])}@{base64ToString(triggerOutputs()['headers']['x-ms-file-name-encoded'])}</p>",
+                                  "Subject": "@base64ToString(triggerOutputs()['headers']['x-ms-file-name-encoded'])",
+                                  "To": "aftab.jalal@directionshealth.com"
+                              },
+                              "host": {
+                                  "connection": {
+                                      "name": "@parameters('$connections')['office365']['connectionId']"
+                                  }
+                              },
+                              "method": "post",
+                              "path": "/v2/Mail"
+                          },
+                          "runAfter": {
+                              "Move_to_Success_AutoMovedInputFiles": [
+                                  "Succeeded"
+                              ]
+                          },
+                          "type": "ApiConnection"
+                      }
+                  }
+              },
+              "expression": {
+                  "and": [
+                      {
+                          "equals": [
+                              "@outputs('MDSValidator_HttpTrigger')['statusCode']",
+                              201
+                          ]
+                      }
+                  ]
+              },
+              "runAfter": {
+                  "MDSValidator_HttpTrigger": [
+                      "Succeeded"
+                  ]
+              },
+              "type": "If"
+          },
+          "MDSValidator_HttpTrigger": {
+              "inputs": {
+                  "body": "@triggerBody()",
+                  "function": {
+                      "id": "/subscriptions/e1a42143-a624-4e4e-809d-d1271b8b0d29/resourceGroups/mds/providers/Microsoft.Web/sites/MDSValidator-AZFunc/functions/MDSValidator_HttpTrigger"
+                  },
+                  "headers": {
+                      "Content-type": "text/csv"
+                  },
+                  "method": "POST",
+                  "queries": {
+                      "name": "@triggerOutputs()['headers']['x-ms-file-id']",
+                      "path": "@triggerOutputs()['headers']['x-ms-file-path-encoded']"
+                  }
+              },
+              "runAfter": {},
+              "type": "Function"
+          }
+      },
+      "contentVersion": "1.0.0.0",
+      "outputs": {},
+      "parameters": {
+          "$connections": {
+              "defaultValue": {},
+              "type": "Object"
+          }
+      },
+      "triggers": {
+          "When_a_file_is_created_or_modified_in_a_folder": {
+              "inputs": {
+                  "host": {
+                      "connection": {
+                          "name": "@parameters('$connections')['sharepointonline']['connectionId']"
+                      }
+                  },
+                  "method": "get",
+                  "path": "/datasets/@{encodeURIComponent(encodeURIComponent('https://directionshealth.sharepoint.com/'))}/triggers/onupdatedfile",
+                  "queries": {
+                      "folderId": "%252fReporting%252fMDS%2bValidation%252fInput",
+                      "includeFileContent": true,
+                      "inferContentType": true,
+                      "queryParametersSingleEncoded": true
+                  }
+              },
+              "metadata": {
+                  "%252fReporting%252fMDS%2bValidation": "/Reporting/MDS Validation",
+                  "%252fReporting%252fMDS%2bValidation%252fInput": "/Reporting/MDS Validation/Input",
+                  "%252fReporting%252fMDS%2bValidation%252fTSS%252finput": "/Reporting/MDS Validation/TSS/input"
+              },
+              "recurrence": {
+                  "frequency": "Minute",
+                  "interval": 3,
+                  "timeZone": "AUS Eastern Standard Time"
+              },
+              "type": "ApiConnection"
+          }
+      }
+  },
+  "parameters": {
+      "$connections": {
+          "value": {
+              "office365": {
+                  "connectionId": "/subscriptions/e1a42143-a624-4e4e-809d-d1271b8b0d29/resourceGroups/mds/providers/Microsoft.Web/connections/office365",
+                  "connectionName": "office365",
+                  "id": "/subscriptions/e1a42143-a624-4e4e-809d-d1271b8b0d29/providers/Microsoft.Web/locations/australiaeast/managedApis/office365"
+              },
+              "sharepointonline": {
+                  "connectionId": "/subscriptions/e1a42143-a624-4e4e-809d-d1271b8b0d29/resourceGroups/mds/providers/Microsoft.Web/connections/sharepointonline",
+                  "connectionName": "sharepointonline",
+                  "id": "/subscriptions/e1a42143-a624-4e4e-809d-d1271b8b0d29/providers/Microsoft.Web/locations/australiaeast/managedApis/sharepointonline"
+              }
+          }
+      }
+  }
+}

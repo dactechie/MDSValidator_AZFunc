@@ -14,6 +14,7 @@ from ..AOD_MDS.logic_rules.common import rule_definitions as common_rules
 from ..utils import (cleanse_string, get_date_converter, has_duplicate_values, 
                     has_gaps, compile_logic_errors, remove_vrules, 
                     add_error_obj, Period, in_period)
+from ..utils.InputFileErrors import SchemaValidationError
 from ..logger import logger
 from .MJValidationError import MJValidationError
 from .constants import MODE_LOOSE, NOW_ORD, NOW
@@ -46,7 +47,7 @@ class JSONValidator(object):
         if program:
           if program =='TSS': # TODO if there are other specialized (program) rules, make this more dynamic
             from ..AOD_MDS.logic_rules.TSS import rule_definitions as addnl_def
-          elif program ==  'Arcadia-Resi':
+          elif program ==  'ArcadiaResi':
             from ..AOD_MDS.logic_rules.Arcadia_Resi import rule_definitions as addnl_def
           elif program ==  'Althea':
             from ..AOD_MDS.logic_rules.Althea import rule_definitions as addnl_def
@@ -72,7 +73,7 @@ class JSONValidator(object):
       
     @staticmethod
     def setup_validator(schemaObj):
-      validator = jsc.Draft4Validator(schemaObj)#, resolver=resolver)          
+      validator = jsc.Draft4Validator(schemaObj)#, resolver=resolver) 
       return validator
 
     # @staticmethod
@@ -142,9 +143,11 @@ class JSONValidator(object):
 
         schema_headers = set(self.schema['definitions']['episode']['required'])
         missing_headers = schema_headers.difference(set(tr_header))
+        
+        return missing_headers, tr_header, warnings
 
-        return [header_er_lam(field=mh, miss_extra='missing field') 
-                for mh in missing_headers], tr_header, warnings
+        # return [header_er_lam(field=mh, miss_extra='missing field') 
+        #         for mh in missing_headers], tr_header, warnings
 
 
     def check_schema_errors(self, data, id_field):
@@ -155,8 +158,8 @@ class JSONValidator(object):
         if error_code < 0: # oneOf fields are missing . Not checked as part of header checks
           if errors and errors[e.path[1]][0]['field'] =='<>':
             logger.error(f"{errors[e.path[1]][0]['message']}")
-          return errors, -1
-      return errors, 0
+          raise SchemaValidationError(errors,"Schema validation error")
+      return errors
 
     
 
@@ -179,9 +182,7 @@ class JSONValidator(object):
             warnings = translate_to_MDS_values(episodes)# translate to official MDS values
             data = {'episodes': episodes}
 
-        errors, ercode = self.check_schema_errors(data, id_field)
-        if ercode == -1:
-          return errors, -1
+        errors = self.check_schema_errors(data, id_field)
 
         add_operation('has_duplicate_values', has_duplicate_values)
         add_operation('check_slk', self.check_slk)          # change to is_invalid_slk

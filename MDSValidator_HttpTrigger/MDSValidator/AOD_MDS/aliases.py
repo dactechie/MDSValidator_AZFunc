@@ -2,9 +2,7 @@ from .constants import MDS as M
 
 mds_aliases = {
     # k (official name) : v [] -> array of aliases or accepted values
-    "headers": {
-        "ID": [ "PID", "Client ID", "ClientID"],
-    },
+
     "fields":{
         M['ATSI']: {        
           "Neither Aboriginal nor Torres Strait Islander origin": ["Neither Aboriginal nor TSI"],
@@ -138,31 +136,30 @@ mtt = mds_aliases['fields'][M['MTT']]
 mds_aliases['fields']['OTT1'] = mds_aliases['fields']['OTT2'] = mtt
 mds_aliases['fields']['OTT3'] = mds_aliases['fields']['OTT4'] = mtt
 
-mds_aliases['headers'][M['ATSI']]     = ["INDIG STATUS"]
-mds_aliases['headers'][M['CLNT_TYP']] = ["CLIENT"]
-mds_aliases['headers'][M['COMM_DATE']]= ["ENROLMENT", "Commencement Date", "Commencement date"]
-mds_aliases['headers'][M['COB']]      = ["COUNTRY"]
-mds_aliases['headers'][M['END_DATE']] = ["DISCHARGE"]
-mds_aliases['headers'][M['DOB']]      = ["Date of birth"]
-mds_aliases['headers'][M['DAI']]      = ["DOB ACCURACY", "Date accuracy indicator (for DoB)", "DAI"]
-
-mds_aliases['headers'][M['FNAME']]    = ["First Name", "Firstname"]
-mds_aliases['headers'][M['INJ_USE']]  = ["INJECTION", "Injecting drug status"]
-mds_aliases['headers'][M['ID']]       = ["PAT ID", "PID", "Client ID"]
-mds_aliases['headers'][M['LNAME']]    = ["Last Name", "Last name"]
-mds_aliases['headers'][M['LIVAR']]    = ["LIVING"]
-
-mds_aliases['headers'][M['METHOD']]   = ["USE", "Method of use for principal drug of concern"]
-mds_aliases['headers'][M['MENT_HEL']] = ["MENTAL HEALTH", "Mental health (Diagnosed with a mental illness)"]
-mds_aliases['headers'][M['MTT']]      = ["TREAT", "Main treatment type (MTT)"]
-mds_aliases['headers'][M['PCODE']]    = ["POSTCODE", "Postcode - Australian"]
-mds_aliases['headers'][M['PDC']]      = ["DRUG", "PDC"]
-mds_aliases['headers'][M['PREV_AOD']] = ["PREVIOUS TREATMENT", "Previous AOD treatment"]
-mds_aliases['headers'][M['PLANG']]    = ["LANGUAGE"]
-
-mds_aliases['headers'][M['REAS_CESS']]= ["CESSATION"]
-mds_aliases['headers'][M['SEX']]      = ["SEX"]
-mds_aliases['headers'][M['SLK']]      = ["SLK581"]
-mds_aliases['headers'][M['SRC_REF']]  = ["SOURCE"]
-mds_aliases['headers'][M['TDS']] = ["SETTING"]
-mds_aliases['headers'][M['USACC']]    = ["ACCOM", "Usual accommodation type"]
+mds_aliases['headers'] = {
+        M['ID']      : ["PAT ID", "PID", "Client ID", "ClientID"],
+        M['ATSI']    : ["INDIG STATUS"],
+        M['CLNT_TYP']: ["CLIENT"],
+        M['COMM_DATE']: ["ENROLMENT", "Commencement Date", "Commencement date"],
+        M['COB']     : ["COUNTRY"],
+        M['END_DATE']: ["DISCHARGE"],
+        M['DOB']    : ["Date of birth"],
+        M['DAI']    : ["DOB ACCURACY", "Date accuracy indicator (for DoB)", "DAI"],
+        M['FNAME']  : ["First Name", "Firstname"],
+        M['INJ_USE']: ["INJECTION", "Injecting drug status"],
+        M['LNAME']  : ["Last Name", "Last name"],
+        M['LIVAR']  : ["LIVING"],
+        M['METHOD'] : ["USE", "Method of use for principal drug of concern"],
+        M['MENT_HEL']: ["MENTAL HEALTH", "Mental health (Diagnosed with a mental illness)"],
+        M['MTT']     : ["TREAT", "Main treatment type (MTT)"],
+        M['PCODE']   : ["POSTCODE", "Postcode - Australian"],
+        M['PDC']     : ["DRUG", "PDC"],
+        M['PREV_AOD']: ["PREVIOUS TREATMENT", "Previous AOD treatment"],
+        M['PLANG']   : ["LANGUAGE"],
+        M['REAS_CESS']: ["CESSATION"],
+        M['SEX']     : ["SEX"],
+        M['SLK']     : ["SLK581"],
+        M['SRC_REF'] : ["SOURCE"],
+        M['TDS']     : ["SETTING"],
+        M['USACC']   : ["ACCOM", "Usual accommodation type"]
+}

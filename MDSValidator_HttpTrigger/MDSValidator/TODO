@@ -4,6 +4,16 @@
 - Insert EID based on team
 - spit out csv as final result so we don't have 0099 post-code issue (Excel chops off leading zeros)
 
+
+- Make it easily configurable by non coders i.e. AOD staff
+  - Reporting period and start date  (right now have to name the file that way)
+  - Team-wise Validation rules
+  - Errors-Only output
+  - Closed eps only vs Open and Closed eps
+
+- Add EID code to the output data from the team name
+
+
 - To Test :
   - changes to SLK code
   - Why did some of my tests not catch errors pointed out by Jenny T. ? :

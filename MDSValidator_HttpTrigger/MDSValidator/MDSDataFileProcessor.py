@@ -16,7 +16,7 @@ from .utils.dates import get_period, Period
 from .utils.output_helpers import get_vresult_rows
 #from utils.log import log_results
 from .rule_checker.constants import MODE_LOOSE
-
+from .utils.InputFileErrors import MissingHeadersError, NoDataError
 #import pprint
 
 """
@@ -35,22 +35,24 @@ def get_json_validator(period: Period, program=''):
   return JSONValidator(schema_obj, period, program=program)
 
 
-def get_valid_header_or_die(data, validator, mode):
+def get_valid_header(data, validator, mode):
 
     header = data[0]
     missing_headers, fixed_header, header_warnings = validator.validate_header(header, mode=mode)
     if missing_headers:
-      logger.error(f"Missing Headers  {missing_headers} \n warnings {header_warnings}")        
+      logger.error(f"Missing Headers  {missing_headers} \n warnings {header_warnings}")
+      raise MissingHeadersError(str(missing_headers), "Missing headers in input file" )
+      
 
     return fixed_header, header_warnings
 
 
-def get_data_or_die(data, mds_header, open_and_closed_eps=None):
+def get_data(data, mds_header, open_and_closed_eps=None):
 
     data = read_data(data[1:], mds_header, open_and_closed_eps=open_and_closed_eps)
     if not data or not data['episodes'] or len(data['episodes']) < 1 :
         logger.critical("No data. Quitting...")
-        sys.exit(0)
+        raise NoDataError("missing episodes" ,"No data in input file")
     
     return data
 
@@ -81,26 +83,11 @@ def main(data, open_and_closed_eps, errors_only, start_date, program='TSS', repo
   if not start_date:    
     start_date = datetime(2019,7,1)
     logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
-    # logger.error("Start Date is required. Quitting")
-    # sys.exit()
+
   result_dicts = exe(data, open_and_closed_eps, errors_only, start_date, program=program, period=reporting_period, nostrict=nostrict)
-  
-  # logger.info(results['episodes'])
-  # logger.info('*'*10)
-  # logger.info(results['errors'])
 
   logger.info("\t ...End of Program...\n")
   return result_dicts
-
-
-# def csv_split() :
-#     raw = [ 
-#             '"1,2,3" , "4,5,6" , "456,789"',
-#             '"text":"a,b,c,d", "gate":"456,789"'
-#           ]
-#     cr = csv.reader( raw, skipinitialspace=True )
-#     for l in cr :
-#         print len( l ), l
 
 
 def _split_strings_to_cols(data):
@@ -108,18 +95,6 @@ def _split_strings_to_cols(data):
   return [row for row in cr]
     
 
-
-#def get_rows_to_write(headers, hlen, data, errors_dict)
-# headers = ['ID','First name','Surname','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status','Preferred language','Postcode (Australian)',
-#             'Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation','Treatment delivery setting','Method of use for PDC',
-#             'Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5',
-#             'Main treatment type','OTT1','OTT2','OTT3','OTT4','OTT5','Living arrangements','Previous alcohol and other drug treatment received','Mental health']
-
-# ['ID,First name,Surname,Sex,Date of birth,SLK 581,Country of birth,Indigenous status,Preferred language,Client type,Source of referral,Commencement date,End date,Reason for cessation,\
-# Treatment delivery setting,Method of use for PDC,Injecting drug use status,PDC,ODC1,ODC2,ODC3,ODC4,ODC5,Main treatment type,OTT1,OTT2,OTT3,OTT4,OTT5,Date accuracy indicator,Postcode (Australian),\
-# Usual accommodation,Living arrangements,Previous alcohol and other drug treatment received,Mental health',
-# '465,Justin,Smith,Male,12/02/1995,MIHUS120219951,Australia,Neither Aboriginal nor Torres Strait Islander origin,English,Own alcohol or other drug use,Other,7/01/2019,8/08/2019,Treatment completed,\
-#   Outreach setting,Ingests,Never injected,"Alcohols, nfd",,,,,,Support and case management only,,,,,,AAA,2630,Private residence,Not known/inadequately described,No treatment,Never been diagnosed']
 
 def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', period=1, nostrict=False):
   
@@ -131,46 +106,27 @@ def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', perio
 
   data = _split_strings_to_cols(data)
   
-
-  mds_header, header_warnings = get_valid_header_or_die(data, validator=jv, mode=nostrict)
+  mds_header, _ = get_valid_header(data, validator=jv, mode=nostrict)
       
-  data = get_data_or_die(data, mds_header, open_and_closed_eps=open_and_closed_eps)
+  data = get_data(data, mds_header, open_and_closed_eps=open_and_closed_eps)
 
-  verrors, warnings =  jv.validate(data, mode=nostrict)
+  verrors, _ =  jv.validate(data, mode=nostrict)
   
   end_time = time()
-
-  if warnings == -1:
-    logger.error('Exiting....')
-    sys.exit()
-
-  # if any(v['field'] for k, v in verrors.items() if 'field' in v[0] and v[0]['field'] == '<>'):
-  #   sys.exit(-1) 
-  #log_results(verrors, warnings, header_warnings)
   logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,2)} seconds. ")
-  #pprint.pprint (verrors)
-  skip_headers = ['OCommencement date', 'ODOB']
-  new_header = [h for h in data['episodes'][0].keys()  if h not in skip_headers]
+
+  template_column_headers = ['ENROLLING PROVIDER','ID','First name','Surname','EID','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status',
+                             'Preferred language', 'Postcode (Australian)','Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation',
+                             'Treatment delivery setting','Method of use for PDC','Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5',
+                             'Main treatment type','OTT1','OTT2','OTT3','OTT4','Living arrangements', 'Previous alcohol and other drug treatment received','Mental health']
+  rows = get_vresult_rows(template_column_headers, len(template_column_headers), data['episodes'], verrors)
+  logger.info("\t ...result ..{rows}\n")
   
-  rows = get_vresult_rows(new_header, len(new_header), data['episodes'], verrors)
-  logger.info("\t ...result ..{rows}\n")  
-  
-  # mds_headers_with_errors =[]
-  # for h in mds_header:
-  #   mds_headers_with_errors.extend([h, f'error_{h}'])
   
   return rows
 
 # if __name__ == '__main__':   
 #     sys.exit(main(sys.argv[1:]))
-
-
-# 'ENROLLING PROVIDER','ID','First name','Surname','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status','Preferred language',
-# 'Postcode (Australian)','Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation','Treatment delivery setting',
-# 'Method of use for PDC','Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5','Main treatment type','OTT1','OTT2','OTT3','OTT4','OTT5',
-# 'Living arrangements','Previous alcohol and other drug treatment received','Mental health'
-
-
 
 # # 0 - 9
 # 'EID','Person identifier','Sex','DOB','Country of birth','Indigenous status','Preferred language','Client type','Source of referral',

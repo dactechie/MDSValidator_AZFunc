@@ -7,8 +7,8 @@ rule_definitions = [
     "field": M['TDS'],
     "type" : "Error",
     "rule": {"if": [ 
-              {"==": [{"var": M['USACC']}, "Prison/remand centre/youth training centre"]},
-              {"==": [{"var": M['TDS']}, "Outreach setting"]},
+              {"==": [{"var": M['USACC']}, "prison/remand centre/youth training centre"]},
+              {"==": [{"var": M['TDS']}, "outreach setting"]},
               True
             ]}
   }

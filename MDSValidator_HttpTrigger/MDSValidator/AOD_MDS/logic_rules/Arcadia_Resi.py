@@ -14,8 +14,8 @@ rule_definitions = [
     "type" : "Error",
     "rule": {"!": 
               {"or" : [
-                  {"==": [{"var": M['MTT']}, "Information and education"]},
-                  {"==": [{"var": M['MTT']}, "Pharmacotherapy"]}                  
+                  {"==": [{"var": M['MTT']}, "information and education"]},
+                  {"==": [{"var": M['MTT']}, "pharmacotherapy"]}                  
               ]}
             }
   },
@@ -25,8 +25,8 @@ rule_definitions = [
     "type" : "Error",
     "rule": {"!": 
               {"or" : [
-                  {"==": [{"var": M['TDS']}, "Home"]},
-                  {"==": [{"var": M['TDS']}, "Other"]}
+                  {"==": [{"var": M['TDS']}, "home"]},
+                  {"==": [{"var": M['TDS']}, "other"]}
               ]}
             }
   },
@@ -35,8 +35,12 @@ rule_definitions = [
     "field": M['TDS'],
     "type" : "Error",
     "rule": {"if": [ 
-              {"==": [{"var": M['TDS']}, "Residential treatment facility"]},
-              {"in": [{"var":M['MTT']}, ["Rehabilitation","Withdrawal management (detoxification)"]]},
+              {"==": [{"var": M['TDS']}, "residential treatment facility"]},
+              # {"or" : [
+              #         {"==": [{"var": M['MTT']}, "rehabilitation"]},
+              #         {"==": [{"var": M['MTT']}, "withdrawal management (detoxification)"]}
+              #     ]},
+              {"in": [{"var":M['MTT']}, ["rehabilitation","withdrawal management (detoxification)"]]},
               True
             ]}
   },

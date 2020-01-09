@@ -1,10 +1,10 @@
 schema = {
     "type": "string",
     "enum": [
-      "Non-residential treatment facility",
-      "Residential treatment facility",
-      "Home",
-      "Outreach setting",
-      "Other"
+      "non-residential treatment facility",
+      "residential treatment facility",
+      "home",
+      "outreach setting",
+      "other"
     ]
 }

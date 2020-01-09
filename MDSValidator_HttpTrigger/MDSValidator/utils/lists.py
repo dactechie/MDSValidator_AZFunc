@@ -70,3 +70,18 @@ def isin_dicts_array(dct: dict, dict_key: str, search_item:str) -> bool:
     return found
 
   return False
+
+
+def get_lower_case_vals(data_dicts: list, exception_fields:list=[]) -> list:
+  results = []
+
+  for ep_row in data_dicts:
+    r = { k : str.lower(v) 
+          for (k ,v) in ep_row.items()
+          if k not in exception_fields }
+    for exp_f in exception_fields:
+      r[exp_f] = ep_row[exp_f]
+      
+    results.append(r)
+
+  return results

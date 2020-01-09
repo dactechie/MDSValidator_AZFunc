@@ -26,8 +26,8 @@ alias_map_lam2 = lambda mds_dict_of_aliasedicts : { mds_field_name: alias_map_la
 
 headers_map = alias_map_lam(mds_aliases['headers'])
 fields_map = alias_map_lam2(mds_aliases['fields'])
-val_translation_excluded_fields = ["ENROLLING PROVIDER", "EID", "AGE", "DAYS ENROLLED", MDS["FNAME"], MDS["LNAME"],
-                                  "ARCADIA", "TREATED IN", MDS_ST_FLD, MDS_END_FLD, 'ODOB',
+val_translation_excluded_fields = ["enrolling provider", "eid", "age", "days enrolled", MDS["FNAME"], MDS["LNAME"],
+                                  "arcadia", "treated in", MDS_ST_FLD, MDS_END_FLD, 'Odob',
                                    MDS["ID"], MDS["PCODE"], MDS["SLK"] ] + [MDS[md] for md in MDS_Dates]
 
 

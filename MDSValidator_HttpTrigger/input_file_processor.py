@@ -5,7 +5,7 @@ from .MDSValidator.utils.InputFileErrors \
       import (InputFilenameFormatError, TooSmallFileError)
 
 programs = ['TSS', 'ArcadiaResi', 'ArcadiaDay', 'Althea', 'Mastercare']
-
+FILENAME_MIN_LENGTH = 14
 
 def get_data(req):
   request_body = req.get_body()
@@ -64,14 +64,14 @@ def get_details_from(filename):
   
   if not filename:
     raise InputFilenameFormatError(filename,"No file name")
-  elif len(filename) <= 14:
+  elif len(filename) <= FILENAME_MIN_LENGTH:
     raise InputFilenameFormatError(filename,"Too short filename")
 
   _count = filename.count('_')
   modded_fname = filename
 
   if _count > 2: # 'AMDS_Indivuduals_TSS_072019_12.csv' ; modded = 'TSS_...csv'
-    before_progname = filename[0:len(filename)-14]
+    before_progname = filename[0:len(filename)-FILENAME_MIN_LENGTH]
     # 13 is just to get it past the the last 2 undersccores : _072019_12.csv'
     modded_fname = filename[before_progname.rfind('_')+1:]
 

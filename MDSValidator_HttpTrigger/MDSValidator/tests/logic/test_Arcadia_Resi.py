@@ -4,14 +4,14 @@
 import pytest
 import copy
 #from  ...AOD_MDS.constants import MDS as M, MDS_Dates as D
-
-from ... import schema_dir, schema_file_name
+from ...AOD_MDS.constants import MDS as M
+from ...AOD_MDS.schema import schema
 from . import  JSONValidator, noerrors_base, noerrors_base_translated, period
 
 
 @pytest.fixture(scope="module")
 def Arcadia_Resi_json_validator():
-    return JSONValidator(schema_dir, schema_file_name, period=period, program='Arcadia-Resi')
+    return JSONValidator(schema.schema, period=period, program='ArcadiaResi')
 
 
 def test_Arcadia_Resi(Arcadia_Resi_json_validator):
@@ -19,8 +19,8 @@ def test_Arcadia_Resi(Arcadia_Resi_json_validator):
           # Team-based logic: Treatment Delivery Setting
   
   base5error = copy.deepcopy(noerrors_base_translated)
-  base5error['Treatment delivery setting'] ='Residential treatment facility'
-  base5error['ID'] ='7777'
+  base5error['treatment delivery setting'] ='residential treatment facility'
+  base5error['id'] ='7777'
   input = [base5error]
 
   errors_arcadia, _ = Arcadia_Resi_json_validator.validate({'episodes' :input})
@@ -29,8 +29,8 @@ def test_Arcadia_Resi(Arcadia_Resi_json_validator):
       # {'cid':'4353','etype':'logic','field':'Treatment delivery setting','index': 0,
       # 'message': "TSS team does not provide service (treatment delivery) in Home/'Other' setting "
       # },
-      {'cid':'7777','etype':'logic','field':'Treatment delivery setting','index': 0,
-      'message':  "If Treatment delivery setting is Residential treatment', 'Main treatment type' has to be Withdrawal Mgmt.(Detox) / Rehab."
+      {'cid':'7777','etype':'logic','field':'treatment delivery setting','index': 0,
+      'message':  f"If {M['TDS']} is Residential treatment', '{M['MTT']}' has to be Withdrawal Mgmt.(Detox) / Rehab."
       }
   ]
 

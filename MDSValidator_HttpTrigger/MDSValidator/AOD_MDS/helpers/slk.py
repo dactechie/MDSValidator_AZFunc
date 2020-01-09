@@ -14,9 +14,9 @@ def getSLK(firstname, lastname, DOB_str, sex_str):
     
     name_part = (last + first).upper()
     
-    if sex_str == 'Male':
+    if sex_str == 'male':
         sex_str = '1'
-    elif sex_str == 'Female':
+    elif sex_str == 'female':
         sex_str = '2'
     else:
         sex_str = '9'   # TODO    'if not unknown, add a Warning ?'

@@ -1,17 +1,17 @@
 schema = {
     "type": "string",
     "enum": [
-      "Self",
-      "Family member/friend",
-      "Medical Practitioner",
-      "Hospital",
-      "Mental health care service",
-      "Alcohol and other drug treatment service",
-      "Other Community/health care service",
-      "Correctional service",
-      "Police diversion",
-      "Court diversion",
-      "Other",
-      "Not stated/inadequately described"
+      "self",
+      "family member/friend",
+      "medical practitioner",
+      "hospital",
+      "mental health care service",
+      "alcohol and other drug treatment service",
+      "other community/health care service",
+      "correctional service",
+      "police diversion",
+      "court diversion",
+      "other",
+      "not stated/inadequately described"
     ]
   }

@@ -1,53 +1,54 @@
 
 drug_usage = {
 
-'Alcohols nfd'    : 	['Ingests'],
-'Alcohol'         :   ['Ingests',	'Injects',	'Not stated/inadequately described', 'Smokes',	'Sniffs (powder)', 'Other'],
-'Amphetamines, n.e.c.'     : 	['Ingests',	'Inhales (vapour)',	'Injects',	'Smokes'],
-'ANALGESICS'      : ['Ingests'],
-'Amphetamine'     : 	['Ingests',	'Inhales (vapour)',	'Injects',	'Smokes'],
+'alcohols nfd'    : 	['ingests'],
+'alcohol'         :   ['ingests',	'injects',	'not stated/inadequately described', 'smokes',	'sniffs (powder)', 'other'],
+'amphetamines, n.e.c.'     : 	['ingests',	'inhales (vapour)',	'injects',	'smokes'],
+'analgesics'      : ['ingests'],
+'amphetamine'     : 	['ingests',	'inhales (vapour)',	'injects',	'smokes'],
 
-'Benzodiazepines nfd': ['Ingests'],
-'Benzodiazepines, n.e.c.': ['Ingests', 'Injects',	'Smokes', 'Sniffs (powder)' ],
-'Buprenorphine'   : 	['Ingests'],
+'benzodiazepines nfd': ['ingests'],
+'benzodiazepines, n.e.c.': ['ingests', 'injects',	'smokes', 'sniffs (powder)' ],
+'buprenorphine'   : 	['ingests'],
 
-'Caffeine'        : ['Ingests'],
+'caffeine'        : ['ingests'],
 
-'Cannabinoids'    : 	['Ingests',	'Inhales (vapour)',	'Smokes'],
-'Cocaine' : 	['Ingests','Sniffs (powder)', 'Injects'],
-'Codeine'         : 	['Ingests'],
+'cannabinoids'    : 	['ingests',	'inhales (vapour)',	'smokes'],
+'cocaine' : 	['ingests','sniffs (powder)', 'injects'],
+'codeine'         : 	['ingests'],
 
-'Dexamphetamine'  : 	['Injects'],
-'Diazepam'        : 	['Ingests'],
-'Fentanyl'        :   ['Other'],
+'dexamphetamine'  : 	['injects'],
+'diazepam'        : 	['ingests'],
+'fentanyl'        :   ['other'],
 
-'GHB type Drugs and Analogues, n.e.c.': ['Ingests', 'Inhales (vapour)'],
-'Heroin' : 	['Ingests',	'Injects', 'Smokes', 'Inhales (vapour)', 'Not stated/inadequately described'],
-'Ketamine'        : 	['Ingests', 'Sniffs (powder)'],
+'ghb type drugs and analogues, n.e.c.': ['ingests', 'inhales (vapour)'],
+'heroin' : 	['ingests',	'injects', 'smokes', 'inhales (vapour)', 'not stated/inadequately described'],
+'ketamine'        : 	['ingests', 'sniffs (powder)'],
 
-'Methamphetamine' : 	['Ingests',	'Inhales (vapour)',	'Injects',	'Not stated/inadequately described', 'Smokes',	'Sniffs (powder)'],
-'Methadone'       : 	['Injects', 'Ingests', 'Smokes', 'Not stated/inadequately described'],
-'MDMA'            : 	['Ingests','Sniffs (powder)'],
-'MDA'             : 	['Ingests'],
-'Morphine': ['Ingests', 'Injects', 'Smokes','Not stated/inadequately described','Inhales (vapour)'],
+'methamphetamine' : 	['ingests',	'inhales (vapour)',	'injects',	'not stated/inadequately described', 'smokes',	'sniffs (powder)'],
+'methadone'       : 	['injects', 'ingests', 'smokes', 'not stated/inadequately described'],
+'mdma'            : 	['ingests','sniffs (powder)'],
+'mda'             : 	['ingests'],
+'morphine': ['ingests', 'injects', 'smokes','not stated/inadequately described','inhales (vapour)'],
 
-'Nicotine': ['Ingests',	'Inhales (vapour)', 'Smokes'],
-'Not Stated / Inadequately Described' : 	['Injects', 'Ingests',	'Not stated/inadequately described'],
-'Not stated/inadequately described' : ['Not stated/inadequately described'],            # TODO cleanup with the above
+'nicotine': ['ingests',	'inhales (vapour)', 'smokes'],
+'not stated / inadequately described' : 	['injects', 'ingests',	'not stated/inadequately described'],
+'not stated/inadequately described' : ['not stated/inadequately described'],            # todo cleanup with the above
 
-'Opioid analgesics nfd' : ['Ingests'],
-'Other Antidepressants and Antipsychotics, n.e.c.': ['Ingests'],
+'opioid analgesics nfd' : ['ingests'],
+'other antidepressants and antipsychotics, n.e.c.': ['ingests'],
 
 
-'Other Drugs of Concern' : 	['Not stated/inadequately described', 'Sniffs (powder)'],
-'Oxycodone'              : 	['Ingests'],
-'Testosterone'           :  ['Injects'],
-'Tramadol'               : 	['Ingests'],
-'Zolpidem'               : 	['Ingests']
+'other drugs of concern' : 	['not stated/inadequately described', 'sniffs (powder)'],
+'oxycodone'              : 	['ingests'],
+'quetiapine'             :  ['ingests'],
+'testosterone'           :  ['injects'],
+'tramadol'               : 	['ingests'],
+'zolpidem'               : 	['ingests']
 }
 
 
-drug_usage['Cannabinoid agonists'] = drug_usage['Cannabinoids']
-drug_usage['Cannabinoids and Related Drugs, n.e.c.'] = drug_usage['Cannabinoids']
-drug_usage["GHB type Drugs and Analogues nfd"] = drug_usage['GHB type Drugs and Analogues, n.e.c.']
-drug_usage['Opioid Antagonists, n.e.c.'] = drug_usage['Opioid analgesics nfd']
+drug_usage['cannabinoid agonists'] = drug_usage['cannabinoids']
+drug_usage['cannabinoids and related drugs, n.e.c.'] = drug_usage['cannabinoids']
+drug_usage["ghb type drugs and analogues nfd"] = drug_usage['ghb type drugs and analogues, n.e.c.']
+drug_usage['opioid antagonists, n.e.c.'] = drug_usage['opioid analgesics nfd']

@@ -1,10 +1,10 @@
 
 from datetime import datetime
 import pytest
-from AOD_MDS.helpers.overlap import check_overlap
-from AOD_MDS.constants import MDS as M
+from MDSValidator.AOD_MDS.helpers.overlap import check_overlap
+from MDSValidator.AOD_MDS.constants import MDS as M
 
-current_ep = {'ID' : '1234',
+current_ep = {'id' : '1234',
        'idx' : '41',M['COMM_DATE'] : datetime(2018,9,1).toordinal(), M['END_DATE'] : datetime(2019,10,15).toordinal()}
 
 client_eps = [
@@ -17,9 +17,9 @@ client_eps = [
 errors = {'0':[], '41':[] }
 
 expected = {'0': [{'cid': '1234',
-              'etype': 'logic', 'field': 'End date', 'index': '0',
+              'etype': 'logic', 'field': 'end date', 'index': '0',
               'message': 'Overlaps with other episode Start: 737333 End: 737364'}],
-       '41': [{'cid': '1234', 'etype': 'logic', 'field': 'End date',
+       '41': [{'cid': '1234', 'etype': 'logic', 'field': 'end date',
               'index': '41','message': 'Overlaps with other episode '
               'Start: 01/10/2019 End: 01/11/2019'}]}
 

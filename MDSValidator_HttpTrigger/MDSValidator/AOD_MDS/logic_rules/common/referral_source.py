@@ -14,10 +14,10 @@ rule_definitions = [
     "field": M['SRC_REF'],
     "type" : "Error",
     "rule": {"if": [ 
-              {"==": [{"var":M['CLNT_TYP']}, "Other's alcohol or other drug use" ]},
+              {"==": [{"var":M['CLNT_TYP']}, "other's alcohol or other drug use" ]},
               {"and": [
-                      {"!=": [{"var": M['SRC_REF']}, "Police diversion"]},
-                      {"!=": [{"var": M['SRC_REF']}, "Court diversion"]}
+                      {"!=": [{"var": M['SRC_REF']}, "police diversion"]},
+                      {"!=": [{"var": M['SRC_REF']}, "court diversion"]}
                     ]
               },
               True
@@ -35,8 +35,8 @@ rule_definitions = [
     "field": M['PDC'],
     "type" : "Error",
     "rule": {"if":[
-              {"or" : [ {"==":  ["Inadequately Described",{"var": M['PDC']} ]},
-                      {"==":  ["Not stated/inadequately described",{"var": M['PDC']} ]}
+              {"or" : [ {"==":  ["inadequately described",{"var": M['PDC']} ]},
+                      {"==":  ["not stated/inadequately described",{"var": M['PDC']} ]}
               ]},
               {"!=" : [" diversion", 
                           {"substr": [ {"var": M['SRC_REF'] },-10] }

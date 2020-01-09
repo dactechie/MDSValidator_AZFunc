@@ -3,7 +3,7 @@ import copy
 import csv
 from ...logger import logger
 from ..constants import MDS
-from ...utils import remove_unicode
+from ...utils import remove_unicode, get_lower_case_vals
 
 # def cleanse_header(csvfile, data_header):
 #   clean_header = True
@@ -39,9 +39,9 @@ def _split_fullname(reader) -> list:
         return None
 
     row = copy.deepcopy(r)
-    if row.get("FULL NAME"):              
-        row[MDS['LNAME']], row[MDS['FNAME']]  = str.split(row["FULL NAME"], ", ")
-        del row["FULL NAME"]
+    if row.get("full name"):              
+        row[MDS['LNAME']], row[MDS['FNAME']]  = str.split(row["full name"], ", ")
+        del row["full name"]
     
     data_dicts.append(row)
 
@@ -68,8 +68,10 @@ def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
         
     data_dicts = get_dicts(data, data_header)
 
-    if MDS['FNAME'] not in data_header and "FULL NAME" in data_header:
+    if MDS['FNAME'] not in data_header and "full name" in data_header:
       data_dicts = _split_fullname(data_dicts)
+
+    data_dicts = get_lower_case_vals(data_dicts, exception_fields=[ MDS['SLK'] ] )
 
     result =  []
     if not open_and_closed_eps:         # has to have an end date, otherwise skip row

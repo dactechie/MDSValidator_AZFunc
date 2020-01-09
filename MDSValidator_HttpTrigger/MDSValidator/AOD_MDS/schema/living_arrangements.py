@@ -1,16 +1,16 @@
 schema ={
     "type": "string",
     "enum": [
-      "Alone",
-      "Spouse/partner",
-      "Alone with child(ren)",
-      "Spouse/partner and child(ren)",
-      "Parent(s)",
-      "Other relative(s)",
-      "Friend(s)",
-      "Friend(s)/parent(s)/relative(s) and child(ren)",
-      "Other",
-      "Not known/inadequately described",
-      "Not stated/inadequately described"
+      "alone",
+      "spouse/partner",
+      "alone with child(ren)",
+      "spouse/partner and child(ren)",
+      "parent(s)",
+      "other relative(s)",
+      "friend(s)",
+      "friend(s)/parent(s)/relative(s) and child(ren)",
+      "other",
+      "not known/inadequately described",
+      "not stated/inadequately described"
     ]
 }

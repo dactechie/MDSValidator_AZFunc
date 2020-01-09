@@ -27,27 +27,27 @@ rule_definitions = [
 
  {
       "message": "Can't have duplicate MTT/OTTs.",
-      "field": 'OTT4',
+      "field": 'ott4',
       "type" :"Error",
       "rule":{"!": 
-          {"has_duplicate_values": [{"var": 'OTT4'}, [{"var": 'OTT1'}, {"var": 'OTT2'},
-                                    {"var": 'OTT3'}, M['MTT']]]}
+          {"has_duplicate_values": [{"var": 'ott4'}, [{"var": 'ott1'}, {"var": 'ott2'},
+                                    {"var": 'ott3'}, M['MTT']]]}
       }
   },
   {
       "message": "Can't have duplicate MTT/OTTs.",
-      "field": 'OTT3',
+      "field": 'ott3',
       "type" :"Error",
       "rule":{"!": 
-          {"has_duplicate_values": [{"var": 'OTT3'}, [{"var": 'OTT1'}, {"var": 'OTT2'}, M['MTT']]]}
+          {"has_duplicate_values": [{"var": 'ott3'}, [{"var": 'ott1'}, {"var": 'ott2'}, M['MTT']]]}
       }
   },
   {
       "message": "Can't have duplicate MTT/OTTs.",
-      "field": 'OTT2',
+      "field": 'ott2',
       "type" :"Error",
       "rule":{"!": 
-          {"has_duplicate_values": [{"var": 'OTT2'}, [{"var": "OTT1"}, M['MTT']]]}
+          {"has_duplicate_values": [{"var": 'ott2'}, [{"var": "ott1"}, M['MTT']]]}
       }
   },
   {
@@ -55,7 +55,7 @@ rule_definitions = [
       "field": M['MTT'],
       "type" : "Error",
       "rule":{"!": 
-          {"has_duplicate_values": [{"var":M['MTT']}, [{"var":"OTT1"}]]}
+          {"has_duplicate_values": [{"var":M['MTT']}, [{"var":"ott1"}]]}
       }
   },
 ]

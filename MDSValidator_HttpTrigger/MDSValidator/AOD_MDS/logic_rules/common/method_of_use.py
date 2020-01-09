@@ -7,8 +7,8 @@ rule_definitions = [
     "field": M['INJ_USE'],
     "type" : "Error",
     "rule": {"if": [ # Rule #4
-              {"==": [{"var": M['INJ_USE']}, "Never injected"]},
-              {"!==": [{"var": M['METHOD']}, "Injects"]},
+              {"==": [{"var": M['INJ_USE']}, "never injected"]},
+              {"!==": [{"var": M['METHOD']}, "injects"]},
               True
             ]}
   },

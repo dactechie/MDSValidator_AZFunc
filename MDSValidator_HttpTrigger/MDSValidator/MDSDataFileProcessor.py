@@ -35,21 +35,21 @@ def get_json_validator(period: Period, program=''):
   return JSONValidator(schema_obj, period, program=program)
 
 
-def get_valid_header(data, validator, mode):
-
-    header = data[0]
-    missing_headers, fixed_header, header_warnings = validator.validate_header(header, mode=mode)
+def get_valid_header(data_header_row, validator, mode):    
+    missing_headers, fixed_header, header_warnings = \
+        validator.validate_header(data_header_row, mode=mode)
     if missing_headers:
-      logger.error(f"Missing Headers  {missing_headers} \n warnings {header_warnings}")
-      raise MissingHeadersError(str(missing_headers), "Missing headers in input file" )
+      logger.error(f"Missing Headers {missing_headers} \n warnings {header_warnings}")
+      raise MissingHeadersError(
+          str(missing_headers), "Missing headers in input file" )
       
-
     return fixed_header, header_warnings
 
 
 def get_data(data, mds_header, open_and_closed_eps=None):
 
-    data = read_data(data[1:], mds_header, open_and_closed_eps=open_and_closed_eps)
+    data = read_data(data[1:], mds_header,
+                    open_and_closed_eps=open_and_closed_eps)
     if not data or not data['episodes'] or len(data['episodes']) < 1 :
         logger.critical("No data. Quitting...")
         raise NoDataError("missing episodes" ,"No data in input file")
@@ -79,12 +79,15 @@ def get_data(data, mds_header, open_and_closed_eps=None):
 # @click.option('--nostrict/--strict', '-s/-S', default=False,
 #               help='Accept/Reject imperfect data files with known aliases.' +
 #                    '\n1: reject (flag as errors)', show_default=True)
-def main(data, open_and_closed_eps, errors_only, start_date, program='TSS', reporting_period=1, nostrict=False):
+def main(data, open_and_closed_eps, errors_only, start_date, 
+                program='TSS', reporting_period=1, nostrict=False):
   if not start_date:    
     start_date = datetime(2019,7,1)
     logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
 
-  result_dicts = exe(data, open_and_closed_eps, errors_only, start_date, program=program, period=reporting_period, nostrict=nostrict)
+  result_dicts = exe(data, open_and_closed_eps, errors_only, \
+                    start_date, program=program, \
+                    period=reporting_period, nostrict=nostrict)
 
   logger.info("\t ...End of Program...\n")
   return result_dicts
@@ -93,10 +96,10 @@ def main(data, open_and_closed_eps, errors_only, start_date, program='TSS', repo
 def _split_strings_to_cols(data):
   cr = csv.reader( data, skipinitialspace=True )
   return [row for row in cr]
-    
 
 
-def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', period=1, nostrict=False):
+def exe(data, open_and_closed_eps, errors_only, start_date,
+                program='TSS', period=1, nostrict=False):
   
   start_time = time()
  
@@ -104,9 +107,11 @@ def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', perio
   
   jv = get_json_validator(period, program=program)
 
+  #data = _to_lowercase(data)
   data = _split_strings_to_cols(data)
   
-  mds_header, _ = get_valid_header(data, validator=jv, mode=nostrict)
+  header_row = (str.lower(h) for h in data[0])
+  mds_header, _ = get_valid_header(header_row, validator=jv, mode=nostrict)
       
   data = get_data(data, mds_header, open_and_closed_eps=open_and_closed_eps)
 
@@ -115,13 +120,17 @@ def exe(data, open_and_closed_eps, errors_only, start_date, program='TSS', perio
   end_time = time()
   logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,2)} seconds. ")
 
-  template_column_headers = ['ENROLLING PROVIDER','ID','First name','Surname','EID','SLK 581','Sex','DOB','Date accuracy indicator','Country of birth','Indigenous status',
-                             'Preferred language', 'Postcode (Australian)','Usual accommodation','Client type','Source of referral','Commencement date','End date','Reason for cessation',
-                             'Treatment delivery setting','Method of use for PDC','Injecting drug use status','Principle drug of concern','ODC1','ODC2','ODC3','ODC4','ODC5',
-                             'Main treatment type','OTT1','OTT2','OTT3','OTT4','Living arrangements', 'Previous alcohol and other drug treatment received','Mental health']
-  rows = get_vresult_rows(template_column_headers, len(template_column_headers), data['episodes'], verrors)
+  template_column_headers = ['enrolling provider','id','first name','surname','eid','slk 581','sex',
+                            'dob','date accuracy indicator','country of birth','indigenous status',
+                             'preferred language', 'postcode (australian)','usual accommodation','client type',
+                             'source of referral','commencement date','end date','reason for cessation',
+                             'treatment delivery setting','method of use for pdc','injecting drug use status',
+                             'principle drug of concern','odc1','odc2','odc3','odc4','odc5',
+                             'main treatment type','ott1','ott2','ott3','ott4','living arrangements',
+                             'previous alcohol and other drug treatment received','mental health']
+  rows = get_vresult_rows(template_column_headers,
+                          len(template_column_headers), data['episodes'], verrors)
   logger.info("\t ...result ..{rows}\n")
-  
   
   return rows
 

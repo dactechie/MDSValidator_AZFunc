@@ -11,7 +11,7 @@ rule_definitions =[
     "field": M['PDC'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Other's alcohol or other drug use" ]},
+              {"==": [{"var":M['CLNT_TYP']}, "other's alcohol or other drug use" ]},
               {"==": [{"var":M['PDC']}, "" ]},
               True
             ]}
@@ -21,7 +21,7 @@ rule_definitions =[
     "field": M['METHOD'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Other's alcohol or other drug use" ]},
+              {"==": [{"var":M['CLNT_TYP']}, "other's alcohol or other drug use" ]},
               {"==": [{"var":M['METHOD']}, "" ]},
               True
             ]}
@@ -31,7 +31,7 @@ rule_definitions =[
     "field": M['INJ_USE'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Other's alcohol or other drug use" ]},
+              {"==": [{"var":M['CLNT_TYP']}, "other's alcohol or other drug use" ]},
               {"==": [{"var":M['INJ_USE']}, "" ]},
               True
             ]}
@@ -41,7 +41,7 @@ rule_definitions =[
     "field": 'ODC1',
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Other's alcohol or other drug use" ]},
+              {"==": [{"var":M['CLNT_TYP']}, "other's alcohol or other drug use" ]},
               {"and": [
                   {"==": [{"var":"ODC1"}, ""]},
                   {"==": [{"var":"ODC2"}, ""]}, {"==": [{"var":"ODC3"}, ""]},
@@ -56,7 +56,7 @@ rule_definitions =[
     "field": M['PDC'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Own alcohol or other drug use"]},
+              {"==": [{"var":M['CLNT_TYP']}, "own alcohol or other drug use"]},
               {"!==": [{"var":M['PDC']}, "" ]},              
               True
             ]}
@@ -66,7 +66,7 @@ rule_definitions =[
     "field": M['METHOD'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Own alcohol or other drug use"]},
+              {"==": [{"var":M['CLNT_TYP']}, "own alcohol or other drug use"]},
               {"!==": [{"var":M['METHOD']}, "" ]},              
               True
             ]}
@@ -76,7 +76,7 @@ rule_definitions =[
     "field": M['INJ_USE'],
     "type" : "Error",
     "rule": {"if": [  # rule 9
-              {"==": [{"var":M['CLNT_TYP']}, "Own alcohol or other drug use"]},
+              {"==": [{"var":M['CLNT_TYP']}, "own alcohol or other drug use"]},
               {"!==": [{"var":M['INJ_USE']}, "" ]},              
               True
             ]}

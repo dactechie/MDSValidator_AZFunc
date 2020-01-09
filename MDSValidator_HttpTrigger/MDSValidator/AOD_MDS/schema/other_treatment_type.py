@@ -3,12 +3,12 @@ schema = {
     "$id": "#treatment_type",
     "enum": [
         "",
-        "Withdrawl management (detoxification)",
-        "Counselling",
-        "Rehabilitation",
-        "Pharmacotherapy",
-        "Support and case management",
-        "Information and education",
-        "Other"
+        "withdrawal management (detoxification)",
+        "counselling",
+        "rehabilitation",
+        "pharmacotherapy",
+        "support and case management",
+        "information and education",
+        "other"
     ]
 }

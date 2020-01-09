@@ -192,7 +192,7 @@ class JSONValidator(object):
 
         client_eps = {}
 
-        fn_date_converter = get_date_converter(sample_date_str=episodes[0][MDS_Dates[0]])
+        fn_date_converter = get_date_converter(sample_date_str=episodes[0][str.lower(MDS_Dates[0])])
      
         for i, ep_data in enumerate(episodes):
             date_conversion_errors = fix_check_dates(ep_data, i, fn_date_converter,

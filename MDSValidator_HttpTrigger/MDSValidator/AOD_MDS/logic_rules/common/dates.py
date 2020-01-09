@@ -17,7 +17,7 @@ rule_definitions = [
       "if": [  # rule 12 & 13
               {"and": [
                 {"!=": [{"var":M['END_DATE']}, ""] } ,
-                {"in": [{"var":M['MTT']}, ["Assessment only","Information and education only"]]}
+                {"in": [{"var":M['MTT']}, ["assessment only","information and education only"]]}
               ]},
               {"<":[
                     {"-": [{"var":MDS_END_FLD},{"var":MDS_ST_FLD}]},

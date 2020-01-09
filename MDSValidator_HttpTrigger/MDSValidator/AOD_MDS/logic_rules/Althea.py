@@ -8,8 +8,8 @@ rule_definitions = [
     "type" : "Error",
     "rule": {"!": 
               {"or" : [
-                  {"==": [{"var": M['MTT']}, "Rehabilitation"]},
-                  {"==": [{"var": M['MTT']}, "Withdrawal management (detoxification)"]}
+                  {"==": [{"var": M['MTT']}, "rehabilitation"]},
+                  {"==": [{"var": M['MTT']}, "withdrawal management (detoxification)"]}
               ]}
             }
   },
@@ -19,9 +19,9 @@ rule_definitions = [
     "type" : "Error",
     "rule": {"!": 
               {"or" : [
-                  {"==": [{"var": M['TDS']}, "Home"]},
-                  {"==": [{"var": M['TDS']}, "Other"]},
-                  {"==": [{"var": M['TDS']}, "Residential treatment facility"]},
+                  {"==": [{"var": M['TDS']}, "home"]},
+                  {"==": [{"var": M['TDS']}, "other"]},
+                  {"==": [{"var": M['TDS']}, "residential treatment facility"]},
               ]}
             }
   },
@@ -36,8 +36,8 @@ rule_definitions = [
     "field": M['MTT'],
     "type" : "Error",
     "rule":  {"!" : {"and": [
-                {"==": [{"var": M['MTT']}, "Pharmacotherapy"]},
-                {"==": [{"var": 'OTT1'}, "" ]}                
+                {"==": [{"var": M['MTT']}, "pharmacotherapy"]},
+                {"==": [{"var": 'ott1'}, "" ]}                
             ]}}
   }
   

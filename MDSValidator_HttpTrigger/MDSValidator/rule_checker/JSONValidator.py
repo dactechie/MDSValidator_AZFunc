@@ -52,7 +52,7 @@ class JSONValidator(object):
           elif program ==  'Althea':
             from ..AOD_MDS.logic_rules.Althea import rule_definitions as addnl_def
           else:
-            logger.warn("{program} program validation not implmented yet, only going to check common rules.")
+            logger.warn(f"{program} program validation not implmented yet, only going to check common rules.")
         
           if addnl_def:
             self.rule_definitions.extend(addnl_def)
@@ -192,8 +192,9 @@ class JSONValidator(object):
 
         client_eps = {}
 
-        fn_date_converter = get_date_converter(sample_date_str=episodes[0][str.lower(MDS_Dates[0])])
-     
+        fn_date_converter = get_date_converter(
+          sample_date_str=episodes[0][str.lower(MDS_Dates[0])])
+        
         for i, ep_data in enumerate(episodes):
             date_conversion_errors = fix_check_dates(ep_data, i, fn_date_converter,
                                                      id_field, MDS_Dates)

@@ -9,7 +9,7 @@ def get_row(header, hlen, row_dict, errors):
     return row
 
 
-def get_vresult_rows(headers, hlen, data, errors_dict, errors_only=True):
+def get_vresult_rows(headers, hlen, data, errors_dict, errors_only=False):
     if errors_only:
         return [get_row(headers, hlen, row_dict, errors_dict.get(i,[])) 
                 for i, row_dict in enumerate(data) if errors_dict.get(i)]

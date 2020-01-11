@@ -3,14 +3,12 @@ import sys
 import csv
 from time import time
 from datetime import datetime
-# import click
 
 from .logger import logger
 from .AOD_MDS.helpers import read_data, read_header, data_readers
 from .AOD_MDS.schema import schema
 from .rule_checker.JSONValidator import JSONValidator
 from .rule_checker.MJValidationError import MJValidationError
-#from .utils.CsvWriter import write_results_to_csv
 from .utils.files import get_latest_data_file, get_result_filename
 from .utils.dates import get_period, Period
 from .utils.output_helpers import get_vresult_rows
@@ -81,7 +79,7 @@ def get_data(data, mds_header, open_and_closed_eps=None):
 #                    '\n1: reject (flag as errors)', show_default=True)
 def main(data, open_and_closed_eps, errors_only, start_date, 
                 program='TSS', reporting_period=1, nostrict=False):
-  if not start_date:    
+  if not start_date:
     start_date = datetime(2019,7,1)
     logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
 
@@ -107,7 +105,6 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
   
   jv = get_json_validator(period, program=program)
 
-  #data = _to_lowercase(data)
   data = _split_strings_to_cols(data)
   
   header_row = (str.lower(h) for h in data[0])
@@ -118,7 +115,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
   verrors, _ =  jv.validate(data, mode=nostrict)
   
   end_time = time()
-  logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,2)} seconds. ")
+  logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,1)} seconds.")
 
   template_column_headers = ['enrolling provider','id','first name','surname','eid','slk 581','sex',
                             'dob','date accuracy indicator','country of birth','indigenous status',

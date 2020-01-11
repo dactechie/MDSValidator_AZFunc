@@ -51,9 +51,9 @@ def _split_fullname(reader) -> list:
 def get_dicts(data, header):
   results = []
   for d in data:
-    results.append ( {h: d[idxh] for idxh, h in enumerate(header)}
-                    )
-      
+    results.append(
+      {h: d[idxh] for idxh, h in enumerate(header)} )
+  
   return results
 
 
@@ -64,8 +64,7 @@ def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
     - Assumes that if a "FULL NAME" column exists, all rows will have a format of
         'LastName, FirstName'.
     - all_eps == False => Closed eps only
-    """
-        
+    """        
     data_dicts = get_dicts(data, data_header)
 
     if MDS['FNAME'] not in data_header and "full name" in data_header:
@@ -78,6 +77,5 @@ def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
       result = [row for row in data_dicts if row[MDS['END_DATE']]]  
     else:
       result = data_dicts
-
 
     return { "episodes" :result }

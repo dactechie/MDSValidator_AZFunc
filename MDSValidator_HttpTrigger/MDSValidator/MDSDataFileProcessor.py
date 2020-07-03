@@ -5,8 +5,8 @@ from time import time
 from datetime import datetime
 
 from .logger import logger
-from .AOD_MDS.helpers import read_data, read_header, data_readers
-from .AOD_MDS.schema import schema
+from .AOD_MDS.helpers import read_data, read_header
+
 from .rule_checker.JSONValidator import JSONValidator
 from .rule_checker.MJValidationError import MJValidationError
 from .utils.files import get_latest_data_file, get_result_filename
@@ -15,6 +15,7 @@ from .utils.output_helpers import get_vresult_rows
 #from utils.log import log_results
 from .rule_checker.constants import MODE_LOOSE
 from .utils.InputFileErrors import MissingHeadersError, NoDataError
+from .Providers import FileSchemaProvider #CosmosMongo, SchemaProvider
 #import pprint
 
 """
@@ -28,9 +29,17 @@ from .utils.InputFileErrors import MissingHeadersError, NoDataError
         then return the path to the new .xlsx to the user.
 """
 
-def get_json_validator(period: Period, program=''):                  
-  schema_obj = schema.schema
-  return JSONValidator(schema_obj, period, program=program)
+# def get_json_validator(period: Period, program=''):                  
+#   schema_obj = schema.schema
+#   return JSONValidator(schema_obj ,period, program=program)
+
+# map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "AMDS_v07-2019"
+def get_json_validator(period: Period, program):
+  schema_prvdr = FileSchemaProvider.FileSchemaProvider(period.start, program)
+  main_schema, definitions = schema_prvdr.build_schema()
+  jv = JSONValidator(main_schema, definitions,
+                      period, program=program)
+  return jv
 
 
 def get_valid_header(data_header_row, validator, mode):    
@@ -103,7 +112,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
  
   period = get_period(start_date, period_months=period)
   
-  jv = get_json_validator(period, program=program)
+  jv = get_json_validator(period, program=program) # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
 
   data = _split_strings_to_cols(data)
   

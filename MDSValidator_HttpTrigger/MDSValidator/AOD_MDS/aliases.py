@@ -59,7 +59,15 @@ mds_aliases = {
           ],
         },
         M['METHOD'] :{
-          "not stated/inadequately described" : ["not stated"]
+          "not stated/inadequately described" : ["not stated"],
+          # TODO : Hack - changed the NSW schema to take ingests instead of ingest
+          # because after the aliasing to ingests is when the NSW schema validation occurs
+          # and would be an error at that point 
+          "ingests" : ["ingest"],
+          "smokes"  : ["smoke"],
+          "injects" : ["inject"],
+          "sniffs (powder)": ["sniff (powder)"] ,
+          "inhales (vapour)": ["inhale (vapour)"],
         },        
         M['MTT'] : {
           "counselling" : [ "dats counselling" ],

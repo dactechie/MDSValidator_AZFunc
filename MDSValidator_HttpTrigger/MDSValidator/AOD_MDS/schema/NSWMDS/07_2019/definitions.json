@@ -1,0 +1,223 @@
+{
+      "type": "object",
+      "description": "NSW MDS Definitions",
+      "version": "July 2019",
+      "definitions": {
+          "principal_source_of_income": {
+            "$id": "#principal_source_of_income",
+            "type": "string",
+            "enum": [
+                "full-time employment",
+                "part-time employment",
+                "temporary benefit (eg unemployment)",
+                "pension (eg aged, disability)",
+                "student allowance",
+                "dependent on others",
+                "retirement fund",
+                "no income",
+                "other",
+                "not stated/not known/inadequately described",
+                ""
+            ]
+          },
+          "referral_to_another_service": {
+            "$id": "#referral_to_another_service",
+            "type": "string",
+            "enum": [
+                "general practitioner",
+                "medical officer/specialist",
+                "psychiatric hospital",
+                "other hospital",
+                "residential community mental health unit",
+                "residential d&a treatment agency",
+                "other residential community care unit",
+                "education institution",
+                "non-residential community mental health centre",
+                "non-residential d&a treatment agency",
+                "non-residential community health centre",
+                "other non-health service agency",
+                "workplace (eap)",
+                "family and child protection service",
+                "no referral",
+                "other",
+                "not stated/inadequately described",              
+                ""
+            ]
+          },        
+          "cessation_reason": {
+              "$id": "#cessation_reason",
+              "type": "string",
+              "enum": [
+                  "service completed",
+                  "transferred/referred to another service",
+                  "left without notice",
+                  "left against advice",
+                  "left involuntary (non-compliance)",
+                  "sanctioned by drug court/court diversion program",
+                  "imprisoned",
+                  "released from prison",
+                  "died",
+                  "other",
+                  ""
+              ]
+          },
+          "date_accuracy_indicator": {
+              "type": "string",
+              "$id": "#date_accuracy_indicator",
+              "enum": [
+                "estimated",
+                "not estimated"                
+              ]
+          },
+          "indigenous_status": {
+              "$id": "#indigenous_status",
+              "type": "string",
+              "enum": [
+                  "aboriginal but not torres strait islander origin",
+                  "torres strait islander but not aboriginal origin",
+                  "both aboriginal and torres strait islander origin",
+                  "neither aboriginal nor torres strait islander origin",
+                  "not stated"
+              ]
+          },
+          "injecting_drug_use_status": {
+              "type": "string",
+              "$id": "#injecting_drug_use_status",
+              "enum": [
+                  "",
+                  "not collected",
+                  "last injected within the previous 3 months",
+                  "last injected more than 3 months ago but less than 12 months ago",
+                  "last injected 12 months ago or more",
+                  "never injected",
+                  "not stated/inadequately described"                                  
+              ]
+          },
+          "living_arrangements": {
+              "type": "string",
+              "$id": "#living_arrangements",
+              "enum": [
+                "alone",
+                "spouse/partner",
+                "single parent with child(ren)",                
+                "spouse/partner and child(ren)",
+                "parent(s)",
+                "other relative(s)",
+                "friend(s)",
+                "friend(s)/parent(s)/relative(s) and child(ren)",
+                "other",
+                "not known/not stated/inadequately described"                
+              ]
+          },
+          "source_of_referral": {
+              "type": "string",
+              "$id": "#source_of_referral",
+              "enum": [
+                "general practitioner",
+                "medical officer/specialist",
+                "psychiatric hospital",
+                "other hospital",
+                "residential community mental health unit",
+                "residential d&a treatment agency",
+                "other residential community care unit",
+                "education institution",
+                "non-residential community mental health centre",
+                "non-residential d&a treatment agency",
+                "non-residential community health centre",
+                "other non-health service agency",
+                "police diversion",
+                "court diversion",
+                "other criminal justice setting",
+                "workplace (eap)",
+                "family and child protection service",
+                "needle and syringe program",
+                "medically supervised injecting centre",
+                "other",
+                "not stated/ inadequately described"                
+              ]
+          },
+          "main_treatment_type": {
+              "type": "string",
+              "$id": "#treatment_type",
+              "enum": [
+                "counselling",
+                "withdrawal management (detoxification)",
+                "rehabilitation activities",
+                "maintenance pharmacotherapy (opioid)",
+                "maintenance pharmacotherapy (non-opioid)",
+                "consultation activities",
+                "support and case management only",
+                "involuntary d&a treatment (idat)",
+                "assessment only",
+                "information and education only",
+                "other"                
+              ]
+          },
+          "other_treatment_type": {
+              "type": "string",
+              "$id": "#other_treatment_type",
+              "enum": [
+                  "",
+                  "counselling",
+                  "withdrawal management (detoxification)",
+                  "rehabilitation activities",
+                  "maintenance pharmacotherapy (opioid)",
+                  "maintenance pharmacotherapy (non-opioid)",
+                  "consultation activities",
+                  "other"                  
+              ]
+          },
+          "previous_treatment_type": {
+              "type": "string",
+              "$id": "#previous_treatment_type",
+              "enum": [
+                  "withdrawal management (detoxification)",
+                  "counselling",
+                  "rehabilitation",
+                  "pharmacotherapy",
+                  "support and case management",
+                  "information and education",
+                  "assessment only",
+                  "other",
+                  "no previous treatment received",
+                  ""
+              ]
+          },
+          "treatment_delivery_setting": {
+              "type": "string",
+              "$id": "#treatment_delivery_setting",
+              "enum": [
+                "community/ outpatient",
+                "home",
+                "correctional",
+                "inpatient",
+                "residential"                
+              ]
+          },
+          "usual_accommodation": {
+              "title": "Usual Accommodation",
+              "$id": "#usual_accommodation",
+              "enum": [
+                  "private residence",
+                  "boarding house/private hotel",
+                  "supported accommodation facility",
+                  "alcohol and other drugs",
+                  "psychiatric hospital",
+                  "prison/remand centre/youth training centre",
+                  "none/homeless/public place",
+                  "informal housing",
+                  "short term crisis, emergency or transitional accommodation facility",
+                  "mental health",
+                  "other specialised community residential",
+                  "acute hospital",
+                  "other hospital",
+                  "rehabilitation hospital",
+                  "domestic-scale supported living facility",
+                  "residential aged care facility",
+                  "not stated/inadequately described",
+                  "other",
+                  "unknown"
+              ]
+          }
+      }
+  }

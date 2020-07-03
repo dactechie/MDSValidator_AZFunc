@@ -1,9 +1,11 @@
 
 import copy
 import csv
+import json
 from ...logger import logger
 from ..constants import MDS
 from ...utils import remove_unicode, get_lower_case_vals
+
 
 # def cleanse_header(csvfile, data_header):
 #   clean_header = True
@@ -21,6 +23,14 @@ from ...utils import remove_unicode, get_lower_case_vals
 #       clean_header = False    
 #     result[dh] = tmp
 #   return result, clean_header
+
+
+def load_from_file(self, path_filename):
+  obj = None
+  with open(f"../schema/{path_filename}.json") as f:
+    obj = json.load(f)
+
+  return obj
 
 
 def read_header(filename: str) -> list:
@@ -72,10 +82,8 @@ def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
 
     data_dicts = get_lower_case_vals(data_dicts, exception_fields=[ MDS['SLK'] ] )
 
-    result =  []
+    result = data_dicts
     if not open_and_closed_eps:         # has to have an end date, otherwise skip row
-      result = [row for row in data_dicts if row[MDS['END_DATE']]]  
-    else:
-      result = data_dicts
+      result = [row for row in data_dicts if row[MDS['END_DATE']]]
 
     return { "episodes" :result }

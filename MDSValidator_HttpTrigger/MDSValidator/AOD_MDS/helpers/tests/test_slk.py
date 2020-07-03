@@ -1,6 +1,6 @@
 
 import pytest
-from MDSValidator.AOD_MDS.helpers import getSLK
+from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers import getSLK
 
 
 @pytest.mark.parametrize("first_name, surname, dob, sex, expected", 

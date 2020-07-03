@@ -1,6 +1,7 @@
-schema = {
+{
+
     "type": "string",
-    "$id": "#drug",
+    "$id": "#drugs",
     "enum": [
         "",
         "acetone",
@@ -204,4 +205,4 @@ schema = {
         "inadequately described",
         "not stated/inadequately described"
     ]
-}
+  }

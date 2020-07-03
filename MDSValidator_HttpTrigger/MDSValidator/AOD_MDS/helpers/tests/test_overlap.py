@@ -1,8 +1,8 @@
 
 from datetime import datetime
 import pytest
-from MDSValidator.AOD_MDS.helpers.overlap import check_overlap
-from MDSValidator.AOD_MDS.constants import MDS as M
+from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.overlap import check_overlap
+from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.constants import MDS as M
 
 current_ep = {'id' : '1234',
        'idx' : '41',M['COMM_DATE'] : datetime(2018,9,1).toordinal(), M['END_DATE'] : datetime(2019,10,15).toordinal()}

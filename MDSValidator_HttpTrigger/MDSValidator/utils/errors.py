@@ -45,7 +45,8 @@ def add_error_obj(errors, e, dataObj, id_field):
             error_obj["message"]= f"Missing fields {st}.  row: {error_obj['index']} cid: {error_obj['cid']}"
             add_error_to_list(error_obj, errors)
             return -1
-        else:
+          error_obj['message'] = e.message # for entire required columns missing,
+        else:                              # there was no exact error message.
           error_obj["message"]= e.message
 
     add_error_to_list(error_obj, errors)
@@ -86,7 +87,7 @@ def compile_errors(schema_validation_verrors, logic_errors):
 def _check_row_errors(array_of_dicts, suggestions, slk_field):
     """
     Note: there could be two rows with same client id, but one of them may have accurate SLK.
-    This will added the error to both rows.
+    This will add the error to both rows.
     """
     for d in array_of_dicts:
         if d['cid'] in suggestions and d['field'] == slk_field:

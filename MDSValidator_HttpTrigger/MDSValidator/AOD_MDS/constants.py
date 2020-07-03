@@ -28,7 +28,9 @@ MDS = {
     "SRC_REF": "source of referral",
     "MENT_HEL": "mental health",
     "PREV_AOD": "previous alcohol and other drug treatment received", #previous aod treatment",
-    "REAS_CESS": "reason for cessation"
+    "REAS_CESS": "reason for cessation",
+    "SRC_INC": "principal source of income",
+    "REF_ANO" :"referral to another service"
 }
 
 MDS_Dates = ("DOB", "COMM_DATE", "END_DATE")

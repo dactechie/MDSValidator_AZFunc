@@ -55,7 +55,7 @@ def _get_program_startdate_period(modded_fname, filename):
   return program, period_start_date, p
 
 
-def get_details_from(filename):
+def get_filename(filename):
   if not filename:
     raise InputFilenameFormatError(filename,"No file name")
 
@@ -78,5 +78,11 @@ def get_details_from(filename):
   if not modded_fname or modded_fname.count('_') != 2 \
                       or modded_fname[-4:] != '.csv':
     raise InputFilenameFormatError(filename,"Not a valid file name/type")
+
+  return modded_fname
+
+
+def get_details_from(filename):
+  modded_fname = get_filename
 
   return _get_program_startdate_period(modded_fname, filename)

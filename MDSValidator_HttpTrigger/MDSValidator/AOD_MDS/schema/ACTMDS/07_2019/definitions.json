@@ -1,0 +1,212 @@
+{
+      "type": "object",
+      "description": "ACT MDS Definitions",
+      "version": "July 2019",
+      "definitions": {
+          "cessation_reason": {
+              "$id": "#cessation_reason",
+              "type": "string",
+              "enum": [
+                  "treatment completed",
+                  "change in main treatment type",
+                  "change in delivery setting",
+                  "change in principal drug of concern",
+                  "transferred to another service provider",
+                  "ceased to participate against advice",
+                  "ceased to participate without notice",
+                  "ceased to participate involuntary (non-compliance)",
+                  "ceased to participate at expiation",
+                  "ceased to participate by mutual agreement",
+                  "drug court and/or sanctioned by court diversion service",
+                  "imprisoned, other than drug court sanctioned",
+                  "died",
+                  "other",
+                  "not stated/inadequately described",
+                  ""
+              ]
+          },
+          "date_accuracy_indicator": {
+              "type": "string",
+              "$id": "#date_accuracy_indicator",
+              "enum": [
+                  "aaa - day, month and year are accurate",
+                  "aae - day and month are accurate, year is estimated",
+                  "aau - day and month are accurate, year is unknown",
+                  "aee - day is accurate, month and year are estimated",
+                  "aeu - day is accurate, month is estimated, year is unknown",
+                  "auu - day is accurate, month and year are unknown",
+                  "aua - day is accurate, month is unknown, year is accurate",
+                  "aue - day is accurate, month is unknown, year is estimated",
+                  "aea - day is accurate, month is estimated, year is accurate",
+                  "eaa - day is estimated, month and year are accurate",
+                  "eae - day is estimated, month is accurate, year is estimated",
+                  "eau - day is estimated, month is accurate, year is unknown",
+                  "eea - day and month are estimated, year is accurate",
+                  "eee - day, month and year are estimated",
+                  "eeu - day and month are estimated, year is unknown",
+                  "eua - day is estimated, month is unknown, year is accurate",
+                  "eue - day is estimated, month is unknown, year is estimated",
+                  "euu - day is estimated, month and year are unknown",
+                  "uaa - day is unknown, month and year are accurate",
+                  "uae - day is unknown, month is accurate, year is estimated",
+                  "uau - day is unknown, month is accurate, year is unknown",
+                  "uea - day is unknown, month is estimated, year is accurate",
+                  "uee - day is unknown, month and year are estimated",
+                  "ueu - day is unknown, month is estimated, year is unknown",
+                  "uua - day and month are unknown, year is accurate",
+                  "uue - day and month are unknown, year is estimated",
+                  "uuu - day, month and year are unknown"
+              ]
+          },
+          "indigenous_status": {
+              "$id": "#indigenous_status",
+              "type": "string",
+              "enum": [
+                  "aboriginal but not torres strait islander origin",
+                  "torres strait islander but not aboriginal origin",
+                  "both aboriginal and torres strait islander origin",
+                  "neither aboriginal nor torres strait islander origin",
+                  "not stated/inadequately described"
+              ]
+          },
+          "injecting_drug_use_status": {
+              "type": "string",
+              "$id": "#injecting_drug_use_status",
+              "enum": [
+                  "",
+                  "last injected three months ago or less",
+                  "last injected more than three months ago but less than or equal to twelve months ago",
+                  "last injected more than twelve months ago",
+                  "never injected",
+                  "not stated/inadequately described"
+              ]
+          },
+          "living_arrangements": {
+              "type": "string",
+              "$id": "#living_arrangements",
+              "enum": [
+                  "alone",
+                  "spouse/partner",
+                  "alone with child(ren)",
+                  "spouse/partner and child(ren)",
+                  "parent(s)",
+                  "other relative(s)",
+                  "friend(s)",
+                  "friend(s)/parent(s)/relative(s) and child(ren)",
+                  "other",
+                  "not known/inadequately described",
+                  "not stated/inadequately described"
+              ]
+          },
+          "source_of_referral": {
+              "type": "string",
+              "$id": "#source_of_referral",
+              "enum": [
+                  "self",
+                  "family member/friend",
+                  "medical practitioner",
+                  "hospital",
+                  "mental health care service",
+                  "alcohol and other drug treatment service",
+                  "other community/health care service",
+                  "correctional service",
+                  "police diversion",
+                  "court diversion",
+                  "other",
+                  "not stated/inadequately described"
+              ]
+          },
+          "main_treatment_type": {
+              "type": "string",
+              "$id": "#treatment_type",
+              "enum": [
+                  "withdrawal management (detoxification)",
+                  "counselling",
+                  "rehabilitation",
+                  "pharmacotherapy",
+                  "support and case management",
+                  "information and education",
+                  "assessment only",
+                  "other"
+              ]
+          },
+          "mental_health": {
+              "type": "string",
+              "$id": "#mental_health",
+              "enum": [
+                  "diagnosed three months ago or less",
+                  "diagnosed more than three months ago but less than or equal to twelve months ago",
+                  "diagnosed more than twelve months ago",
+                  "never been diagnosed",
+                  "not stated/inadequately described",
+                  ""
+              ]
+          },
+          "other_treatment_type": {
+              "type": "string",
+              "$id": "#other_treatment_type",
+              "enum": [
+                  "",
+                  "withdrawal management (detoxification)",
+                  "counselling",
+                  "rehabilitation",
+                  "pharmacotherapy",
+                  "support and case management",
+                  "information and education",
+                  "other"
+              ]
+          },
+          "previous_treatment_type": {
+              "type": "string",
+              "$id": "#previous_treatment_type",
+              "enum": [
+                  "withdrawal management (detoxification)",
+                  "counselling",
+                  "rehabilitation",
+                  "pharmacotherapy",
+                  "support and case management",
+                  "information and education",
+                  "assessment only",
+                  "other",
+                  "no previous treatment received",
+                  ""
+              ]
+          },
+          "treatment_delivery_setting": {
+              "type": "string",
+              "$id": "#treatment_delivery_setting",
+              "enum": [
+                  "non-residential treatment facility",
+                  "residential treatment facility",
+                  "home",
+                  "outreach setting",
+                  "other"
+              ]
+          },
+          "usual_accommodation": {
+              "title": "Usual Accommodation",
+              "$id": "#usual_accommodation",
+              "enum": [
+                  "private residence",
+                  "boarding house/private hotel",
+                  "supported accommodation facility",
+                  "alcohol and other drugs",
+                  "psychiatric hospital",
+                  "prison/remand centre/youth training centre",
+                  "none/homeless/public place",
+                  "informal housing",
+                  "short term crisis, emergency or transitional accommodation facility",
+                  "mental health",
+                  "other specialised community residential",
+                  "acute hospital",
+                  "other hospital",
+                  "rehabilitation hospital",
+                  "domestic-scale supported living facility",
+                  "residential aged care facility",
+                  "not stated/inadequately described",
+                  "other",
+                  "unknown"
+              ]
+          }
+      }
+  }

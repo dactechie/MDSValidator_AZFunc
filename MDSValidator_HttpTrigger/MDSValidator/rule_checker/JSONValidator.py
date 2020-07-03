@@ -35,10 +35,10 @@ def clean_headers(header):
 
 class JSONValidator(object):
     
-    def __init__(self, schema_obj, period: Period, program):
-        self.validator = JSONValidator.setup_validator(schema_obj)
+    def __init__(self, schema_obj, definitions, period: Period, program):
+        self.validator = JSONValidator.setup_validator(schema_obj, definitions)
         self.schema  = schema_obj
-        self.period = period                               
+        self.period = period
         
         self.rule_definitions = copy.deepcopy(common_rules)
         self.rules = [r['rule'] for r in self.rule_definitions]
@@ -52,7 +52,7 @@ class JSONValidator(object):
           elif program ==  'Althea':
             from ..AOD_MDS.logic_rules.Althea import rule_definitions as addnl_def
           else:
-            logger.warn(f"{program} program validation not implmented yet, only going to check common rules.")
+           logger.warn(f"{program} program validation not implmented yet, only going to check common rules.")
         
           if addnl_def:
             self.rule_definitions.extend(addnl_def)
@@ -72,8 +72,9 @@ class JSONValidator(object):
     #   ref_items =[var for var in schema_props if "$ref" in var]
       
     @staticmethod
-    def setup_validator(schemaObj):
+    def setup_validator(schemaObj, definitions):
       validator = jsc.Draft4Validator(schemaObj)#, resolver=resolver) 
+      validator.resolver.store['/defs.json'] = definitions
       return validator
 
     # @staticmethod

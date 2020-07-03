@@ -1,7 +1,7 @@
 
 
 import pytest
-from  MDSValidator.AOD_MDS.helpers.others import is_valid_drug_use
+from  MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.others import is_valid_drug_use
 
 
 @pytest.mark.parametrize("drug, method ,expected", [

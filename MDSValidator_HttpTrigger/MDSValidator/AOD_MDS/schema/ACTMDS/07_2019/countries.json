@@ -1,6 +1,6 @@
-schema = {
+{
     "type": "string",
-    "$id": "#country",
+    "$id": "#countries",
     "enum": [
           "adelie land (france)",
           "afghanistan",

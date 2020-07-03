@@ -3,15 +3,15 @@
 #from datetime import datetime as dt
 import pytest
 import copy
-from ...AOD_MDS.schema import schema
-from . import JSONValidator, noerrors_base, noerrors_base_translated, S_PRISON_OUTR, period
+
+from . import noerrors_base, noerrors_base_translated, S_PRISON_OUTR, period, get_validator
 
 S_NOTREAT_RESI = "TSS team does not provide service (treatment delivery) in Home/'Other'/Resi setting "
 ex_tds = { 'etype': 'logic', 'field': 'treatment delivery setting'}
 
 @pytest.fixture(scope="module")
 def TSS_json_validator():
-    return JSONValidator(schema.schema, period=period, program='TSS')
+  return get_validator('TSS')
 
 
 @pytest.mark.parametrize("client_id, tds", [('11525',  'home'),

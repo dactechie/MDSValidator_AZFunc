@@ -38,3 +38,16 @@ MDS_Dates = ("DOB", "COMM_DATE", "END_DATE")
 MDS_ST_FLD = 'O'+MDS['COMM_DATE']
 MDS_END_FLD = 'O'+MDS['END_DATE']
 
+program_domain_map = {
+  'TSS'         : 'ACTMDS',
+  'Althea'      : 'ACTMDS',
+  'ArcadiaResi' : 'ACTMDS',
+  'ArcadiaDay'  : 'ACTMDS',
+
+  'PathwaysEurobodalla' : 'NSWMDS',
+  'Monaro'      : 'NSWMDS',
+  'Bega'        : 'NSWMDS',
+  'WaggaWagga'  : 'NSWMDS',
+  'Giffith'     : 'NSWMDS',
+  'Goulburn'    : 'NSWMDS'
+}

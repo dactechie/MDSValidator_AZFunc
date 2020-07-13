@@ -4,7 +4,7 @@ import urllib.parse
 from .MDSValidator.utils.InputFileErrors \
       import (InputFilenameFormatError, TooSmallFileError)
 
-programs = ['TSS', 'ArcadiaResi', 'ArcadiaDay', 'Althea', 'Mastercare']
+programs = ['TSS', 'ArcadiaResi', 'ArcadiaDay', 'Althea', 'Mastercare', 'PathwaysEurobodalla']
 FILENAME_MIN_LENGTH = 14
 
 def get_data(req):

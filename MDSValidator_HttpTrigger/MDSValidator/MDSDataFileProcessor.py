@@ -39,7 +39,7 @@ def get_json_validator(period: Period, program):
   main_schema, definitions = schema_prvdr.build_schema()
   jv = JSONValidator(main_schema, definitions,
                       period, program=program)
-  return jv
+  return jv, schema_prvdr.schema_domain
 
 
 def get_valid_header(data_header_row, validator, mode):    
@@ -89,7 +89,7 @@ def get_data(data, mds_header, open_and_closed_eps=None):
 def main(data, open_and_closed_eps, errors_only, start_date, 
                 program='TSS', reporting_period=1, nostrict=False):
   if not start_date:
-    start_date = datetime(2019,7,1)
+    start_date = datetime(2020,1,1)
     logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
 
   result_dicts = exe(data, open_and_closed_eps, errors_only, \
@@ -112,13 +112,14 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
  
   period = get_period(start_date, period_months=period)
   
-  jv = get_json_validator(period, program=program) # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
+  jv, schema_domain = get_json_validator(period, program=program) # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
 
   data = _split_strings_to_cols(data)
   
+  # fix and rename the headers
   header_row = (str.lower(h) for h in data[0])
   mds_header, _ = get_valid_header(header_row, validator=jv, mode=nostrict)
-      
+  
   data = get_data(data, mds_header, open_and_closed_eps=open_and_closed_eps)
 
   verrors, _ =  jv.validate(data, mode=nostrict)
@@ -126,15 +127,35 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
   end_time = time()
   logger.info(f"\n\t ...End of validation... \n\t Processing time {round(end_time - start_time,1)} seconds.")
 
-  template_column_headers = ['enrolling provider','id','first name','surname','eid','slk 581','sex',
+  # this is to enforce order regardless of what order the columns are in the input file 
+  # and 
+  #   ? to match the error excel template headers
+  # TODO : load from JSON file.
+  template_column_headers = { 'ACTMDS' : ['enrolling provider','id','first name','surname','eid','slk 581','sex',
                             'dob','date accuracy indicator','country of birth','indigenous status',
                              'preferred language', 'postcode (australian)','usual accommodation','client type',
                              'source of referral','commencement date','end date','reason for cessation',
                              'treatment delivery setting','method of use for pdc','injecting drug use status',
                              'principle drug of concern','odc1','odc2','odc3','odc4','odc5',
                              'main treatment type','ott1','ott2','ott3','ott4','living arrangements',
-                             'previous alcohol and other drug treatment received','mental health']
-  rows = get_vresult_rows(template_column_headers,
+                             'previous alcohol and other drug treatment received','mental health'],
+                             'NSWMDS' : [
+                               'staff','location','service', # <<< --- staff info useful when returning it to staff to fix. 
+                                                             #         Location and service to encode for nadabase upload
+                               'id','first name','surname','slk 581','sex','dob',
+                               'date accuracy indicator','country of birth','indigenous status','preferred language',
+                               'postcode (australian)','usual accommodation','client type','source of referral',
+                               'principal source of income', # <<< --- 
+                               'commencement date','end date','reason for cessation',
+                               'referral to another service', #<<< ---
+                               'treatment delivery setting','method of use for pdc',
+                               'injecting drug use status','principle drug of concern','odc1','odc2','odc3','odc4',
+                               'odc5','main treatment type','ott1','ott2','ott3','ott4','living arrangements',
+                               'previous alcohol and other drug treatment received','mental health'
+                             ]
+                            }
+
+  rows = get_vresult_rows(template_column_headers[schema_domain],
                           len(template_column_headers), data['episodes'], verrors)
   logger.info("\t ...result ..{rows}\n")
   

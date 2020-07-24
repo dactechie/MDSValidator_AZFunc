@@ -44,10 +44,5 @@ program_domain_map = {
   'ArcadiaResi' : 'ACTMDS',
   'ArcadiaDay'  : 'ACTMDS',
 
-  'PathwaysEurobodalla' : 'NSWMDS',
-  'Monaro'      : 'NSWMDS',
-  'Bega'        : 'NSWMDS',
-  'WaggaWagga'  : 'NSWMDS',
-  'Giffith'     : 'NSWMDS',
-  'Goulburn'    : 'NSWMDS'
+  'PathwaysEuroMonaBega' : 'NSWMDS',
 }

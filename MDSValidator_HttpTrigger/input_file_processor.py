@@ -3,8 +3,10 @@ from datetime import datetime
 import urllib.parse
 from .MDSValidator.utils.InputFileErrors \
       import (InputFilenameFormatError, TooSmallFileError)
+from .MDSValidator.AOD_MDS.constants import program_domain_map
 
-programs = ['TSS', 'ArcadiaResi', 'ArcadiaDay', 'Althea', 'Mastercare', 'PathwaysEurobodalla']
+programs = program_domain_map.keys()
+
 FILENAME_MIN_LENGTH = 14
 
 def get_data(req):
@@ -75,6 +77,7 @@ def get_filename(filename):
     # 13 is just to get it past the the last 2 undersccores : _072019_12.csv'
     modded_fname = filename[before_progname.rfind('_')+1:]
 
+  print(">>>>>>>>>>>>>>>>>", modded_fname)
   if not modded_fname or modded_fname.count('_') != 2 \
                       or modded_fname[-4:] != '.csv':
     raise InputFilenameFormatError(filename,"Not a valid file name/type")
@@ -83,6 +86,6 @@ def get_filename(filename):
 
 
 def get_details_from(filename):
-  modded_fname = get_filename
+  modded_fname = get_filename(filename)
 
   return _get_program_startdate_period(modded_fname, filename)

@@ -5,7 +5,7 @@ from ...utils.dates import Period, get_period
 from ...rule_checker.JSONValidator import JSONValidator
 from ...AOD_MDS.constants import MDS as M
 from MDSValidator_HttpTrigger.MDSValidator.utils.dates import Period
-from MDSValidator_HttpTrigger.MDSValidator.MDSDataFileProcessor import get_json_validator
+from MDSValidator_HttpTrigger.MDSValidator.MDSDataFileProcessor import get_validator_schemadomain
 
 S_PRISON_OUTR = f"If {M['USACC']} is 'Prison/remand centre/youth training centre', '{M['TDS']}' has to be 'Outreach setting'."
 
@@ -49,7 +49,7 @@ noerrors_base_nsw_translated = OrderedDict(
     'principle drug of concern': "nicotine","odc1": "","odc2": "","odc3": "","odc4": "","odc5": "",
     'main treatment type': "counselling","ott1": "", "ott2": "","ott3": "","ott4": "", 
     'postcode (australian)': "2913", 'living arrangements': "single parent with child(ren)", 
-    'usual accommodation': "not stated/inadequately described",
+    'usual accommodation': "not known",
     'previous alcohol and other drug treatment received': "", 'mental health': "never been diagnosed", 
     "referral to another service":"other hospital", 'principal source of income':"pension (eg aged, disability)"
   }
@@ -59,7 +59,7 @@ noerrors_base_nsw_translated = OrderedDict(
 def get_validator(program_name):
   st = dt(2020,1,1).toordinal()
   ed = dt(2020,6,30).toordinal()
-  return  get_json_validator(Period(start=st,end=ed), program=program_name)
+  return  get_validator_schemadomain(Period(start=st,end=ed), program=program_name)
 
 # PAT ID	First name	Surname	SLK581	DOB	SEX	DOB ACCURACY	COUNTRY	INDIG STATUS	
 # LANGUAGE	CLIENT	SOURCE	ENROLMENT	DISCHARGE	CESSATION	SETTING	USE	INJECTION	DRUG	ODC1	ODC2	ODC3	ODC4	ODC5	

@@ -38,6 +38,8 @@
                   "main treatment type",
                   "ott1",
                   "ott2",
+                  "ott3",
+                  "ott4",
                   "method of use for pdc",
                   "usual accommodation",
                   "living arrangements",
@@ -138,6 +140,12 @@
                       "$ref": "/defs.json#/definitions/other_treatment_type"
                   },
                   "ott2": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "ott3": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "ott4": {
                       "$ref": "/defs.json#/definitions/other_treatment_type"
                   },
                   "method of use for pdc": {

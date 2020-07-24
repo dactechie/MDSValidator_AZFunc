@@ -15,7 +15,8 @@ mds_aliases = {
           "serbia" : ["serbia and montenegro"],
           "arabic" : ["arabic (including lebanese)"],
           "british antarctic territory" : ["british antarctic"],
-          "myanmar" : ["burma (myanmar)", "burma (republic of the union of myanmar)"],        
+          "myanmar" : ["burma (myanmar)", "burma (republic of the union of myanmar)"],
+          "england" : ["united kingdom"],
         },        
         M['CLNT_TYP']:{
           "own alcohol or other drug use": ["own drug use", "own alcohol or other drug  use" ],
@@ -80,7 +81,8 @@ mds_aliases = {
               "not stated/inadequately described" :["not stated / inadequately described"],
               "heroin": ["heroin"],
               "opioid antagonists, n.e.c." : ["opoid analgesics nfd","opioid analgesics nfd", "opioid antagonists, nec"],
-              "methamphetamine" : ["crystal(meth) / ice / methamphetamine /speed"],   # coordinare sep 2019 ; mj's common drugs translation
+              "methamphetamine" : ["crystal(meth) / ice / methamphetamine /speed",# coordinare sep 2019 ; mj's common drugs translation
+                                   "ice"],   
               "lysergic acid diethylamide": ["lsd"],
               "alcohol": ["alcohol", "ethanol", "alcohol /ethanol"],
               "mdma": ["ecstasy (mdma)"],
@@ -97,6 +99,7 @@ mds_aliases = {
         },
         M['REAS_CESS']: {
           "treatment completed" : ["treatment completed", "episode resolved"],
+          "ceased to participate at expiation": ["ceased at expiation"],
           #['Treatment Resistance'],
           
           "ceased to participate against advice": ["ceased against advice"],
@@ -126,19 +129,17 @@ mds_aliases = {
         M['TDS']:{
           "outreach setting" : ["outreach setting"],
           "private residence" : ["private residence", "rented private house or flat",
-                                 "privately owned house or flat", "rented public house or flat"],
+                                 "rented public house or flat"],
           "non-residential treatment facility" :["non-residential facility"]
         },
         M['USACC']:{
           "private residence": ["rented public house or flat", 
-                                "rented private house or flat", "privately owned house or flat"],
+                                "rented private house or flat"],
           "alcohol and other drugs": ["alcohol/other drug treatment residence"],
           "short term crisis, emergency or transitional accommodation facility" : [
-            "short term crisis, emergency or transitional accommodation f"],
-          "other specialised community residential": ["other specialised community residential"],        
+            "short term crisis, emergency or transitional accommodation f"],     
           "boarding house/private hotel" : ["boarding house/private rental"],
-          "none/homeless/public place" : ["none/homeless/public space", "no usual residence/homeless"],
-          
+          "none/homeless/public place" : ["none/homeless/public space"]          
         },       
     }
 }

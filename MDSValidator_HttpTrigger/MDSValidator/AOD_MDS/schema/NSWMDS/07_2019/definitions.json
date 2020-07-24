@@ -52,12 +52,14 @@
                   "transferred/referred to another service",
                   "left without notice",
                   "left against advice",
-                  "left involuntary (non-compliance)",
+                  "left involuntarily (non-compliance)",
+                  "moved out of area",
                   "sanctioned by drug court/court diversion program",
-                  "imprisoned",
+                  "imprisoned, other than drug court sanction",
                   "released from prison",
                   "died",
                   "other",
+                  "not stated/inadequately described",
                   ""
               ]
           },
@@ -113,6 +115,8 @@
               "type": "string",
               "$id": "#source_of_referral",
               "enum": [
+                "self",
+                "family member/friend",
                 "general practitioner",
                 "medical officer/specialist",
                 "psychiatric hospital",
@@ -133,7 +137,7 @@
                 "needle and syringe program",
                 "medically supervised injecting centre",
                 "other",
-                "not stated/ inadequately described"                
+                "not stated/inadequately described"     
               ]
           },
           "main_treatment_type": {
@@ -171,16 +175,10 @@
               "type": "string",
               "$id": "#previous_treatment_type",
               "enum": [
-                  "withdrawal management (detoxification)",
-                  "counselling",
-                  "rehabilitation",
-                  "pharmacotherapy",
-                  "support and case management",
-                  "information and education",
-                  "assessment only",
-                  "other",
-                  "no previous treatment received",
-                  ""
+                  "",
+                  "not collected (for secondary clients only)",                  
+                  "previous service received",
+                  "no previous service received"
               ]
           },
           "treatment_delivery_setting": {
@@ -191,32 +189,25 @@
                 "home",
                 "correctional",
                 "inpatient",
-                "residential"                
+                "residential"
               ]
           },
           "usual_accommodation": {
               "title": "Usual Accommodation",
               "$id": "#usual_accommodation",
               "enum": [
-                  "private residence",
-                  "boarding house/private hotel",
-                  "supported accommodation facility",
-                  "alcohol and other drugs",
-                  "psychiatric hospital",
-                  "prison/remand centre/youth training centre",
-                  "none/homeless/public place",
-                  "informal housing",
-                  "short term crisis, emergency or transitional accommodation facility",
-                  "mental health",
-                  "other specialised community residential",
-                  "acute hospital",
-                  "other hospital",
-                  "rehabilitation hospital",
-                  "domestic-scale supported living facility",
-                  "residential aged care facility",
-                  "not stated/inadequately described",
-                  "other",
-                  "unknown"
+                "rented house or flat (public or private)",
+                "privately owned house or flat",
+                "boarding house",
+                "hostel/supported accommodation services",
+                "psychiatric hospital",
+                "alcohol/other drug treatment residence",
+                "shelter/refuge",
+                "prison/detention centre",
+                "caravan on a serviced site",
+                "no usual residence/homeless",
+                "other",
+                "not known"
               ]
           }
       }

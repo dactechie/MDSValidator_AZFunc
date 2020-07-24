@@ -34,7 +34,7 @@ from .Providers import FileSchemaProvider #CosmosMongo, SchemaProvider
 #   return JSONValidator(schema_obj ,period, program=program)
 
 # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "AMDS_v07-2019"
-def get_json_validator(period: Period, program):
+def get_validator_schemadomain(period: Period, program):
   schema_prvdr = FileSchemaProvider.FileSchemaProvider(period.start, program)
   main_schema, definitions = schema_prvdr.build_schema()
   jv = JSONValidator(main_schema, definitions,
@@ -90,7 +90,7 @@ def main(data, open_and_closed_eps, errors_only, start_date,
                 program='TSS', reporting_period=1, nostrict=False):
   if not start_date:
     start_date = datetime(2020,1,1)
-    logger.warn(f"No start date was passed in - defaulting to 1 July 2019 {start_date}")
+    logger.warn(f"No start date was passed in - defaulting to 1 July 2020 {start_date}")
 
   result_dicts = exe(data, open_and_closed_eps, errors_only, \
                     start_date, program=program, \
@@ -112,7 +112,8 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
  
   period = get_period(start_date, period_months=period)
   
-  jv, schema_domain = get_json_validator(period, program=program) # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
+  jv, schema_domain = get_validator_schemadomain(period, program=program) 
+  # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
 
   data = _split_strings_to_cols(data)
   
@@ -130,7 +131,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
   # this is to enforce order regardless of what order the columns are in the input file 
   # and 
   #   ? to match the error excel template headers
-  # TODO : load from JSON file.
+  # TODO : load from schema file.
   template_column_headers = { 'ACTMDS' : ['enrolling provider','id','first name','surname','eid','slk 581','sex',
                             'dob','date accuracy indicator','country of birth','indigenous status',
                              'preferred language', 'postcode (australian)','usual accommodation','client type',

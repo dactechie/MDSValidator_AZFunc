@@ -10,7 +10,8 @@ from . import noerrors_base, noerrors_base_translated, period, get_validator
 
 @pytest.fixture(scope="module")
 def Arcadia_Resi_json_validator():
-    return get_validator('ArcadiaResi')
+  validator, _ = get_validator('ArcadiaResi')
+  return validator
 
 
 def test_Arcadia_Resi(Arcadia_Resi_json_validator):

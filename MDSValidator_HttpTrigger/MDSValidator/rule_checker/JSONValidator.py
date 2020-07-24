@@ -11,6 +11,7 @@ from ..AOD_MDS.helpers import (prep_and_check_overlap,
                         translate_to_MDS_values, is_valid_drug_use)#, can_process_withdates)
 from ..AOD_MDS.constants import MDS, MDS_Dates, MDS_ST_FLD, MDS_END_FLD
 from ..AOD_MDS.logic_rules.common import rule_definitions as common_rules
+from ..AOD_MDS.logic_rules.program_types import get_program_rules
 from ..utils import (cleanse_string, get_date_converter, has_duplicate_values, 
                     has_gaps, compile_logic_errors, remove_vrules, 
                     add_error_obj, Period, in_period)
@@ -45,18 +46,12 @@ class JSONValidator(object):
 
         addnl_def = None
         if program:
-          if program =='TSS': # TODO if there are other specialized (program) rules, make this more dynamic
-            from ..AOD_MDS.logic_rules.TSS import rule_definitions as addnl_def
-          elif program ==  'ArcadiaResi':
-            from ..AOD_MDS.logic_rules.Arcadia_Resi import rule_definitions as addnl_def
-          elif program ==  'Althea':
-            from ..AOD_MDS.logic_rules.Althea import rule_definitions as addnl_def
-          else:
-           logger.warn(f"{program} program validation not implmented yet, only going to check common rules.")
-        
+          addnl_def = get_program_rules(program)
           if addnl_def:
             self.rule_definitions.extend(addnl_def)
             self.rules.extend([r['rule'] for r in addnl_def])
+          else:
+           logger.warn(f"{program} program validation not implmented yet, only going to check common rules.")
 
         self.slk_suggestions = {}
 

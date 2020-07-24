@@ -6,12 +6,13 @@ import copy
 
 from . import noerrors_base, noerrors_base_translated, S_PRISON_OUTR, period, get_validator
 
-S_NOTREAT_RESI = "TSS team does not provide service (treatment delivery) in Home/'Other'/Resi setting "
+S_NOTREAT_RESI = "Non-Residential team does not provide service (treatment delivery) in Home/'Other'/Resi setting "
 ex_tds = { 'etype': 'logic', 'field': 'treatment delivery setting'}
 
 @pytest.fixture(scope="module")
 def TSS_json_validator():
-  return get_validator('TSS')
+  validator, _ = get_validator('TSS')
+  return validator
 
 
 @pytest.mark.parametrize("client_id, tds", [('11525',  'home'),
@@ -59,7 +60,7 @@ def test_jailoutreach_mttallowed(TSS_json_validator):
 
         expected1 = [{'cid': '9999', **ex_tds,'index': 1, 'message': S_PRISON_OUTR}, 
           {'cid': '9999', 'etype': 'logic', 'field': 'main treatment type', 'index': 1,
-            'message': 'TSS team only does the following treatment types: Counselling, Support and case management and Information and education'}     
+            'message': 'AOD Counselling team only does the following treatment types: Counselling, Support and case management and Information and education'}     
         ]
 
         errors, _ = TSS_json_validator.validate({'episodes' :[base0error, base1error]})

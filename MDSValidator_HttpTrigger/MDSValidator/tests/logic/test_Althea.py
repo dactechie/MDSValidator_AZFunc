@@ -14,7 +14,8 @@ error = { 'index': 0 ,'cid': '',  **ex_tds, 'message': S_MTT_PHARM}
 
 @pytest.fixture(scope="module")
 def Althea_json_validator():
-  return get_validator ('Althea')
+  validator, _ =  get_validator ('Althea')
+  return validator
 
 
 @pytest.mark.parametrize("client_id, mtt, ott1, err", [
@@ -36,6 +37,6 @@ def test_no_treat_resi(Althea_json_validator, client_id, mtt, ott1, err):
   errors, _ = Althea_json_validator.validate({'episodes' :[base1_error]})
   
 
-  assert (not err and len(errors[0]) == 0)  or errors[0][0] == err
+  assert (not err or len(errors[0]) == 0)  or errors[0][0] == err
   
 

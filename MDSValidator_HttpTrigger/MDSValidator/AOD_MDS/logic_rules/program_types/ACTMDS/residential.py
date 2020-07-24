@@ -1,0 +1,53 @@
+from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.constants import MDS as M
+
+rule_definitions = [
+  # Non-residential treatment types delivered in residential treatment facilities
+  # Logic 24  
+  # Warning
+  # Records were found where Main treatment type was coded '5' (support and case management only), '6' (information and education only) or '7' (assessment only) and Treatment delivery setting was coded '2' (residential treatment facility).
+  # This combination of responses may not be valid in all circumstances or may require further explanation. please review these records and amend any incorrect data.
+
+
+  {
+    "message": f"Residential program only does the following treatment types: Counselling, Support and case management, Rehab, Detox",
+    "field": M['MTT'],
+    "type" : "Error",
+    "rule": {"!": 
+              {"or" : [
+                  {"==": [{"var": M['MTT']}, "information and education"]},
+                  {"==": [{"var": M['MTT']}, "pharmacotherapy"]}                  
+              ]}
+            }
+  },
+  {
+    "message": f"Residential program does not provide service (treatment delivery) in Home/'Other' settings.",
+    "field": M['TDS'],
+    "type" : "Error",
+    "rule": {"!": 
+              {"or" : [
+                  {"==": [{"var": M['TDS']}, "home"]},
+                  {"==": [{"var": M['TDS']}, "other"]}
+              ]}
+            }
+  },
+  {
+    # AIHW Validata warning : Treatment setting is 2 (Residential treatment facility) AND 
+    #                         the Main treatment type is 5 (Support and case management), 
+    #                         6 (Information and education) and 7 (Assessment only) 
+    "message": f"If {M['TDS']} is Residential treatment', '{M['MTT']}' has to be Withdrawal Mgmt.(Detox) / Rehab.",
+    "field": M['TDS'],
+    "type" : "Warning",
+    "rule": {"if": [ 
+              {"==": [{"var": M['TDS']}, "residential treatment facility"]},
+              # {"or" : [
+              #         {"==": [{"var": M['MTT']}, "rehabilitation"]},
+              #         {"==": [{"var": M['MTT']}, "withdrawal management (detoxification)"]}
+              #     ]},
+              {"in": [{"var":M['MTT']}, ["rehabilitation","withdrawal management (detoxification)"]]},
+              True
+            ]}
+  },
+
+  # TODO 
+  # no outreach 
+]

@@ -14,13 +14,14 @@ error = { 'index': 0 ,'cid': '',  **ex_tds, 'message': S_MTT_PHARM}
 
 @pytest.fixture(scope="module")
 def Euro_json_validator():
-  return get_validator ('PathwaysEurobodalla')
+  validator, _ = get_validator ('PathwaysEuroMonaBega')
+  return validator
 
 
 @pytest.mark.parametrize("client_id, mtt, ott1, err", [
                                           ('11525',  'support and case management only', '', {}),
                                           #  ('4353', 'information and education', '', {}),
-                                          ('343','pharmacotherapy', '', error),
+                                          #('343','pharmacotherapy', '', error),
                                           # ('11526','pharmacotherapy', 'support and case management', {}),
                                           # ('11525','support and case management', 'pharmacotherapy', {}),
                                           ])

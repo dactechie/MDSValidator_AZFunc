@@ -1,4 +1,4 @@
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.constants import MDS as M
+from ...constants import MDS as M
 
 rule_definitions = [
   # Non-residential treatment types delivered in residential treatment facilities

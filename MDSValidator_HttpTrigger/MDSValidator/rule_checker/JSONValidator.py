@@ -11,7 +11,7 @@ from ..AOD_MDS.helpers import (prep_and_check_overlap,
                         translate_to_MDS_values, is_valid_drug_use)#, can_process_withdates)
 from ..AOD_MDS.constants import MDS, MDS_Dates, MDS_ST_FLD, MDS_END_FLD
 from ..AOD_MDS.logic_rules.common import rule_definitions as common_rules
-from ..AOD_MDS.logic_rules.program_types import get_program_rules
+from ..AOD_MDS.logic_rules import get_program_rules
 from ..utils import (cleanse_string, get_date_converter, has_duplicate_values, 
                     has_gaps, compile_logic_errors, remove_vrules, 
                     add_error_obj, Period, in_period)

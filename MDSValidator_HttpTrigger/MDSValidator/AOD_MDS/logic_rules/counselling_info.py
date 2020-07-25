@@ -1,4 +1,4 @@
-from ...constants import MDS as M
+from ..constants import MDS as M
 
 rule_definitions = [
   {

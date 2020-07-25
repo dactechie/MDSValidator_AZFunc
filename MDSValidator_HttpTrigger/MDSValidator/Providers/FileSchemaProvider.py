@@ -1,6 +1,6 @@
 from os import path
 from .SchemaProvider import SchemaProvider
-from MDSValidator_HttpTrigger.CommonUtils.files import load_from_file \
+from ...CommonUtils.files import load_from_file \
           , pather # TODO: NOT WORKING .. 
 
 # type : schema / logic rules

@@ -14,7 +14,7 @@ headerTSS= "enrolling provider,Client ID,Surname,First name,eid,Age,Sex,Date of 
 
 dataTSS = "Lexxie Jury,505,'UCHYT, CARIF',820002000,54,Male,7/12/1965,Sudan,Neither Aboriginal nor TSI,Arabic (Including Lebanese), \
 Own alcohol or other drug use,Other community/health service,29/01/2020,1/7/2020,Treatment completed,Non-residential Facility,Ingests,\
-Not stated / inadequately described,Alcohol,,,,,,Assessment only,,,,,AAA,CHTAR071219651,2606,Private Residence,Alone, \
+Not stated / inadequately described,Opioid Antagonists nfd,,,,,,Assessment only,,,,,AAA,CHTAR071219651,2606,Private Residence,Alone, \
 Not Stated / Inadequately Described,,,,Counselling and Case Management"
 dataTSS = [headerTSS, dataTSS]
 
@@ -28,7 +28,7 @@ resultTSS = [{'enrolling provider': 'lexxie jury', 'error_enrolling provider': '
   'commencement date': '29/01/2020', 'error_commencement date': '', 'end date': '01/7/2020', 'error_end date': 'Episode End Date is not in the reporting period',
    'reason for cessation': 'treatment completed', 'error_reason for cessation': '', 'treatment delivery setting': 'non-residential treatment facility', 
    'error_treatment delivery setting': '', 'method of use for pdc': 'ingests', 'error_method of use for pdc': '', 
-   'injecting drug use status': 'not stated/inadequately described', 'error_injecting drug use status': '', 'principle drug of concern': 'alcohol', 
+   'injecting drug use status': 'not stated/inadequately described', 'error_injecting drug use status': '', 'principle drug of concern': 'opioid antagonists, n.e.c.', 
    'error_principle drug of concern': '', 'odc1': '', 'error_odc1': '', 'odc2': '', 'error_odc2': '', 'odc3': '', 'error_odc3': '', 'odc4': '', 'error_odc4': '',
     'odc5': '', 'error_odc5': '', 'main treatment type': 'assessment only', 'error_main treatment type': '', 'ott1': '', 'error_ott1': '', 'ott2': '', 'error_ott2': '',
      'ott3': '', 'error_ott3': '', 'ott4': '', 'error_ott4': '', 'living arrangements': 'alone', 'error_living arrangements': '', 

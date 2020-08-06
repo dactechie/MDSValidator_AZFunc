@@ -80,7 +80,7 @@ mds_aliases = {
         M["PDC"]: {
               "not stated/inadequately described" :["not stated / inadequately described"],
               "heroin": ["heroin"],
-              "opioid antagonists, n.e.c." : ["opoid analgesics nfd","opioid analgesics nfd", "opioid antagonists, nec"],
+              "opioid antagonists, n.e.c." : ["opioid antagonists, nec", "opioid antagonists nfd"],
               "methamphetamine" : ["crystal(meth) / ice / methamphetamine /speed",# coordinare sep 2019 ; mj's common drugs translation
                                    "ice"],   
               "lysergic acid diethylamide": ["lsd"],

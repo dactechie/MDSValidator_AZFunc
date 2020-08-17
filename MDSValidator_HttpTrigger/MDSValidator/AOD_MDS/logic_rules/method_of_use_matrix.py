@@ -14,7 +14,7 @@
 drug_usage = {
 
 "alcohols nfd"    : 	["ingests"],
-"alcohol"         :   ["ingests",	"injects",	"not stated/inadequately described", "smokes", "other"],
+"alcohol"         :   ["ingests",	"injects", "not stated/inadequately described", "smokes", "other"],
 "alprazolam"      :   ["ingests"],
 "amphetamines, n.e.c."  : 	["ingests",	"inhales (vapour)",	"injects",	"smokes"],
 "analgesics"      :   ["ingests"],
@@ -23,7 +23,7 @@ drug_usage = {
 
 "benzodiazepines nfd": ["ingests"],
 "benzodiazepines, n.e.c.": ["ingests", "injects",	"smokes", "sniffs (powder)" ],
-"buprenorphine"   : 	["ingests"],
+"buprenorphine"   : 	["ingests", "smokes"],
 
 "caffeine"        :   ["ingests"],
 "cannabinoids"    : 	["ingests",	"inhales (vapour)",	"smokes"],

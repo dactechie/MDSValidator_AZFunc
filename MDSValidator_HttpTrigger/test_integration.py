@@ -12,13 +12,13 @@ headerTSS= "enrolling provider,Client ID,Surname,First name,eid,Age,Sex,Date of 
     ODC1,ODC2,ODC3,ODC4,ODC5,Main treatment type,OTT1,OTT2,OTT3,OTT4,Date accuracy indicator,SLK 581,Postcode (Australian),Usual accommodation,\
       Living arrangements,Previous alcohol and other drug treatment received,Mental health"
 
-dataTSS = "Lexxie Jury,505,'UCHYT, CARIF',820002000,54,Male,7/12/1965,Sudan,Neither Aboriginal nor TSI,Arabic (Including Lebanese), \
+dataTSS = "MJ JM,505,'UCHYT, CARIF',820002000,54,Male,7/12/1965,Sudan,Neither Aboriginal nor TSI,Arabic (Including Lebanese), \
 Own alcohol or other drug use,Other community/health service,29/01/2020,1/7/2020,Treatment completed,Non-residential Facility,Ingests,\
 Not stated / inadequately described,Opioid Antagonists nfd,,,,,,Assessment only,,,,,AAA,CHTAR071219651,2606,Private Residence,Alone, \
 Not Stated / Inadequately Described,,,,Counselling and Case Management"
 dataTSS = [headerTSS, dataTSS]
 
-resultTSS = [{'enrolling provider': 'lexxie jury', 'error_enrolling provider': '', 'id': '505', 'error_id': '', 'first name': "carif'", 
+resultTSS = [{'enrolling provider': 'mj jm', 'error_enrolling provider': '', 'id': '505', 'error_id': '', 'first name': "carif'", 
 'error_first name': '', 'surname': "'uchyt", 'error_surname': '', 'eid': '820002000', 'error_eid': '', 'slk 581': 'CHTAR071219651', 
 'error_slk 581': '', 'sex': 'male', 'error_sex': '', 'dob': '07/12/1965', 'error_dob': '', 'date accuracy indicator': 'aaa - day, month and year are accurate',
  'error_date accuracy indicator': '', 'country of birth': 'sudan', 'error_country of birth': '', 'indigenous status': 'neither aboriginal nor torres strait islander origin',
@@ -150,10 +150,12 @@ def load_file(dirname, filename):
 # TODO":  Addd JSON Logic: "Others drug use" : Previous AOD: Blank or "Not collected"
 
 if __name__ == '__main__':
-
-  dirname = os.path.join(os.path.dirname(__file__), "test_integ_data")
-  
-  filename = "FakeNames_PathwaysEuroMonaBega_012020_6.csv"
+  #os.path.realpath(__file__)
+  dirname= r"C:\Users\aftab.jalal\dev\MDSValidator_AZFunc\MDSValidator_HttpTrigger"
+  dirname = os.path.join(dirname, "test_integ_data")
+  #print(os.path.abspath(__file__))
+  print(dirname)
+  filename = "AMDS_PathwaysEuroMonaBega_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
   lines = load_file(dirname,filename)
   
   # print(lines)

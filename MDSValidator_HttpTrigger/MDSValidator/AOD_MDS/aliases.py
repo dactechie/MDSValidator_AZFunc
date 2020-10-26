@@ -89,11 +89,14 @@ mds_aliases = {
               "cannabinoids" : ["cannabis", "cannabinoids and related drugs nfd", "cannabinoids (cannabis)"],
               "nicotine" : ["nicotine/tobacco"],
               "amphetamines nfd" : [ "amphetamines", "amphetamines, nfd" ],
-              "benzodiazepines nfd" : ["benzodiazepines"],
+              "benzodiazepines nfd": ["benzodiazepines", "benzodiazepines, nfd"],
               "analgesics nfd" : ["other analgesics"],
               "stimulants and hallucinogens nfd" : [ "other stimulants/hallucinogens"],
               "sedatives and hypnotics nfd": ["other sedatives/hypnotics"],
               "ghb type drugs and analogues, n.e.c." :["ghb type drugs and analogues nfd", "ghb type drugs and analogues, nec"],
+               "synthetic opioid analgesics, n.e.c.": ["synthetic opioid analgesics nfd"],
+               "lysergic acid diethylamide": ["lyserfic acid diethylamide"],
+               "opioid analgesics nfd": ["opoid analgesics nfd"]
         },
         M['REAS_CESS']: {
           "treatment completed" : ["treatment completed", "episode resolved"],

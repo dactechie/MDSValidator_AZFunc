@@ -83,7 +83,7 @@ mds_aliases = {
               "opioid antagonists, n.e.c." : ["opioid antagonists, nec", "opioid antagonists nfd"],
               "methamphetamine" : ["crystal(meth) / ice / methamphetamine /speed",# coordinare sep 2019 ; mj's common drugs translation
                                    "ice"],   
-              "lysergic acid diethylamide": ["lsd"],
+              "lysergic acid diethylamide": ["lsd","lyserfic acid diethylamide"],
               "alcohol": ["alcohol", "ethanol", "alcohol /ethanol"],
               "mdma": ["ecstasy (mdma)"],
               "cannabinoids" : ["cannabis", "cannabinoids and related drugs nfd", "cannabinoids (cannabis)"],
@@ -95,7 +95,6 @@ mds_aliases = {
               "sedatives and hypnotics nfd": ["other sedatives/hypnotics"],
               "ghb type drugs and analogues, n.e.c." :["ghb type drugs and analogues nfd", "ghb type drugs and analogues, nec"],
                "synthetic opioid analgesics, n.e.c.": ["synthetic opioid analgesics nfd"],
-               "lysergic acid diethylamide": ["lyserfic acid diethylamide"],
                "opioid analgesics nfd": ["opoid analgesics nfd"]
         },
         M['REAS_CESS']: {

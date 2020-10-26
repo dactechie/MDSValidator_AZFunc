@@ -91,11 +91,14 @@ mds_aliases = {
               "amphetamines nfd" : [ "amphetamines", "amphetamines, nfd" ],
               "benzodiazepines nfd": ["benzodiazepines", "benzodiazepines, nfd"],
               "analgesics nfd" : ["other analgesics"],
-              "stimulants and hallucinogens nfd" : [ "other stimulants/hallucinogens"],
-              "sedatives and hypnotics nfd": ["other sedatives/hypnotics"],
+              "other stimulants and hallucinogens, n.e.c." : [ "other stimulants/hallucinogens"],
+              "other sedatives and hypnotics, n.e.c." : ["sedatives and hypnotics nfd", "other sedatives/hypnotics"], 
               "ghb type drugs and analogues, n.e.c." :["ghb type drugs and analogues nfd", "ghb type drugs and analogues, nec"],
                "synthetic opioid analgesics, n.e.c.": ["synthetic opioid analgesics nfd"],
-               "opioid analgesics nfd": ["opoid analgesics nfd"]
+               "opioid analgesics nfd": ["opoid analgesics nfd"],
+               "anabolic androgenic steroids, n.e.c." : ["anabolic androgenic steroids nfd"],
+               "psychostimulants": ["psychostimulants nfd"],
+               "other antidepressants and antipsychotics, n.e.c." :["antidepressants and antipsychotics nfd"]
         },
         M['REAS_CESS']: {
           "treatment completed" : ["treatment completed", "episode resolved"],

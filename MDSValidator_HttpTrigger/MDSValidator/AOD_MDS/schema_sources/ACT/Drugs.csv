@@ -1,0 +1,194 @@
+code,value
+0000,not stated/inadequately described
+0000,inadequately described
+0001,not stated
+0005,opioid analgesics nfd
+0006,psychostimulants 
+1101,codeine
+1102,morphine
+1199,"organic opiate analgesics, n.e.c."
+1201,buprenorphine
+1202,heroin
+1203,oxycodone
+1299,"semisynthetic opioid analgesics, n.e.c."
+1301,fentanyl
+1302,fentanyl analogues
+1303,levomethadyl acetate hydrochloride
+1304,meperidine analogues
+1305,methadone
+1306,pethidine
+1307,tramadol
+1399,"synthetic opioid analgesics, n.e.c."
+1401,acetylsalicylic acid
+1402,paracetamol
+1403,ibuprofen
+1499,lyrica
+1499,"non opioid analgesics, n.e.c."
+2101,alcohol
+2101,ethanol
+2102,methanol
+2199,"alcohols, n.e.c."
+2202,ketamine
+2203,nitrous oxide
+2204,phencyclidine
+2205,propofol
+2299,"anaesthetics, n.e.c."
+2301,amylobarbitone
+2302,methylphenobarbitone
+2303,phenobarbitone
+2399,"barbiturates, n.e.c."
+2401,alprazolam
+2402,clonazepam
+2403,diazepam
+2404,flunitrazepam
+2405,lorazepam
+2406,nitrazepam
+2407,oxazepam
+2408,temazepam
+2499,"benzodiazepines, n.e.c."
+2499,benzodiazepines nfd
+2501,gamma-hydroxybutyrate
+2502,gamma-butrolactone
+2503,"1,4-butanediol"
+2599,"ghb type drugs and analogues, n.e.c."
+2901,chlormethiazole
+2902,kava lactones
+2903,zopiclone
+2904,docylamine
+2905,promethazine
+2906,zolpidem
+3101,amphetamine
+3102,dexamphetamine
+3103,methamphetamine
+3104,amphetamine analogues
+3199,"amphetamines, n.e.c."
+3199,amphetamines nfd
+3301,ephedrine
+3302,norephedrine
+3303,pseudoephedrine
+3399,"ephedra alkaloids, n.e.c."
+3401,dob
+3402,dom
+3403,mda
+3404,mdea
+3405,mdma
+3406,mescaline
+3407,pma
+3408,tma
+3411,doi
+3412,pmma
+3413,2c-b
+3414,phenethylamine analogues
+3499,"phenethylamines, n.e.c."
+3501,atropinic alkaloids
+3502,diethyltryptamine
+3503,dimethyltryptamine
+3504,lysergic acid diethylamide
+3505,psilocybin or psilocin
+3506,tryptamine anologues
+3599,"tryptamines, n.e.c."
+3601,amyl nitrate
+3602,butyl nitrate
+3699,"volatile nitrates, n.e.c."
+3701,cathinone
+3702,methcathinone
+3703,cathinone analogues
+3799,"cathinones, n.e.c."
+3801,1-benzylpiperazine
+3802,1-(3-trifluoromethylphenyl)-piperazine
+3803,1-(3-chlorophenyl)-piperazine
+3804,phenylipiperazine analogues
+3899,"piperazines, n.e.c."
+3901,caffeine
+3903,cocaine
+3905,methylphenidate
+3906,nicotine
+3999,"other stimulants and hallucinogens, n.e.c."
+4101,boldenone
+4102,dehydroepiandrosterone
+4103,fluoxymesterone
+4104,mesterolone
+4105,methandriol
+4106,methenolone
+4107,nandrolone
+4108,oxandrolone
+4111,stanozolol
+4112,testosterone
+4199,"anabolic androgenic steroids, n.e.c."
+4201,eformoterol
+4202,fenoterol
+4203,salbutamol
+4299,"beta2 agonists, n.e.c."
+4301,chorionic gonadotrophin
+4302,corticotrophin
+4303,erythropoietin
+4304,growth hormone
+4305,insulin
+4399,"peptide hormones, mimetics and analogues, n.e.c."
+4901,sulfonylurea hypoglycaemic agents
+4902,tamoxifen
+4903,thyroxine
+4999,"other anabolic agents and selected hormones, n.e.c."
+5101,moclobemide
+5102,phenelzine
+5103,tranylcypromine
+5199,"monoamine oxidase inhibitors, n.e.c."
+5201,chlorpromazine
+5202,fluphenazine
+5203,pericyazine
+5204,thioridazine
+5205,trifluoperazin
+5299,"phenothiazines, n.e.c."
+5301,citalopram
+5302,fluoxetine
+5303,paroxetine
+5304,sertraline
+5399,"serotonin reuptake inhibitors, n.e.c."
+5401,flupenthixol
+5402,thiothixene
+5499,"thioxanthenes, n.e.c."
+5501,amitriptyline
+5502,clomipramine 
+5503,dothiepin
+5504,doxepin
+5505,nortriptyline
+5599,"tricyclic antidepressants, n.e.c."
+5601,amisulpride
+5602,aripriprazole
+5603,clozapine
+5604,olanzapine
+5605,quetiapine
+5606,risperidone
+5607,ziprasidone
+5699,"atypical antipsychotics, n.e.c."
+5901,butyrophenones
+5902,lithium
+5903,mianserin
+5999,"other antidepressants and antipsychotics, n.e.c."
+6101,butane
+6102,petroleum
+6103,propane
+6199,"aliphatic hydrocarbons, n.e.c."
+6201,toluene
+6202,xylene
+6299,"aromatic hydrocarbons, n.e.c."
+6301,bromochlorodifluoromethane
+6302,chloroform
+6303,tetrachloroethylene
+6304,trichloroethane
+6305,trichloroethylene
+6399,"halogenated hydrocarbons, n.e.c."
+6901,acetone 
+6902,ethyl acetate
+6999,"other volatile solvents, n.e.c."
+7101,cannabinoids
+7102,cannabinoid agonists
+7199,"cannabinoids and related drugs, n.e.c."
+9101,antikaliuretics
+9102,loop diuretics
+9103,thiazides
+9199,"diuretics, n.e.c."
+9201,naloxone
+9202,naltrexone
+9299,"opioid antagonists, n.e.c."
+9999,other drugs of concern

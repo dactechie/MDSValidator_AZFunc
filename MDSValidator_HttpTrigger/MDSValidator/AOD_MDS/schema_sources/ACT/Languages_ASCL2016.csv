@@ -1,0 +1,221 @@
+code,value
+0000,inadequately described
+0001,"non verbal, so described"
+0002,not stated
+8000,"australian indigenous languages, nfd"
+9000,"other languages, nfd"
+6513,acehnese
+9201,acholi
+9299,"african languages, nec"
+1403,afrikaans
+9203,akan
+3901,albanian
+9101,american languages
+9214,amharic
+9241,anuak
+4202,arabic
+4901,armenian
+3903,aromunian (macedo-romanian)
+5213,assamese
+4206,assyrian neo-aramaic
+4302,azeri
+6514,balinese
+4104,balochi
+9242,bari
+2901,basque
+9243,bassa
+3401,belarusian
+9215,bemba
+5201,bengali
+6515,bikol
+8516,bililuna dialect
+6501,bisaya
+9402,bislama
+3501,bosnian
+3502,bulgarian
+6101,burmese
+6199,"burmese and related languages, nec"
+7101,cantonese
+2301,catalan
+6502,cebuano
+1199,"celtic, nec"
+4207,chaldean neo-aramaic
+6102,chin haka
+7199,"chinese, nec"
+3503,croatian
+3507,croatian serbian
+3601,czech
+3604,"czechoslovakian, so described"
+9244,dan (gio-dan)
+1501,danish
+4105,dari
+5214,dhivehi
+9216,dinka
+5199,"dravidian, nec"
+1401,dutch
+1201,english
+1601,estonian
+9217,ewe
+9301,fijian
+5217,fijian hindustani
+6512,filipino
+1602,finnish
+1699,"finnish and related languages, nec"
+2101,french
+1402,frisian
+9245,fulfulde
+9218,ga
+1101,gaelic (scotland)
+4902,georgian
+1301,german
+9302,gilbertese
+2201,greek
+5202,gujarati
+7102,hakkah
+9221,harari
+9222,hausa
+9403,hawaiian english
+4107,hazaraghi
+4204,hebrew
+5203,hindi
+6201,hmong
+6299,"hmong-mien, nec"
+3301,hungarian
+6516,iban
+2399,"iberian romance, nec"
+1502,icelandic
+9223,igbo
+6503,iiokano
+6517,ilonggo (hiligaynon)
+5299,"indo-aryan, nec"
+6504,indonesian
+4199,"iranic, nec"
+1102,irish
+2401,italian
+7201,japanese
+6518,javanese
+5101,kannada
+6103,karen
+5215,kashmiri
+6301,khmer
+9224,kikuyu
+9246,kinyarwanda (rwanda)
+9247,kirundi (rundi)
+9502,kiwai
+5204,konkani
+7301,korean
+9248,kpelle
+9251,krahn
+9225,krio
+4101,kurdish
+6401,lao
+2902,latin
+3101,latvian
+1302,letzeburgish
+9252,liberian (liberian english)
+3102,lithuanian
+9253,loma (lorma)
+9226,luganda
+9254,lumun (kuku lumun)
+9227,luo
+3504,macedonian
+9255,madi
+6505,malay
+5102,malayalam
+2501,maltese
+4208,manaean (mandaic)
+7104,mandarin
+9256,mandinka
+9257,mann
+9303,maori (cook island)
+9304,maori (new zealand)
+5205,marathi
+9205,mauritian creole
+4299,"middle eastern semitic languages, nec"
+7107,min nan
+6303,mon
+7902,mongolian
+6399,"mon-khmer, nec"
+9258,moro (nuba moro)
+9503,motu (hiri motu)
+9306,nauruan
+9228,ndebele
+5206,nepali
+9307,niue
+1503,norwegian
+9231,nuer
+9232,nyanja (chichewa)
+9499,"oceanian pidgins and creoles, nec"
+5216,oriya
+9206,oromo
+7999,"other eastern asian languages, nec"
+3999,"other eastern european languages, nec"
+6999,other southeast asian languages
+5999,other southern asian languages
+2999,"other southern european languages, nec"
+4999,"other southwest and central asian languages, nec"
+9399,"pacific austronesian languages, nec"
+6521,pampangan
+9599,"papua new guinea languages, nec"
+4102,pashto
+4106,persian (excluding dari)
+9404,pitcairnese
+3602,polish
+2302,portuguese
+5207,punjabi
+6104,rohingya
+3904,romanian
+3905,romany
+9312,rotuman
+3402,russian
+9308,samoan
+1599,"scandinavian, nec"
+3505,serbian
+3507,"serbo-croatian/yugoslavian, so described"
+9238,seychelles creole
+9233,shilluk
+9207,shona
+9799,"sign languages, nec"
+5208,sindhi
+5211,sinhalese
+3603,slovak
+3506,slovene
+9405,solomon islands pijin
+9208,somali
+6599,"southeast asian austronesian languages, nec"
+2303,spanish
+9211,swahili
+1504,swedish
+6511,tagalog
+6499,"tai, nec"
+5103,tamil
+4303,tatar
+5104,telugu
+6507,tetum
+6402,thai
+9261,themne
+7901,tibetan
+9234,tigre
+9235,tigrinya
+6508,timorese
+9504,tok pisin (neomelanesian)
+9313,tokelauan
+9311,tongan
+9236,tswana
+5105,tulu
+4399,"turkic, nec"
+4301,turkish
+4304,turkmen
+9314,tuvaluan
+3403,ukrainian
+5212,urdu
+4305,uygur
+4306,uzbek
+6302,vietnamese
+1103,welsh
+7106,wu
+9237,xhosa
+9315,yapese
+1303,yiddish
+9212,yoruba
+9213,zulu

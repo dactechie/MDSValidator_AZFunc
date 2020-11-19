@@ -90,7 +90,7 @@ dataEuro = [",".join(headerEuro) , ",".join(dataEuro)]
 
 @pytest.mark.parametrize( "data, result,open_and_closed_eps, errors_only, start_date, program, reporting_period", [
                           (dataTSS, resultTSS, True, False, datetime.datetime(2020,1,1), 'TSS', 6),
-                          (dataEuro, resultEuro, True, False, datetime.datetime(2020,1,1), 'PathwaysEuroMonaBega', 6)
+                          (dataEuro, resultEuro, True, False, datetime.datetime(2020,1,1), 'Pathways', 6)
                         ])
 def test_main(data, result, open_and_closed_eps, errors_only, start_date, 
                 program, reporting_period):
@@ -155,7 +155,7 @@ if __name__ == '__main__':
   dirname = os.path.join(dirname, "test_integ_data")
   #print(os.path.abspath(__file__))
   print(dirname)
-  filename = "AMDS_PathwaysEuroMonaBega_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
+  filename = "AMDS_Pathways_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
   lines = load_file(dirname,filename)
   
   # print(lines)

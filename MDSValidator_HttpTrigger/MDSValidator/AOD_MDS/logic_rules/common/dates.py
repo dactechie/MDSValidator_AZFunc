@@ -52,8 +52,9 @@ rule_definitions = [
   # Records were found where Date of cessation did not fall within the collection period. 
   # Records where Date of cessation falls outside the period from July 1, 2018 to June 30, 2019 are not in the scope of the collection.
   # Please review and amend the Date of cessation or exclude the episodes.
-
+  # category: ACT => Activity , CLS => Closed
   {
+    "category": "CLS",
     "message": f"Episode End Date is not in the reporting period",
     "field": M['END_DATE'],
     "involvedFields": [M['END_DATE']],

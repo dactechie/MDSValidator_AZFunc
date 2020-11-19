@@ -148,13 +148,13 @@ mds_aliases = {
 }
 
 pdc = mds_aliases['fields'][M['PDC']]
-mds_aliases['fields']['odc1'] = mds_aliases['fields']['odc2'] = pdc
-mds_aliases['fields']['odc3'] = mds_aliases['fields']['odc4'] = pdc
+mds_aliases['fields']['odc1'] , mds_aliases['fields']['odc2'] = pdc, pdc
+mds_aliases['fields']['odc3'] , mds_aliases['fields']['odc4'] = pdc, pdc
 mds_aliases['fields']['odc5'] = pdc
 
 mtt = mds_aliases['fields'][M['MTT']]
-mds_aliases['fields']['ott1'] = mds_aliases['fields']['ott2'] = mtt
-mds_aliases['fields']['ott3'] = mds_aliases['fields']['ott4'] = mtt
+mds_aliases['fields']['ott1'] , mds_aliases['fields']['ott2'] = mtt, mtt
+mds_aliases['fields']['ott3'] , mds_aliases['fields']['ott4'] = mtt, mtt
 
 mds_aliases['headers'] = {
         M['ID']      : ["pat id", "pid", "client id", "clientid"],

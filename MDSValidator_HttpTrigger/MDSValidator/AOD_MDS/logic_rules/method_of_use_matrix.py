@@ -23,7 +23,7 @@ drug_usage = {
 
 "benzodiazepines nfd": ["ingests"],
 "benzodiazepines, n.e.c.": ["ingests", "injects",	"smokes", "sniffs (powder)" ],
-"buprenorphine"   : 	["ingests", "smokes"],
+"buprenorphine"   : 	["ingests", "injects", "smokes"],
 
 "caffeine"        :   ["ingests"],
 "cannabinoids"    : 	["ingests",	"inhales (vapour)",	"smokes"],

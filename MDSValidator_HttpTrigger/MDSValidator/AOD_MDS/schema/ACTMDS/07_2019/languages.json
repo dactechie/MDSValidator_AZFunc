@@ -1,6 +1,6 @@
 {
     "type": "string",
-    "$id": "#language",
+    "$id": "#languages",
     "enum": [
         "inadequately described",
         "non verbal, so described",

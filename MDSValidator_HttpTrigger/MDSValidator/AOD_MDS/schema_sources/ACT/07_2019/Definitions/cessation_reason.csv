@@ -1,0 +1,17 @@
+Code,Value
+1,Treatment Completed
+2,Change in main treatment type
+3,Change in delivery setting
+4,Change in the principal drug of concern 
+4,change in principal drug of concern
+5,Transferred to another service provider
+6,Ceased to participate against advice
+7,Ceased to participate without notice
+8,Ceased to participate involuntary (non-compliance)
+9,Ceased to participate at expiation
+10,Ceased to participate by mutual agreement
+11,Drug court and/or sanctioned by court diversion service
+12,"Imprisoned, other than drug court sanctioned"
+13,Died
+98,Other
+99,Not stated/inadequately described

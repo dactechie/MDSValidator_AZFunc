@@ -1,0 +1,23 @@
+Code,Value
+11,Private Residence
+11,privately owned house or flat
+12,Boarding house/private hotel
+14,None/homeless/public place
+21,Supported accommodation facility
+21,hostel/supported accommodation
+33.2,Alcohol and other drugs
+31.2,Psychiatric hospital
+34,Prison/remand centre/youth training centre
+13,Informal housing
+23,"Short term crisis, emergency or transitional accommodation facility"
+33.1,Mental health
+33.8,Other specialised community residential
+31.1,Acute hospital
+31.8,Other hospital
+31.3,Rehabilitation hospital
+21,Domestic-scale supported living facility
+32.1,Residential aged care facility
+99,Not stated/inadequately described
+88,Other
+14,no usual residence/homeless
+98,Unknown

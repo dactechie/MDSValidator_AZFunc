@@ -28,7 +28,7 @@ def get_enumkeys_obj(csv_file, data_type):
     newpyobj = {
       "type" : "string",
       "$id"  : f"#{data_type}",
-      "enum" : [row[1] for row in datareader]
+      "enum" : [row[1] for row in datareader] #row[0]->code
     }
   return newpyobj
 

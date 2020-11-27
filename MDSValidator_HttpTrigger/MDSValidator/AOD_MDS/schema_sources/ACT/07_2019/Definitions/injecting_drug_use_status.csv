@@ -1,0 +1,6 @@
+Code,Value
+1,Last injected three months ago or less
+2,Last injected more than three months ago but less than or equal to twelve months ago
+3,Last injected more than twelve months ago
+4,Never injected
+9,Not stated/inadequately described

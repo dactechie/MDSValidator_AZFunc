@@ -52,7 +52,7 @@ dataEuro = [
     'not estimated',"Australia", "Neither Aboriginal nor TSI","English","2536",
     "Privately owned house or flat","Own drug use",
     "Other hospital","Not stated/not known/inadequately described",
-    "17122018","19022020","Left without notice","Not stated/inadequately described","Community/ Outpatient",
+    "7122018","19022020","Left without notice","Not stated/inadequately described","Community/ Outpatient",
     "Ingest","Never injected","Alcohol","","","","","",
     "Support and case management only","","","","","Alone",
     "no previous service received","Not stated/inadequately described"
@@ -68,7 +68,8 @@ resultEuro = [{'staff': 'aftab jalal', 'error_staff': '', 'location': 'eurobodal
    'error_postcode (australian)': '', 'usual accommodation': 'privately owned house or flat', 'error_usual accommodation': '',
     'client type': 'own alcohol or other drug use', 'error_client type': '', 'source of referral': 'other hospital', 
     'error_source of referral': '', 'principal source of income': 'not stated/not known/inadequately described', 
-    'error_principal source of income': '', 'commencement date': '17122018', 'error_commencement date': '', 
+    'error_principal source of income': '', 
+    'commencement date': '07122018', 'error_commencement date': '', 
     'end date': '19022020', 'error_end date': '', 'reason for cessation': 'left without notice', 'error_reason for cessation': '',
      'referral to another service': 'not stated/inadequately described', 'error_referral to another service': '', 
      'treatment delivery setting': 'community/ outpatient', 'error_treatment delivery setting': '', 'method of use for pdc': 'ingests',
@@ -89,7 +90,7 @@ dataEuro = [",".join(headerEuro) , ",".join(dataEuro)]
 #         return json.load(f)
 
 @pytest.mark.parametrize( "data, result,open_and_closed_eps, errors_only, start_date, program, reporting_period", [
-                          (dataTSS, resultTSS, True, False, datetime.datetime(2020,1,1), 'TSS', 6),
+                        #  (dataTSS, resultTSS, True, False, datetime.datetime(2020,1,1), 'TSS', 6),
                           (dataEuro, resultEuro, True, False, datetime.datetime(2020,1,1), 'PathwaysEuroMonaBega', 6)
                         ])
 def test_main(data, result, open_and_closed_eps, errors_only, start_date, 
@@ -155,7 +156,7 @@ if __name__ == '__main__':
   dirname = os.path.join(dirname, "test_integ_data")
   #print(os.path.abspath(__file__))
   print(dirname)
-  filename = "AMDS_PathwaysEuroMonaBega_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
+  filename = "Test3_PathwaysEuroMonaBega_012020_6.csv" # "AMDS_PathwaysEuroMonaBega_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
   lines = load_file(dirname,filename)
   
   # print(lines)

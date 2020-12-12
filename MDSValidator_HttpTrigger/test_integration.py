@@ -12,13 +12,13 @@ headerTSS= "enrolling provider,Client ID,Surname,First name,eid,Age,Sex,Date of 
     ODC1,ODC2,ODC3,ODC4,ODC5,Main treatment type,OTT1,OTT2,OTT3,OTT4,Date accuracy indicator,SLK 581,Postcode (Australian),Usual accommodation,\
       Living arrangements,Previous alcohol and other drug treatment received,Mental health"
 
-dataTSS = "Lexxie Jury,505,'UCHYT, CARIF',820002000,54,Male,7/12/1965,Sudan,Neither Aboriginal nor TSI,Arabic (Including Lebanese), \
+dataTSS = "MJ JM,505,'UCHYT, CARIF',820002000,54,Male,7/12/1965,Sudan,Neither Aboriginal nor TSI,Arabic (Including Lebanese), \
 Own alcohol or other drug use,Other community/health service,29/01/2020,1/7/2020,Treatment completed,Non-residential Facility,Ingests,\
 Not stated / inadequately described,Opioid Antagonists nfd,,,,,,Assessment only,,,,,AAA,CHTAR071219651,2606,Private Residence,Alone, \
 Not Stated / Inadequately Described,,,,Counselling and Case Management"
 dataTSS = [headerTSS, dataTSS]
 
-resultTSS = [{'enrolling provider': 'lexxie jury', 'error_enrolling provider': '', 'id': '505', 'error_id': '', 'first name': "carif'", 
+resultTSS = [{'enrolling provider': 'mj jm', 'error_enrolling provider': '', 'id': '505', 'error_id': '', 'first name': "carif'", 
 'error_first name': '', 'surname': "'uchyt", 'error_surname': '', 'eid': '820002000', 'error_eid': '', 'slk 581': 'CHTAR071219651', 
 'error_slk 581': '', 'sex': 'male', 'error_sex': '', 'dob': '07/12/1965', 'error_dob': '', 'date accuracy indicator': 'aaa - day, month and year are accurate',
  'error_date accuracy indicator': '', 'country of birth': 'sudan', 'error_country of birth': '', 'indigenous status': 'neither aboriginal nor torres strait islander origin',
@@ -52,7 +52,7 @@ dataEuro = [
     'not estimated',"Australia", "Neither Aboriginal nor TSI","English","2536",
     "Privately owned house or flat","Own drug use",
     "Other hospital","Not stated/not known/inadequately described",
-    "17122018","19022020","Left without notice","Not stated/inadequately described","Community/ Outpatient",
+    "7122018","19022020","Left without notice","Not stated/inadequately described","Community/ Outpatient",
     "Ingest","Never injected","Alcohol","","","","","",
     "Support and case management only","","","","","Alone",
     "no previous service received","Not stated/inadequately described"
@@ -68,7 +68,8 @@ resultEuro = [{'staff': 'aftab jalal', 'error_staff': '', 'location': 'eurobodal
    'error_postcode (australian)': '', 'usual accommodation': 'privately owned house or flat', 'error_usual accommodation': '',
     'client type': 'own alcohol or other drug use', 'error_client type': '', 'source of referral': 'other hospital', 
     'error_source of referral': '', 'principal source of income': 'not stated/not known/inadequately described', 
-    'error_principal source of income': '', 'commencement date': '17122018', 'error_commencement date': '', 
+    'error_principal source of income': '', 
+    'commencement date': '07122018', 'error_commencement date': '', 
     'end date': '19022020', 'error_end date': '', 'reason for cessation': 'left without notice', 'error_reason for cessation': '',
      'referral to another service': 'not stated/inadequately described', 'error_referral to another service': '', 
      'treatment delivery setting': 'community/ outpatient', 'error_treatment delivery setting': '', 'method of use for pdc': 'ingests',
@@ -89,7 +90,7 @@ dataEuro = [",".join(headerEuro) , ",".join(dataEuro)]
 #         return json.load(f)
 
 @pytest.mark.parametrize( "data, result,open_and_closed_eps, errors_only, start_date, program, reporting_period", [
-                          (dataTSS, resultTSS, True, False, datetime.datetime(2020,1,1), 'TSS', 6),
+                        #  (dataTSS, resultTSS, True, False, datetime.datetime(2020,1,1), 'TSS', 6),
                           (dataEuro, resultEuro, True, False, datetime.datetime(2020,1,1), 'PathwaysEuroMonaBega', 6)
                         ])
 def test_main(data, result, open_and_closed_eps, errors_only, start_date, 
@@ -158,10 +159,12 @@ def test_file():
 # TODO":  Addd JSON Logic: "Others drug use" : Previous AOD: Blank or "Not collected"
 
 if __name__ == '__main__':
-
-  dirname = os.path.join(os.path.dirname(__file__), "test_integ_data")
-  
-  filename = "FakeNames_PathwaysEuroMonaBega_012020_6.csv"
+  #os.path.realpath(__file__)
+  dirname= r"C:\Users\aftab.jalal\dev\MDSValidator_AZFunc\MDSValidator_HttpTrigger"
+  dirname = os.path.join(dirname, "test_integ_data")
+  #print(os.path.abspath(__file__))
+  print(dirname)
+  filename = "Test3_PathwaysEuroMonaBega_012020_6.csv" # "AMDS_PathwaysEuroMonaBega_072020_1.csv" #"FakeNames_PathwaysEuroMonaBega_012020_6.csv"
   lines = load_file(dirname,filename)
   
   # print(lines)

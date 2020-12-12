@@ -1,0 +1,119 @@
+Type,Code,Description
+indigenous_status,1,Aboriginal but not Torres Strait Islander origin
+indigenous_status,2,Torres Strait Islander but not Aboriginal origin
+indigenous_status,3,Both Aboriginal and Torres Strait Islander origin
+indigenous_status,4,Neither Aboriginal nor Torres Strait Islander origin
+indigenous_status,9,Not stated/inadequately described
+living_arrangements,1,Alone
+living_arrangements,2,Spouse/partner
+living_arrangements,3,Alone with child(ren)
+living_arrangements,4,Spouse/partner and child(ren)
+living_arrangements,5,Parent(s)
+living_arrangements,6,Other relative(s)
+living_arrangements,7,Friend(s)
+living_arrangements,8,Friend(s)/parent(s)/relative(s) and child(ren)
+living_arrangements,98,Other
+living_arrangements,98,shared accommodation
+living_arrangements,99,Not stated/inadequately described
+living_arrangements,99,Not known/inadequately described
+usual_accommodation,11,Private Residence
+usual_accommodation,11,privately owned house or flat
+usual_accommodation,12,Boarding house/private hotel
+usual_accommodation,14,None/homeless/public place
+usual_accommodation,21,Supported accommodation facility
+usual_accommodation,21,hostel/supported accommodation
+usual_accommodation,33.2,Alcohol and other drugs
+usual_accommodation,31.2,Psychiatric hospital
+usual_accommodation,34,Prison/remand centre/youth training centre
+usual_accommodation,13,Informal housing
+usual_accommodation,23,"Short term crisis, emergency or transitional accommodation facility"
+usual_accommodation,33.1,Mental health
+usual_accommodation,33.8,Other specialised community residential
+usual_accommodation,31.1,Acute hospital
+usual_accommodation,31.8,Other hospital
+usual_accommodation,31.3,Rehabilitation hospital
+usual_accommodation,21,Domestic-scale supported living facility
+usual_accommodation,32.1,Residential aged care facility
+usual_accommodation,99,Not stated/inadequately described
+usual_accommodation,88,Other
+usual_accommodation,14,no usual residence/homeless
+usual_accommodation,98,Unknown
+method_of_use_for_pdc,1,Ingests
+method_of_use_for_pdc,2,Smokes
+method_of_use_for_pdc,3,Injects
+method_of_use_for_pdc,4,Sniffs (powder)
+method_of_use_for_pdc,5,Inhales (vapour)
+method_of_use_for_pdc,6,Other
+method_of_use_for_pdc,9,Not stated/inadequately described
+source_of_referral,1,Self
+source_of_referral,2,Family member/friend
+source_of_referral,3,Medical practitioner
+source_of_referral,4,Hospital
+source_of_referral,5,Mental health care service
+source_of_referral,6,Alcohol and other drug treatment service
+source_of_referral,7,Other Community/health care service
+source_of_referral,8,Correctional service
+source_of_referral,9,Police diversion
+source_of_referral,10,Court diversion
+source_of_referral,98,Other
+source_of_referral,99,Not stated/inadequately described
+main_treatment_type,1,Withdrawal management (detoxification)
+main_treatment_type,2,Counselling
+main_treatment_type,3,Rehabilitation
+main_treatment_type,4,Pharmacotherapy
+main_treatment_type,5,Support and case management
+main_treatment_type,6,Information and education
+main_treatment_type,7,Assessment only
+main_treatment_type,88,Other
+main_treatment_type,99,No previous treatment received
+other_treatment_type,0,""
+other_treatment_type,1,"withdrawal management (detoxification)",
+other_treatment_type,2,"counselling",
+other_treatment_type,3,"rehabilitation",
+other_treatment_type,4,"pharmacotherapy",
+other_treatment_type,5,"support and case management",
+other_treatment_type,6,"information and education",
+other_treatment_type,88,"other"
+previous_treatment_type,1,"withdrawal management (detoxification)",
+previous_treatment_type,2,"counselling",
+previous_treatment_type,3,"rehabilitation",
+previous_treatment_type,4,"pharmacotherapy",
+previous_treatment_type,5,"support and case management",
+previous_treatment_type,6,"information and education",
+previous_treatment_type,7,"assessment only",
+previous_treatment_type,88,"other",
+previous_treatment_type,99,"no previous treatment received",
+previous_treatment_type,0,""
+cessation_reason,1,Treatment Completed
+cessation_reason,2,Change in main treatment type
+cessation_reason,3,Change in delivery setting
+cessation_reason,4,Change in the principal drug of concern 
+cessation_reason,4,change in principal drug of concern
+cessation_reason,5,Transferred to another service provider
+cessation_reason,6,Ceased to participate against advice
+cessation_reason,7,Ceased to participate without notice
+cessation_reason,8,Ceased to participate involuntary (non-compliance)
+cessation_reason,9,Ceased to participate at expiation
+cessation_reason,10,Ceased to participate by mutual agreement
+cessation_reason,11,Drug court and/or sanctioned by court diversion service
+cessation_reason,12,"Imprisoned, other than drug court sanctioned"
+cessation_reason,13,Died
+cessation_reason,98,Other
+cessation_reason,99,Not stated/inadequately described
+treatment_delivery_setting,1,Non-residential treatment facility
+treatment_delivery_setting,2,Residential treatment facility
+treatment_delivery_setting,3,Home
+treatment_delivery_setting,4,Outreach setting
+treatment_delivery_setting,8,Other
+injecting_drug_use_status,1,Last injected three months ago or less
+injecting_drug_use_status,2,Last injected more than three months ago but less than or equal to twelve months ago
+injecting_drug_use_status,3,Last injected more than twelve months ago
+injecting_drug_use_status,4,Never injected
+injecting_drug_use_status,9,Not stated/inadequately described
+mental_health,1,Diagnosed three months ago or less
+mental_health,2,Diagnosed more than three months ago but less than or equal to twelve months ago
+mental_health,3,Diagnosed more than twelve months ago
+mental_health,4,Never been diagnosed
+mental_health,9,Not stated/inadequately described
+Client Type,1,Own alcohol or other drug use
+Client Type,2,Other's alcohol or other drug use

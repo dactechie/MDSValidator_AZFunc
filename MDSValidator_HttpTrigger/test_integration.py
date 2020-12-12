@@ -94,7 +94,6 @@ dataEuro = [",".join(headerEuro) , ",".join(dataEuro)]
                         ])
 def test_main(data, result, open_and_closed_eps, errors_only, start_date, 
                 program, reporting_period):
-
     result_dicts = MDSDataFileProcessor.main(data, 
                       open_and_closed_eps, 
                       errors_only,
@@ -123,7 +122,7 @@ def main_tester(lines, dirname, filename):
     #                   start_date=datetime.datetime(2020,1,1), 
     #                   program='TSS',
     #                   reporting_period=6, 
-    #                   nostrict=False)
+    #                   nostrict=False)    
     program, start_date, period = get_details_from(filename)
 
     result_dicts = MDSDataFileProcessor.main(lines,
@@ -145,6 +144,15 @@ def load_file(dirname, filename):
   with open(os.path.join(dirname,  filename)) as f:
     return f.readlines()
   
+
+def test_file():
+  dirname = os.path.join(os.path.dirname(__file__), "test_integ_data")
+  
+  filename = "Althea_012020_6.csv" # "new_TSS_012020_6.csv"
+  lines = load_file(dirname,filename)
+  
+  # print(lines)
+  main_tester(lines, dirname, filename)
 
 
 # TODO":  Addd JSON Logic: "Others drug use" : Previous AOD: Blank or "Not collected"

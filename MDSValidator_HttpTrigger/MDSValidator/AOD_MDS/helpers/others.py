@@ -6,11 +6,11 @@ from ..constants import MDS
 from ...utils import isin_dicts_array
 #from utils.dates import inperiod, in_period_date
 from ...logger import logger
-from ..logic_rules.method_of_use_matrix import drug_usage
+# from ..logic_rules.method_of_use_matrix import drug_usage
 
 
-def is_valid_drug_use(drug_name:str, method_of_use:str) -> bool:
-  return isin_dicts_array(drug_usage, drug_name, method_of_use)
+def is_valid_drug_use(drug_usage, drug_name: str, method_of_use: str) -> bool:
+    return isin_dicts_array(drug_usage, drug_name, method_of_use)
 
 
 def _check_row_errors(array_of_dicts, suggestions, slk_field):
@@ -29,10 +29,10 @@ def fuse_suggestions_into_errors(errors, suggestions):
     for array_of_dicts in errors.values():
         _check_row_errors(array_of_dicts, suggestions, slk_field)
 
-# def can_process_withdates(period_st_ed, ep_start, ep_end, 
+# def can_process_withdates(period_st_ed, ep_start, ep_end,
 #                           date_conversion_errors, open_and_closed_eps=False):
-  
-#   error_field = next((dce for dce in date_conversion_errors 
+
+#   error_field = next((dce for dce in date_conversion_errors
 #                       if dce['field'] in (MDS_ST_FLD, MDS_END_FLD)), None)
 #   if error_field:
 #     logger.error("error in a date field, skipping row  " + error_field)
@@ -44,5 +44,5 @@ def fuse_suggestions_into_errors(errors, suggestions):
 #   elif not ep_end: # closed episodes only, but passed-in data had no closed date
 #     logger.error(f"End date was blank, skipping row . Ep start date: {ep_start}")
 #     return False
-  
+
 #   return inperiod(period_st_ed, ep_start, ep_end)

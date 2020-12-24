@@ -55,13 +55,12 @@ class JSONValidator(object):
 
         addnl_def = None
         if program:
-            addnl_def = get_program_rules(program)
-            if addnl_def:
-                self.rule_definitions.extend(addnl_def)
-                self.rules.extend([r['rule'] for r in addnl_def])
-            else:
-                logger.warn(
-                    f"{program} program validation not implmented yet, only going to check common rules.")
+          addnl_def = get_program_rules(program)
+          if addnl_def:
+            self.rule_definitions.extend(addnl_def)
+            self.rules.extend([r['rule'] for r in addnl_def])
+          else:
+           logger.warning(f"{program} program validation not implmented yet, only going to check common rules.")
 
         self.slk_suggestions = {}
 

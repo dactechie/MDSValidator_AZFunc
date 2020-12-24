@@ -45,4 +45,5 @@ program_domain_map = {
   'ArcadiaDay'  : 'ACTMDS',
 
   'PathwaysEuroMonaBega' : 'NSWMDS',
+  'Sapphire': 'NSWMDS'
 }

@@ -13,15 +13,14 @@ class MDSLocalConfigurationLoader:
         self.config_client = config_loading_client
         self.config = {}
 
-    def load_config(self):
+    def load_config(self, schema_domain):
         # https://github.com/rgl/azure-content/blob/master/articles/storage/storage-python-how-to-use-table-storage.md
         # https://pypi.org/project/azure-data-tables/#description
         # parameters = {
-        #    "pk": 'Local',
-        #    "rk": 'MethodOfUseMatrix'
+        #    "pk": 'Local' #schema_domain           
         # }
-        # filterValue = "PartitionKey eq @pk and RowKey eq @rk"
-        # result = table_client.query_entities(filter=filterValue, parameters=parameters)
+        # filterValue = "PartitionKey eq @pk and IsActive"
+        # result = self.config_client.query_entities(filter=filterValue, parameters=parameters)
 
         result = self.config_client.query_entities(filter="IsActive")
         # parameters = {
@@ -70,8 +69,8 @@ class MDSLocalConfigurationLoader:
         mds_aliases['ott1'] = mds_aliases['ott2'] = mtt_aliases
         mds_aliases['ott3'] = mds_aliases['ott4'] = mtt_aliases
 
-    def get_config(self):
+    def get_config(self, schema_domain):
         if(self.config):
             return self.config
         else:
-            return self.load_config()
+            return self.load_config(schema_domain)

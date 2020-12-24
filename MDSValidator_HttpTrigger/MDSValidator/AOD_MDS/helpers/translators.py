@@ -52,7 +52,7 @@ val_translation_excluded_fields = ["enrolling provider", "eid", "age", "days enr
                                    MDS["ID"], MDS["PCODE"], MDS["SLK"]] + [MDS[md] for md in MDS_Dates]
 
 
-def translate_to_MDS_header(header, header_aliases):
+def translate_to_MDS_header(header, header_aliases={}):
     warnings = {}
     # [cleanse_string(h) for h in header]
     converted_header = copy.deepcopy(header)
@@ -70,7 +70,7 @@ def translate_to_MDS_header(header, header_aliases):
 
 
 # without the deep copy
-def translate_to_MDS_values(data, fields_aliases):
+def translate_to_MDS_values(data, fields_aliases={}):
     warnings = []
     fields_to_check = [k for k in data[0]
                        if k not in val_translation_excluded_fields]

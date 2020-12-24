@@ -2,7 +2,7 @@
 import pytest
 #from AOD_MDS.helpers import  translate_to_MDS_header, translate_to_MDS_values
 from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.constants import MDS as M
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.translators import (fields_map, headers_map, 
+from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.translators import (
             translate_to_MDS_header, translate_to_MDS_values)
 from MDSValidator_HttpTrigger.MDSValidator.logger import logger
 
@@ -41,7 +41,7 @@ def test_translate_to_MDS_header(header, expected):
                           ),
                           ( [{ 'id': '12354',  'client type': "other's drug use" }], 
                             {'client type':"other's alcohol or other drug use", 'id': '12354'}, 
-                            { "index": 0, "cid": '12354', "required": fields_map[M['CLNT_TYP']]["other's drug use"],
+                            { "index": 0, "cid": '12354', "required": "other's alcohol or other drug use",
                               "got": "other's drug use"}
                           )
                         ])

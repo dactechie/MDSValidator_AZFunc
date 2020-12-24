@@ -15,7 +15,7 @@ from .utils.output_helpers import get_vresult_rows
 #from utils.log import log_results
 from .rule_checker.constants import MODE_LOOSE
 from .utils.InputFileErrors import MissingHeadersError, NoDataError
-from .Providers import FileSchemaProvider  # CosmosMongo, SchemaProvider
+from .Providers import SchemaProvider, FileSchemaProvider  # CosmosMongo, SchemaProvider
 from ..CommonUtils.AZTableService import AZTableService
 from .AOD_MDS.MDSConfig import MDSLocalConfigurationLoader
 
@@ -39,13 +39,17 @@ from .AOD_MDS.MDSConfig import MDSLocalConfigurationLoader
 # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "AMDS_v07-2019"
 
 
-def get_validator_schemadomain(period: Period, program, addnl_config):
-    schema_prvdr = FileSchemaProvider.FileSchemaProvider(period.start, program)
-    main_schema, definitions = schema_prvdr.build_schema()
+def get_schema_schemadomain(schema_provider: SchemaProvider, period: Period, program):
+    
+    main_schema, definitions = schema_provider.build_schema()
+    return main_schema, definitions, schema_provider.schema_domain
+    
 
+def get_validator(main_schema, definitions, period, program, addnl_config):
+  
     jv = JSONValidator(main_schema, definitions, addnl_config,
                        period, program=program)
-    return jv, schema_prvdr.schema_domain
+    return jv
 
 
 def get_valid_header(data_header_row, validator, mode):
@@ -118,14 +122,18 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
     start_time = time()
 
     period = get_period(start_date, period_months=period)
+    schema_provider = FileSchemaProvider.FileSchemaProvider(period.start, program)
+    main_schema, definitions = schema_provider.build_schema()
+
 
     table_service = AZTableService("MDSValidatorMappings")
 
     config_loader = MDSLocalConfigurationLoader(table_service.table_client)
-    addnl_config = config_loader.get_config()
-
-    jv, schema_domain = get_validator_schemadomain(
-        period, program=program, addnl_config=addnl_config)
+    
+    # aliases & matrix of drugs
+    addnl_config = config_loader.get_config(schema_provider.schema_domain)
+    jv = JSONValidator(main_schema, definitions, addnl_config,
+                       period, program=program)
     # map period to schema version date , then load schema with key : "Program_SchemaVersion" e.g. TSS_052019 => "ACTMDS_v07-2019"
 
     data = _split_strings_to_cols(data)
@@ -171,7 +179,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
     ]
     }
 
-    rows = get_vresult_rows(template_column_headers[schema_domain],
+    rows = get_vresult_rows(template_column_headers[schema_provider.schema_domain],
                             len(template_column_headers), data['episodes'], verrors)
     logger.info("\t ...result ..{rows}\n")
 

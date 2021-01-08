@@ -8,8 +8,9 @@ from ...AOD_MDS.constants import MDS as M
 from ....MDSValidator.Providers import SchemaProvider, FileSchemaProvider
 from ....MDSValidator.utils.dates import Period
 from ....MDSValidator.rule_checker.JSONValidator import JSONValidator
-from ....CommonUtils.AZTableService import AZTableService
-from ....MDSValidator.AOD_MDS.MDSConfig import MDSLocalConfigurationLoader
+from .addnl_config import domain_config
+from ....CommonUtils import constants as DBConstants
+from ....MDSValidator.AOD_MDS.MDSConfig import MDSLocalConfigurationLoader, process_loaded_config
 
 S_PRISON_OUTR = f"If {M['USACC']} is 'Prison/remand centre/youth training centre', '{M['TDS']}' has to be 'Outreach setting'."
 
@@ -61,10 +62,18 @@ noerrors_base_nsw_translated = OrderedDict(
 )
 
 # @pytest.fixture(scope="module")
-def config_loader():
-    table_service = AZTableService("MDSValidatorMappings")
-    config_loader = MDSLocalConfigurationLoader(table_service.table_client)
-    return config_loader
+# def config_loader():
+#     # table_service = AZTableService("MDSValidatorMappings")
+#     config_loader = MDSLocalConfigurationLoader(table_service.table_client)
+#     return config_loader
+
+def get_config(schema_domain):
+  config = process_loaded_config(domain_config[schema_domain])
+  return {
+    DBConstants.DB_KEY_ALIASES : config[DBConstants.DB_KEY_ALIASES],
+    DBConstants.DB_KEY_METHOD_MATRIX: domain_config["Common"][DBConstants.DB_KEY_METHOD_MATRIX]
+  }
+
 
 #def get_validator_for_program(config_loader, program_name):
 def get_validator_for_program(program_name):
@@ -76,7 +85,8 @@ def get_validator_for_program(program_name):
         period.start, program_name)
     main_schema, definitions = schema_provider.build_schema()
     # aliases & matrix of drugs
-    addnl_config = config_loader().get_config(schema_provider.schema_domain)
+    # addnl_config = config_loader().get_config(schema_provider.schema_domain)
+    addnl_config = get_config(schema_provider.schema_domain)     
     jv = JSONValidator(main_schema, definitions, addnl_config,
                        period, program=program_name)
 

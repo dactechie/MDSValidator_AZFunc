@@ -3,6 +3,35 @@ import json
 from .constants import MDS as M
 from ...CommonUtils import constants as DBConstants
 
+def process_loaded_config(config):
+    mds_data_value_aliases, mds_header_aliases = map_to_mds_values(
+        config[DBConstants.DB_KEY_ALIASES])
+    # we don't store duplicates for similar fields, it is done on the fly
+    create_copy_aliases(mds_data_value_aliases)
+    config[DBConstants.DB_KEY_ALIASES] = {
+
+        "fields": mds_data_value_aliases,
+        "headers": mds_header_aliases
+    }
+    return config
+
+def map_to_mds_values(config_dict):
+    return [
+        {M[k]: alias_dict for k, alias_dict in config_dict['fields'].items()},
+        {M[k]: alias_list for k, alias_list in config_dict['headers'].items()}
+    ]
+
+def create_copy_aliases(mds_aliases):
+
+    pdc_aliases = mds_aliases[M['PDC']]
+    mds_aliases['odc1'] = mds_aliases['odc2'] = pdc_aliases
+    mds_aliases['odc3'] = mds_aliases['odc4'] = pdc_aliases
+    mds_aliases['odc5'] = pdc_aliases
+
+    mtt_aliases = mds_aliases[M['MTT']]
+    mds_aliases['ott1'] = mds_aliases['ott2'] = mtt_aliases
+    mds_aliases['ott3'] = mds_aliases['ott4'] = mtt_aliases
+
 
 class MDSLocalConfigurationLoader:
 
@@ -28,45 +57,14 @@ class MDSLocalConfigurationLoader:
         result = self.config_client.query_entities(
             filter=f"PartitionKey eq '{schema_domain}' or PartitionKey eq 'Common' and IsActive")
 
-
-
-
         rlist = list(result)
         for r in rlist:
             self.config[r.get("RowKey")] = json.loads(r.get("Value"))
-
-        mds_data_value_aliases, mds_header_aliases = self.map_to_mds_values()
-        # we don't store duplicates for similar fields, it is done on the fly
-        self.create_copy_aliases(mds_data_value_aliases)
-        self.config[DBConstants.DB_KEY_ALIASES] = {
-
-            "fields": mds_data_value_aliases,
-            "headers": mds_header_aliases
-
-        }
-        return self.config
-
-    def map_to_mds_values(self):
-        data_value_aliases = self.config[DBConstants.DB_KEY_ALIASES]['fields']
-        header_aliases = self.config[DBConstants.DB_KEY_ALIASES]['headers']
-        return [
-            {M[k]: alias_dict for k, alias_dict in data_value_aliases.items()},
-            {M[k]: alias_list for k, alias_list in header_aliases.items()}
-        ]
-
-    def create_copy_aliases(self, mds_aliases):
-
-        pdc_aliases = mds_aliases[M['PDC']]
-        mds_aliases['odc1'] = mds_aliases['odc2'] = pdc_aliases
-        mds_aliases['odc3'] = mds_aliases['odc4'] = pdc_aliases
-        mds_aliases['odc5'] = pdc_aliases
-
-        mtt_aliases = mds_aliases[M['MTT']]
-        mds_aliases['ott1'] = mds_aliases['ott2'] = mtt_aliases
-        mds_aliases['ott3'] = mds_aliases['ott4'] = mtt_aliases
 
     def get_config(self, schema_domain):
         if(self.config):
             return self.config
         else:
-            return self.load_config(schema_domain)
+            self.load_config(schema_domain)
+            self.config = process_loaded_config(self.config)
+            return self.config

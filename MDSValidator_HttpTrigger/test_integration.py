@@ -149,7 +149,7 @@ def load_file(dirname, filename):
 def test_file():
   dirname = os.path.join(os.path.dirname(__file__), "test_integ_data")
   
-  filename = "Althea_012020_6.csv" # "new_TSS_012020_6.csv"
+  filename = "Althea_012020_12.csv" # "new_TSS_012020_6.csv"
   lines = load_file(dirname,filename)
   
   # print(lines)

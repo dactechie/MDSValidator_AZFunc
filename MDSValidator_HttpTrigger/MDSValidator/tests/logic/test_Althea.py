@@ -5,17 +5,23 @@ import pytest
 import copy
 from ...AOD_MDS.constants import MDS as M
 
-from . import noerrors_base_translated, get_validator
+from . import noerrors_base_translated, get_validator_for_program
 
 S_MTT_PHARM = "If MTT is Pharmacotherapy, OTT1 should be present"
 ex_tds = { 'etype': 'logic', 'field': M['MTT']}
 error = { 'index': 0 ,'cid': '',  **ex_tds, 'message': S_MTT_PHARM}
 
 
+# @pytest.fixture(scope="module")
+# def Althea_json_validator(config_loader):
+#   validator =  get_validator_for_program (config_loader, 'Althea')
+#   return validator
+
 @pytest.fixture(scope="module")
 def Althea_json_validator():
-  validator, _ =  get_validator ('Althea')
+  validator =  get_validator_for_program ('Althea')
   return validator
+
 
 
 @pytest.mark.parametrize("client_id, mtt, ott1, err", [

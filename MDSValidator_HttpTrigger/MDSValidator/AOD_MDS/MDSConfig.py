@@ -13,26 +13,23 @@ class MDSLocalConfigurationLoader:
         self.config_client = config_loading_client
         self.config = {}
 
+    ##
+    #
+    # Aliases
+    # MethodOfUseMatrix
+    #
+
     def load_config(self, schema_domain):
         # https://github.com/rgl/azure-content/blob/master/articles/storage/storage-python-how-to-use-table-storage.md
         # https://pypi.org/project/azure-data-tables/#description
-        # parameters = {
-        #    "pk": 'Local' #schema_domain           
-        # }
-        # filterValue = "PartitionKey eq @pk and IsActive"
+        # parameters = {"pk1": schema_domain}
+        # filterValue = "(PartitionKey eq @pk1) and IsActive"
         # result = self.config_client.query_entities(filter=filterValue, parameters=parameters)
+        result = self.config_client.query_entities(
+            filter=f"PartitionKey eq '{schema_domain}' or PartitionKey eq 'Common' and IsActive")
 
-        result = self.config_client.query_entities(filter="IsActive")
-        # parameters = {
-        #     "active": true
-        # }
-        # filterValue = "IsActive eq @active"
-        # result = self.config_client.query_entities(
-        #     filter=filterValue, parameters=parameters)
 
-        # filterValue = ""  # PartitionKey eq 'Local' and RowKey eq 'MethodOfUseMatrix'"
-        # #batch  = table_client.create_batch() #result = table_client.query_entities(filter="PartitionKey eq 'Local'")
-        # result = self.config_client.query_entities(filter=filterValue)
+
 
         rlist = list(result)
         for r in rlist:
@@ -52,7 +49,6 @@ class MDSLocalConfigurationLoader:
     def map_to_mds_values(self):
         data_value_aliases = self.config[DBConstants.DB_KEY_ALIASES]['fields']
         header_aliases = self.config[DBConstants.DB_KEY_ALIASES]['headers']
-
         return [
             {M[k]: alias_dict for k, alias_dict in data_value_aliases.items()},
             {M[k]: alias_list for k, alias_list in header_aliases.items()}

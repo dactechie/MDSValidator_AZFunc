@@ -30,7 +30,15 @@ MDS = {
     "PREV_AOD": "previous alcohol and other drug treatment received", #previous aod treatment",
     "REAS_CESS": "reason for cessation",
     "SRC_INC": "principal source of income",
-    "REF_ANO" :"referral to another service"
+    "REF_ANO" :"referral to another service",
+    
+    # for nsw we do aliases from osp1 -> ott1. the aliassing processe expects MDS[key] hence : 
+    # see MDSConfig.py :  {M[k]: alias_list for k, alias_list in header_aliases.items()}
+    "OTT1": "ott1",
+    "OTT2": "ott2",
+    "OTT3": "ott3",
+    "OTT4": "ott4"
+
 }
 
 MDS_Dates = ("DOB", "COMM_DATE", "END_DATE")
@@ -45,5 +53,5 @@ program_domain_map = {
   'ArcadiaDay'  : 'ACTMDS',
 
   'PathwaysEuroMonaBega' : 'NSWMDS',
-  'Sapphire': 'NSWMDS'
+  'Sapphire': 'NSWMDSCCARE'
 }

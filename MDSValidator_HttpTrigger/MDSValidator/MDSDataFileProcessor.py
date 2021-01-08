@@ -45,11 +45,11 @@ def get_schema_schemadomain(schema_provider: SchemaProvider, period: Period, pro
     return main_schema, definitions, schema_provider.schema_domain
     
 
-def get_validator(main_schema, definitions, period, program, addnl_config):
+# def get_validator(main_schema, definitions, period, program, addnl_config):
   
-    jv = JSONValidator(main_schema, definitions, addnl_config,
-                       period, program=program)
-    return jv
+#     jv = JSONValidator(main_schema, definitions, addnl_config,
+#                        period, program=program)
+#     return jv
 
 
 def get_valid_header(data_header_row, validator, mode):
@@ -164,7 +164,7 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
                                           'previous alcohol and other drug treatment received', 'mental health'],
                                'NSWMDS': [
         # <<< --- staff info useful when returning it to staff to fix.
-        'staff', 'location', 'service',
+        'staff', 'location', 'service',        
         #         Location and service to encode for nadabase upload
         'id', 'first name', 'surname', 'slk 581', 'sex', 'dob',
         'date accuracy indicator', 'country of birth', 'indigenous status', 'preferred language',
@@ -175,8 +175,20 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
                                  'treatment delivery setting', 'method of use for pdc',
                                  'injecting drug use status', 'principle drug of concern', 'odc1', 'odc2', 'odc3', 'odc4',
                                  'odc5', 'main treatment type', 'ott1', 'ott2', 'ott3', 'ott4', 'living arrangements',
-                                 'previous alcohol and other drug treatment received', 'mental health'
-    ]
+                                 'previous alcohol and other drug treatment received'
+        , 'mental health'
+    ],
+    "NSWMDSCCARE": [        'enrolling provider',
+        'id', 'first name', 'surname', 'slk 581', 'sex', 'dob',
+        'date accuracy indicator', 'country of birth', 'indigenous status', 'preferred language',
+        'postcode (australian)', 'usual accommodation', 'client type', 'source of referral',
+                                 'principal source of income',  # <<< ---
+                                 'commencement date', 'end date', 'reason for cessation',
+                                 'referral to another service',  # <<< ---
+                                 'treatment delivery setting', 'method of use for pdc',
+                                 'injecting drug use status', 'principle drug of concern', 'odc1', 'odc2', 'odc3', 'odc4',
+                                 'odc5', 'main treatment type', 'ott1', 'ott2', 'ott3', 'ott4', 'living arrangements',
+                                 'previous alcohol and other drug treatment received']
     }
 
     rows = get_vresult_rows(template_column_headers[schema_provider.schema_domain],

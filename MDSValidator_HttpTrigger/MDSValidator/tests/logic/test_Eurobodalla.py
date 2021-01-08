@@ -5,7 +5,7 @@ import pytest
 import copy
 from ...AOD_MDS.constants import MDS as M
 
-from . import noerrors_base_nsw_translated, period, get_validator
+from . import noerrors_base_nsw_translated, period, get_validator_for_program
 
 S_MTT_PHARM = "invalid value/format: 'pharmacotherapy'"
 ex_tds = { 'etype': 'enum', 'field': M['MTT']}
@@ -14,7 +14,7 @@ error = { 'index': 0 ,'cid': '',  **ex_tds, 'message': S_MTT_PHARM}
 
 @pytest.fixture(scope="module")
 def Euro_json_validator():
-  validator, _ = get_validator ('PathwaysEuroMonaBega')
+  validator = get_validator_for_program ('PathwaysEuroMonaBega')
   return validator
 
 

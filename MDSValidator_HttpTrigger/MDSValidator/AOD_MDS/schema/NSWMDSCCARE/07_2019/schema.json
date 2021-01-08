@@ -1,0 +1,192 @@
+ {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "NSW MDS",
+      "version": "July 2019",
+      "required": [
+          "episodes"
+      ],
+      "properties": {
+          "episodes": {
+              "type": "array",
+              "items": {
+                  "$ref": "#/definitions/episode"
+              }
+          }
+      },
+      "definitions": {
+          "episode": {
+              "type": "object",
+              "required": [
+                  "id",
+                  "slk 581",
+                  "sex",
+                  "dob",
+                  "date accuracy indicator",
+                  "preferred language",
+                  "country of birth",
+                  "postcode (australian)",
+                  "indigenous status",
+                  "commencement date",
+                  "end date",
+                  "client type",
+                  "principle drug of concern",
+                  "odc1",
+                  "odc2",
+                  "odc3",
+                  "odc4",
+                  "main treatment type",
+                  "ott1",
+                  "ott2",
+                  "ott3",
+                  "ott4",
+                  "method of use for pdc",
+                  "usual accommodation",
+                  "living arrangements",
+                  "injecting drug use status",
+                  "treatment delivery setting",
+                  "source of referral",
+                  "previous alcohol and other drug treatment received",
+                  "referral to another service",
+                  "principal source of income"
+              ],
+              "properties": {
+                  "id": {
+                      "type": "string"
+                  },
+                  "sex": {
+                      "type": "string",
+                      "description": "SEX",
+                      "enum": [
+                          "male",
+                          "female",
+                          "other",
+                          "not stated"
+                      ]
+                  },
+                  "dob": {
+                      "type": "string"
+                  },
+                  "date accuracy indicator": {
+                      "$ref": "/defs.json#/definitions/date_accuracy_indicator",
+                      "description": "DAI"
+                  },
+                  "indigenous status": {
+                      "$ref": "/defs.json#/definitions/indigenous_status",
+                      "description": "ATSI"
+                  },
+                  "reason for cessation": {
+                    "$ref": "/defs.json#/definitions/cessation_reason"
+                  },
+                  "referral_to_another_service": {
+                    "$ref": "/defs.json#/definitions/referral_to_another_service"
+                  },
+                  "slk 581": {
+                      "type": "string",
+                      "description": "SLK",
+                      "slkpattern": "^[2A-Z]{5}([012]?[0-9]|3[01])(0?[1-9]|1[012])(19[4-9][0-9]|20[01][0-9])[01]$"
+                  },
+                  "postcode (australian)": {
+                      "type": "string",
+                      "description": "PCODE",
+                      "pattern": "^[0-9]{4}|overseas|other|no fixed address (or not applicable)|unknown|not stated/inadequately described$"
+                  },
+                  "preferred language": {
+                      "$ref": "/defs.json#/definitions/languages"
+                  },
+                  "principal source of income": {
+                    "$ref": "/defs.json#/definitions/principal_source_of_income"
+                  },                  
+                  "country of birth": {
+                      "$ref": "/defs.json#/definitions/countries"
+                  },
+                  "commencement date": {
+                      "type": "string",
+                      "description": "COMM_DATE"
+                  },
+                  "end date": {
+                      "type": "string",
+                      "description": "END_DATE"
+                  },
+                  "client type": {
+                      "type": "string",
+                      "description": "CLNT_TYP",
+                      "enum": [
+                          "own alcohol or other drug use",
+                          "other's alcohol or other drug use"
+                      ]
+                  },
+                  "principle drug of concern": {
+                      "$ref": "/defs.json#/definitions/drugs",
+                      "description": "pdc"
+                  },
+                  "odc1": {
+                      "$ref": "/defs.json#/definitions/drugs"
+                  },
+                  "odc2": {
+                      "$ref": "/defs.json#/definitions/drugs"
+                  },
+                  "odc3": {
+                      "$ref": "/defs.json#/definitions/drugs"
+                  },
+                  "odc4": {
+                      "$ref": "/defs.json#/definitions/drugs"
+                  },
+                  "main treatment type": {
+                      "$ref": "/defs.json#/definitions/main_treatment_type",
+                      "description": "MTT"
+                  },
+                  "ott1": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "ott2": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "ott3": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "ott4": {
+                      "$ref": "/defs.json#/definitions/other_treatment_type"
+                  },
+                  "method of use for pdc": {
+                      "type": "string",
+                      "description": "METHOD",
+                      "enum": [
+                          "",
+                          "ingests",
+                          "smokes",
+                          "injects",
+                          "sniffs (powder)",
+                          "inhales (vapour)",
+                          "other",
+                          "not stated/inadequately described"
+                      ]
+                  },
+                  "usual accommodation": {
+                      "$ref": "/defs.json#/definitions/usual_accommodation",
+                      "description": "USACC"
+                  },
+                  "living arrangements": {
+                      "$ref": "/defs.json#/definitions/living_arrangements",
+                      "description": "LIVAR"
+                  },
+                  "injecting drug use status": {
+                      "$ref": "/defs.json#/definitions/injecting_drug_use_status",
+                      "description": "INJ_USE"
+                  },
+                  "treatment delivery setting": {
+                      "$ref": "/defs.json#/definitions/treatment_delivery_setting",
+                      "description": "TDS"
+                  },
+                  "source of referral": {
+                      "$ref": "/defs.json#/definitions/source_of_referral",
+                      "description": "SRC_REF"
+                  },
+                  "previous alcohol and other drug treatment received": {
+                      "$ref": "/defs.json#/definitions/previous_treatment_type",
+                      "description": "PREV_AOD"
+                  }
+              }
+          }
+      }
+  }

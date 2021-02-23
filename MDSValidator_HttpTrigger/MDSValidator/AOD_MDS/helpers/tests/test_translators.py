@@ -1,11 +1,11 @@
 
 import pytest
 #from AOD_MDS.helpers import  translate_to_MDS_header, translate_to_MDS_values
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.constants import MDS as M
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.translators import (
+from ...constants import MDS as M
+from ..translators import (
             translate_to_MDS_header, translate_to_MDS_values)
-from MDSValidator_HttpTrigger.MDSValidator.logger import logger
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.MDSConfig import map_to_mds_values
+from ....logger import logger
+from ...MDSConfig import map_to_mds_values
 
 
 ACTMDSAliases = {

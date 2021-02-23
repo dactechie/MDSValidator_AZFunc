@@ -1,8 +1,8 @@
 
 
 import pytest
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.tests import method_of_use_matrix
-from MDSValidator_HttpTrigger.MDSValidator.AOD_MDS.helpers.others import is_valid_drug_use
+from . import method_of_use_matrix
+from ..others import is_valid_drug_use
 
 @pytest.mark.parametrize("drug, method ,expected", [
     ("cocaine", "ingests", True),  

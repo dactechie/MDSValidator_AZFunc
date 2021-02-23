@@ -1,11 +1,11 @@
 
 import pytest
-from MDSValidator_HttpTrigger.MDSValidator import MDSDataFileProcessor
-from MDSValidator_HttpTrigger.input_file_processor import get_details_from
 import datetime
 #import json
 import csv
 import os
+from .MDSValidator import MDSDataFileProcessor
+from .input_file_processor import get_details_from
 
 headerTSS= "enrolling provider,Client ID,Surname,First name,eid,Age,Sex,Date of birth,Country of birth,Indigenous status,Preferred language,Client type,\
   Source of referral,Commencement date,End date,Reason for cessation,Treatment delivery setting,Method of use for PDC,Injecting drug use status,PDC,\

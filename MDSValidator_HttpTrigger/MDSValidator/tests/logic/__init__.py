@@ -1,5 +1,4 @@
 
-import pytest
 from collections import OrderedDict
 from datetime import datetime as dt
 from ...utils.dates import Period, get_period

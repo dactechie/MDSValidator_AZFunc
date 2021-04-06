@@ -6,10 +6,10 @@ def get_program_rules(program_name):
     return None
     
   if domain == 'ACTMDS':
-    from .ACTMDS import program_types
+    from .ACTMDS import program_rules
   else:
-    from .NSWMDS import program_types
+    from .NSWMDS import program_rules
 
     
-  return program_types.get(program_name)
+  return program_rules.get(program_name)
   

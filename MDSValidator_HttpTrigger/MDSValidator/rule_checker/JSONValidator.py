@@ -60,7 +60,7 @@ class JSONValidator(object):
             self.rule_definitions.extend(addnl_def)
             self.rules.extend([r['rule'] for r in addnl_def])
           else:
-           logger.warning(f"{program} program validation not implmented yet, only going to check common rules.")
+           logger.warning(f"{program} program validation not implemented yet, only going to check common rules.")
 
         self.slk_suggestions = {}
 

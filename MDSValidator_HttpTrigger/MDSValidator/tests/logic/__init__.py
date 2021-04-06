@@ -49,7 +49,7 @@ noerrors_base_nsw_translated = OrderedDict(
         'indigenous status': "neither aboriginal nor tsi", 'preferred language': "english",
         'client type': "own alcohol or other drug use", 'source of referral': "other criminal justice setting",
         'commencement date': "9/12/2019", 'end date': "9/06/2020", 'reason for cessation': "",
-        'treatment delivery setting': "community/ outpatient", 'method of use for pdc': "smoke",
+        'treatment delivery setting': "community/outpatient", 'method of use for pdc': "smoke",
         'injecting drug use status': "never injected",
         'principle drug of concern': "nicotine", "odc1": "", "odc2": "", "odc3": "", "odc4": "", "odc5": "",
         'main treatment type': "counselling", "ott1": "", "ott2": "", "ott3": "", "ott4": "",

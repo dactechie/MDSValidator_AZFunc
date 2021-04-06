@@ -173,13 +173,7 @@
           },
           "previous_treatment_type": {
               "type": "string",
-              "$id": "#previous_treatment_type",
-              "enum": [
-                  "",
-                  "not collected (for secondary clients only)",                  
-                  "previous service received",
-                  "no previous service received"
-              ]
+              "$id": "#previous_treatment_type"
           },
           "treatment_delivery_setting": {
               "type": "string",

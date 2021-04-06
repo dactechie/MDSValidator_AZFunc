@@ -4,7 +4,7 @@ from .Arcadia_Resi import rule_definitions as residential
 from .Althea import rule_definitions as althea_rules
 
 
-program_types = {
+program_rules = {
   'Althea'      : althea_rules,
   'TSS'         : [*counselling_info, *non_residential],
   'ArcadiaDay'  : [*counselling_info, *non_residential],

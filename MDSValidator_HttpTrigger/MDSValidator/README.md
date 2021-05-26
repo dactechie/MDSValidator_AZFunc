@@ -33,7 +33,7 @@ Options:
                                   False]
   -t, --start_date [%Y-%m-%d]     The number of the starting month of the
                                   reporting period . Eg.: 2019-07-01
-  -p, --program [TSS|Arcadia-Resi|Althea|Other]
+  -p, --program [TSS|ArcadiaDay|ArcadiaResi|Althea|Pathways|Sapphire]
                                   Some logic rules are specific to a
                                   team.Default setting is to just apply just
                                   MDS rules.  [default: TSS]

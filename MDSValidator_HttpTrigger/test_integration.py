@@ -4,8 +4,13 @@ import datetime
 #import json
 import csv
 import os
+# import logging
 from .MDSValidator import MDSDataFileProcessor
 from .input_file_processor import get_details_from
+
+
+# logging.basicConfig(level=logging.INFO)
+# mylogger = logging.getLogger()
 
 headerTSS= "enrolling provider,Client ID,Surname,First name,eid,Age,Sex,Date of birth,Country of birth,Indigenous status,Preferred language,Client type,\
   Source of referral,Commencement date,End date,Reason for cessation,Treatment delivery setting,Method of use for PDC,Injecting drug use status,PDC,\
@@ -124,6 +129,18 @@ def main_tester(lines, dirname, filename):
     #                   program='TSS',
     #                   reporting_period=6, 
     #                   nostrict=False)    
+    # mylogger.info('''
+    print('''
+      **  Testing Locally *** *** ** ** ** *  *********
+          Please enable your local Azure storage account,
+          or this would be stuck mid-run.
+          Windows .bat file:
+          AzureStorageEmulator.exe start
+          cmd /K AzureStorageEmulator.exe help
+
+      ** see local.settings.json file for 'connection strings'
+      *** *** ** ** ** *  ************ *** ** ** ** *  *********
+    ''')
     program, start_date, period = get_details_from(filename)
 
     result_dicts = MDSDataFileProcessor.main(lines,

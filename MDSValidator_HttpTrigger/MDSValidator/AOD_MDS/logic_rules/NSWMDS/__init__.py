@@ -3,7 +3,7 @@ from .non_residential import rule_definitions as non_residential
 #from .residential import rule_definitions as residential
 
 program_rules = {
-  'PathwaysEuroMonaBega' : [*counselling_info, *non_residential],
-  'Pathways'             : [*counselling_info, *non_residential],
-  'Sapphire'             : [*counselling_info, *non_residential]
+  'PathwaysEuroMona' : [*counselling_info, *non_residential],
+  'Pathways'         : [*counselling_info, *non_residential],
+  'Sapphire'         : [*counselling_info, *non_residential]
 }

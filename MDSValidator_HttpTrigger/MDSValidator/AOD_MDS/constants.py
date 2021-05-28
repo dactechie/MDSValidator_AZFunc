@@ -52,7 +52,7 @@ program_domain_map = {
   'ArcadiaResi' : 'ACTMDS',
   'ArcadiaDay'  : 'ACTMDS',
 
-  'PathwaysEuroMonaBega' : 'NSWMDS',
-  'Pathways' : 'NSWMDS',
+  'PathwaysEuroMona' : 'NSWMDS',
+  'Pathways' : 'NSWMDSCCARE',
   'Sapphire': 'NSWMDSCCARE'
 }

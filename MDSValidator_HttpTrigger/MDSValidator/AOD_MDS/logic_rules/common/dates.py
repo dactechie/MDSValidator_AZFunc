@@ -53,17 +53,26 @@ rule_definitions = [
   # Records where Date of cessation falls outside the period from July 1, 2018 to June 30, 2019 are not in the scope of the collection.
   # Please review and amend the Date of cessation or exclude the episodes.
 
+  # {
+  #   "message": f"Episode End Date is not in the reporting period",
+  #   "field": M['END_DATE'],
+  #   "involvedFields": [M['END_DATE']],
+  #   "type" :"Error",
+  #   "rule" : {"!": {"and":[
+  #                 {"!=": [{"var": M['END_DATE']}, ""]},
+  #                 {"is_notin_period": [ {"var": MDS_END_FLD} ]}
+  #               ]
+  #           }}
+  # },
   {
-    "message": f"Episode End Date is not in the reporting period",
+    "message": f"Episode is not active in the reporting period",
     "field": M['END_DATE'],
-    "involvedFields": [M['END_DATE']],
+    "involvedFields": [M['COMM_DATE'], M['END_DATE']],
     "type" :"Error",
-    "rule" : {"!": {"and":[
-                  {"!=": [{"var": M['END_DATE']}, ""]},
-                  {"is_notin_period": [ {"var": MDS_END_FLD} ]}
-                ]
-            }}
-  },
+    "rule" : {"!": 
+                  {"not_activein_period": [{"var": MDS_ST_FLD }, {"var": MDS_END_FLD} ]}
+            }
+  },  
   # Potential duplicate records
   # ValidationCode : Duplicate Eps
   # Priority: Critical

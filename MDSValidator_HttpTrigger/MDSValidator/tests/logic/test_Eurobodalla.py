@@ -14,7 +14,7 @@ error = { 'index': 0 ,'cid': '',  **ex_tds, 'message': S_MTT_PHARM}
 
 @pytest.fixture(scope="module")
 def Euro_json_validator():
-  validator = get_validator_for_program ('PathwaysEuroMonaBega')
+  validator = get_validator_for_program ('PathwaysEuroMona')
   return validator
 
 

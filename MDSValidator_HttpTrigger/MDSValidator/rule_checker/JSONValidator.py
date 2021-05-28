@@ -15,7 +15,7 @@ from ..AOD_MDS.logic_rules.common import rule_definitions as common_rules
 from ..AOD_MDS.logic_rules import get_program_rules
 from ..utils import (cleanse_string, get_date_converter, has_duplicate_values,
                      has_gaps, compile_logic_errors, remove_vrules,
-                     add_error_obj, Period, in_period)
+                     add_error_obj, Period, active_in_period)
 from ..utils.InputFileErrors import SchemaValidationError
 from ..logger import logger
 from .MJValidationError import MJValidationError
@@ -197,8 +197,9 @@ class JSONValidator(object):
         add_operation('check_slk', self.check_slk)
         add_operation('has_blanks_in_otherdrugs', has_gaps)
         # change to is_invalid_drug use
-        add_operation('is_valid_drug_use', self.valid_drug_use_method)
-        add_operation('is_notin_period', self.is_notin_period)
+        add_operation('is_valid_drug_use', self.valid_drug_use_method)        
+        add_operation('not_activein_period', self.not_activein_period)
+        
 
         client_eps = {}
 
@@ -216,8 +217,10 @@ class JSONValidator(object):
 
         return errors, warnings
 
-    def is_notin_period(self, episode_end):
-        return not in_period(self.period, episode_end)
+    def not_activein_period(self, episode_start, episode_end):        
+        return not active_in_period(self.period,
+                                    episode_start,
+                                    episode_end)
 
     def check_slk(self, id, data_slk, firstname, lastname, DOB_str, sex_str):
         must_be = getSLK(firstname, lastname, DOB_str, sex_str)

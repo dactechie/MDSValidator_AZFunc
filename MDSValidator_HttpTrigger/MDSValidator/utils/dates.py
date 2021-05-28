@@ -7,6 +7,16 @@ Period = namedtuple('Period', 'start end')
 def in_period(period: Period, ep_end: datetime) -> bool:
   return period.start<= ep_end <= period.end
 
+
+def active_in_period(period: Period, ep_start: datetime, ep_end: datetime = None) -> bool:
+  """
+      episode started on or before the period ended.  AND
+      if episode ended, end date was on or after period started
+  """
+  return \
+    (ep_start <= period.end) and \
+      (ep_end is None or ep_end >= period.start)
+
  
 def get_period(start_date: datetime, period_months=3) -> datetime :
 
@@ -15,6 +25,7 @@ def get_period(start_date: datetime, period_months=3) -> datetime :
 
 
 def str_to_date(str):
+  
     """
         TODO : 431972 or 04031972 or 04/3/1972 or 4/3/1972 or 4/03/1972 -> Date (24,3,1972)
              then compare dates.. dont have to get to-ordinal

@@ -1,7 +1,7 @@
 {
       "type": "object",
       "description": "NSW MDS Definitions",
-      "version": "July 2019",
+      "version": "Sep 2021",
       "definitions": {
           "principal_source_of_income": {
             "$id": "#principal_source_of_income",
@@ -29,11 +29,11 @@
                 "psychiatric hospital",
                 "other hospital",
                 "residential community mental health unit",
-                "residential d&a treatment agency",
+                "residential alcohol and other drug treatment agency",
                 "other residential community care unit",
                 "education institution",
                 "non-residential community mental health centre",
-                "non-residential d&a treatment agency",
+                "non-residential alcohol and other drug treatment agency",
                 "non-residential community health centre",
                 "other non-health service agency",
                 "workplace (eap)",
@@ -122,11 +122,11 @@
                 "psychiatric hospital",
                 "other hospital",
                 "residential community mental health unit",
-                "residential d&a treatment agency",
+                "residential alcohol and other drug treatment agency",
                 "other residential community care unit",
                 "education institution",
                 "non-residential community mental health centre",
-                "non-residential d&a treatment agency",
+                "non-residential alcohol and other drug treatment agency",
                 "non-residential community health centre",
                 "other non-health service agency",
                 "police diversion",
@@ -173,13 +173,7 @@
           },
           "previous_treatment_type": {
               "type": "string",
-              "$id": "#previous_treatment_type",
-              "enum": [
-                  "",
-                  "not collected (for secondary clients only)",                  
-                  "previous service received",
-                  "no previous service received"
-              ]
+              "$id": "#previous_treatment_type"
           },
           "treatment_delivery_setting": {
               "type": "string",

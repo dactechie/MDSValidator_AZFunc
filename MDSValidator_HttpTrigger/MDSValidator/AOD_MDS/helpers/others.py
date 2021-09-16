@@ -5,7 +5,7 @@ from ..constants import MDS
 #                                       rd_wo_involved_fields)
 from ...utils import isin_dicts_array
 #from utils.dates import inperiod, in_period_date
-from ...logger import logger
+from ....logger import logger
 # from ..logic_rules.method_of_use_matrix import drug_usage
 
 

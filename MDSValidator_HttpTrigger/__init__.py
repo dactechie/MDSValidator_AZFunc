@@ -1,4 +1,4 @@
-import logging
+
 import json
 import sys
 
@@ -7,10 +7,10 @@ import azure.functions as func
 from .input_file_processor import get_details_from, get_data
 from .MDSValidator import MDSDataFileProcessor
 from .MDSValidator.utils.InputFileErrors import InputFileError
-
+from .logger import logger
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logger.info('Python HTTP trigger function processed a request.')
 
     try:
 
@@ -33,11 +33,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(body=results,
                                  mimetype="application/json", status_code=200)
     except InputFileError as ife:
-        logging.error(ife)
+        logger.error(ife)
         # Using 201  (not appropriate) to distinguish in the LogicApp between error vs non-error state
         return func.HttpResponse(body=json.dumps({'error': ife.get_msg()}),
                                  mimetype="application/json", status_code=201)
     except Exception as e:
         _, _, exc_traceback = sys.exc_info()
-        logging.exception(e.with_traceback(exc_traceback))
+        logger.exception(e.with_traceback(exc_traceback))
         return func.HttpResponse(json.dumps({'error': str(e)}), status_code=400)

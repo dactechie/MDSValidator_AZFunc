@@ -17,7 +17,7 @@ from ..utils import (cleanse_string, get_date_converter, has_duplicate_values,
                      has_gaps, compile_logic_errors, remove_vrules,
                      add_error_obj, Period, active_in_period)
 from ..utils.InputFileErrors import SchemaValidationError
-from ..logger import logger
+from ...logger import logger
 from .MJValidationError import MJValidationError
 from .constants import MODE_LOOSE, NOW_ORD, NOW
 from ...CommonUtils import constants as DBConstants

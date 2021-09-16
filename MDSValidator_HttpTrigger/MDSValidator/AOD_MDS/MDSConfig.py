@@ -2,6 +2,7 @@ import json
 
 from .constants import MDS as M
 from ...CommonUtils import constants as DBConstants
+from ...logger import logger
 
 def process_loaded_config(config):
     mds_data_value_aliases, mds_header_aliases = map_to_mds_values(
@@ -54,10 +55,17 @@ class MDSLocalConfigurationLoader:
         # parameters = {"pk1": schema_domain}
         # filterValue = "(PartitionKey eq @pk1) and IsActive"
         # result = self.config_client.query_entities(filter=filterValue, parameters=parameters)
-        result = self.config_client.query_entities(
-            filter=f"PartitionKey eq '{schema_domain}' or PartitionKey eq 'Common' and IsActive")
+        
+        logger.debug (f'Going to load Alias config from URL '\
+                      f'{self.config_client.url} and '\
+                      f'Table {self.config_client.table_name}')
 
+        filter_str = f"PartitionKey eq '{schema_domain}' or PartitionKey eq 'Common' and IsActive"
+        logger.debug(filter_str)
+        result = self.config_client.query_entities(filter=filter_str)
+                
         rlist = list(result)
+        # logger.debug(f"result list {rlist}")
         for r in rlist:
             self.config[r.get("RowKey")] = json.loads(r.get("Value"))
 
@@ -67,4 +75,8 @@ class MDSLocalConfigurationLoader:
         else:
             self.load_config(schema_domain)
             self.config = process_loaded_config(self.config)
+            logger.debug(f"Loaded remote config. MethodOfUseMatrix:"\
+                                     f"{self.config['MethodOfUseMatrix']}")
+            logger.debug(f"Loaded remote config. Headers: "\
+                                    f"{self.config['Aliases']['headers']}")
             return self.config

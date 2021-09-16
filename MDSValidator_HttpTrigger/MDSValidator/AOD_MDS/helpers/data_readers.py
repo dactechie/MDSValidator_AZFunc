@@ -2,7 +2,7 @@
 import copy
 import csv
 import json
-from ...logger import logger
+from ....logger import logger
 from ..constants import MDS
 from ...utils import remove_unicode, get_lower_case_vals
 
@@ -73,7 +73,7 @@ def read_data(data, data_header: dict, open_and_closed_eps=True) -> dict:
     """
     - Assumes that if a "FULL NAME" column exists, all rows will have a format of
         'LastName, FirstName'.
-    - all_eps == False => Closed eps only
+    - open_and_closed_eps == False => Closed eps only
     """        
     data_dicts = get_dicts(data, data_header)
 

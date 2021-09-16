@@ -4,7 +4,7 @@ import csv
 from time import time
 from datetime import datetime
 
-from .logger import logger
+from ..logger import logger
 from .AOD_MDS.helpers import read_data, read_header
 
 from .rule_checker.JSONValidator import JSONValidator
@@ -154,42 +154,28 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
     # and
     #   ? to match the error excel template headers
     # TODO : load from schema file.
-    template_column_headers = {'ACTMDS': ['enrolling provider', 'id', 'first name', 'surname', 'eid', 'slk 581', 'sex',
+    ACT_CCARE_COLS = ['enrolling provider', 'id', 'first name', 'surname', 'eid', 'slk 581', 'sex',
                                           'dob', 'date accuracy indicator', 'country of birth', 'indigenous status',
                                           'preferred language', 'postcode (australian)', 'usual accommodation', 'client type',
                                           'source of referral', 'commencement date', 'end date', 'reason for cessation',
                                           'treatment delivery setting', 'method of use for pdc', 'injecting drug use status',
                                           'principle drug of concern', 'odc1', 'odc2', 'odc3', 'odc4', 'odc5',
                                           'main treatment type', 'ott1', 'ott2', 'ott3', 'ott4', 'living arrangements',
-                                          'previous alcohol and other drug treatment received', 'mental health'],
-                               'NSWMDS': [
-        # <<< --- staff info useful when returning it to staff to fix.
-        'staff', 'location', 'service',        
-        #         Location and service to encode for nadabase upload
-        'id', 'first name', 'surname', 'slk 581', 'sex', 'dob',
-        'date accuracy indicator', 'country of birth', 'indigenous status', 'preferred language',
-        'postcode (australian)', 'usual accommodation', 'client type', 'source of referral',
-                                 'principal source of income',  # <<< ---
-                                 'commencement date', 'end date', 'reason for cessation',
-                                 'referral to another service',  # <<< ---
-                                 'treatment delivery setting', 'method of use for pdc',
-                                 'injecting drug use status', 'principle drug of concern', 'odc1', 'odc2', 'odc3', 'odc4',
-                                 'odc5', 'main treatment type', 'ott1', 'ott2', 'ott3', 'ott4', 'living arrangements',
-                                 'previous alcohol and other drug treatment received'
-        , 'mental health'
-    ],
-    "NSWMDSCCARE": [        'enrolling provider',
-        'id', 'first name', 'surname', 'slk 581', 'sex', 'dob',
-        'date accuracy indicator', 'country of birth', 'indigenous status', 'preferred language',
-        'postcode (australian)', 'usual accommodation', 'client type', 'source of referral',
-                                 'principal source of income',  # <<< ---
-                                 'commencement date', 'end date', 'reason for cessation',
-                                 'referral to another service',  # <<< ---
-                                 'treatment delivery setting', 'method of use for pdc',
-                                 'injecting drug use status', 'principle drug of concern', 'odc1', 'odc2', 'odc3', 'odc4',
-                                 'odc5', 'main treatment type', 'ott1', 'ott2', 'ott3', 'ott4', 'living arrangements',
-                                 'previous alcohol and other drug treatment received']
-    }
+                                          'previous alcohol and other drug treatment received', 'mental health']
+    # NSWCCARE_diff_ACT_CCARE_COLS = set (NSWCCARE).difference(set(ACT_CCARE_COLS))
+    #NSWMDS_EXTRA = [(NSWCCARE.index(i), i) for i in NSWCCARE_diff_ACT_CCARE_COLS]
+    
+    NSWMDS_EXTRA = [(15, 'principal source of income'), (19, 'referral to another service')]
+    NSW_CCARE_COLS = ACT_CCARE_COLS.copy()
+    NSW_CCARE_COLS.remove('eid')
+    NSW_CCARE_COLS.remove('mental health')
+    for i, v in NSWMDS_EXTRA:
+      NSW_CCARE_COLS.insert(i, v)
+      
+    template_column_headers = {'ACTMDS': ACT_CCARE_COLS,
+                               'NSWMDS': ['staff', 'location', 'service', *NSW_CCARE_COLS],
+                               'NSWMDSCCARE': NSW_CCARE_COLS
+                              }
 
     rows = get_vresult_rows(template_column_headers[schema_provider.schema_domain],
                             len(template_column_headers), data['episodes'], verrors)

@@ -171,7 +171,8 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
     NSW_CCARE_COLS.remove('mental health')
     for i, v in NSWMDS_EXTRA:
       NSW_CCARE_COLS.insert(i, v)
-      
+    
+    NSW_CCARE_COLS.append('program')
     template_column_headers = {'ACTMDS': ACT_CCARE_COLS,
                                'NSWMDS': ['staff', 'location', 'service', *NSW_CCARE_COLS],
                                'NSWMDSCCARE': NSW_CCARE_COLS

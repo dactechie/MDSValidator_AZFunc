@@ -172,9 +172,12 @@ def exe(data, open_and_closed_eps, errors_only, start_date,
     for i, v in NSWMDS_EXTRA:
       NSW_CCARE_COLS.insert(i, v)
     
+    NSWMDS = NSW_CCARE_COLS.copy()
     NSW_CCARE_COLS.insert(1, 'program')
+    
+    NSWMDS.remove('enrolling provider')    
     template_column_headers = {'ACTMDS': ACT_CCARE_COLS,
-                               'NSWMDS': ['staff', 'location', 'service', *NSW_CCARE_COLS],
+                               'NSWMDS': ['staff', 'location', 'service', *NSWMDS],
                                'NSWMDSCCARE': NSW_CCARE_COLS
                               }
 

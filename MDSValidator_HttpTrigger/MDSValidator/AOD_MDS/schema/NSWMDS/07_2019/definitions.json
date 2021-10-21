@@ -1,7 +1,7 @@
 {
       "type": "object",
       "description": "NSW MDS Definitions",
-      "version": "Sep 2021",
+      "version": "Oct 2021",
       "definitions": {
           "principal_source_of_income": {
             "$id": "#principal_source_of_income",
@@ -108,7 +108,8 @@
                 "friend(s)",
                 "friend(s)/parent(s)/relative(s) and child(ren)",
                 "other",
-                "not known/not stated/inadequately described"                
+                "not known/not stated/inadequately described",
+                ""             
               ]
           },
           "source_of_referral": {
@@ -121,7 +122,7 @@
                 "medical officer/specialist",
                 "psychiatric hospital",
                 "other hospital",
-                "residential community mental health unit",
+                "residential community mental health care unit",
                 "residential alcohol and other drug treatment agency",
                 "other residential community care unit",
                 "education institution",
@@ -201,7 +202,8 @@
                 "caravan on a serviced site",
                 "no usual residence/homeless",
                 "other",
-                "not known"
+                "not known",
+                ""
               ]
           }
       }
